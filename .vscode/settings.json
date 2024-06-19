@@ -1,0 +1,23 @@
+{
+  "files.autoSave": "onWindowChange",
+  // 开启 eslint
+  "eslint.enable": true,
+  // 开启 prettier
+  "prettier.enable": true,
+  "eslint.probe": ["javascript", "typescript"],
+  "eslint.format.enable": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": true,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit",
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit"
+  },
+  "eslint.packageManager": "npm",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.formatOnSave": true
+  }
+}

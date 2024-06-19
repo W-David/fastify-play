@@ -1,0 +1,52 @@
+{
+  "name": "fastify-play",
+  "version": "1.0.0",
+  "description": "fastify-play",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "ts-node --transpile-only ./src/index.ts",
+    "seed": "ts-node --transpile-only ./prisma/seed.ts",
+    "prisma:migrate": "prisma migrate dev --name init",
+    "prisma:generate": "prisma generate",
+    "prisma:studio": "prisma studio",
+    "prisma:reset": "prisma reset --force",
+    "lint": "eslint --ext \".ts\" --ignore-path .gitignore .",
+    "lint:fix": "eslint --fix --debug --ext \".ts\" --ignore-path .gitignore ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/W-David/fastify-play.git"
+  },
+  "author": "Coody",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">= 18.0.0"
+  },
+  "devDependencies": {
+    "@types/graphql-fields": "^1.3.4",
+    "@types/node": "17.0.21",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.42.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "prettier": "^3.0.0",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.2"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.15.1",
+    "class-validator": ">=0.12.0",
+    "fastify": "^3.27.2",
+    "fastify-static": "^4.5.0",
+    "graphql": "^15.3.0",
+    "graphql-fields": "^2.0.3",
+    "graphql-scalars": "^1.14.1",
+    "mercurius": "^8",
+    "prisma": "^5.15.1",
+    "reflect-metadata": "^0.1.13",
+    "tslib": "^2.3.1",
+    "type-graphql": "^1.1.1",
+    "typegraphql-prisma": "^0.27.2"
+  }
+}
