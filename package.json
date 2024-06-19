@@ -10,6 +10,7 @@
     "prisma:generate": "prisma generate",
     "prisma:studio": "prisma studio",
     "prisma:reset": "prisma reset --force",
+    "build:sandbox": "esbuild apollo/load.js --bundle --outfile=public/apollo/load.js",
     "lint": "eslint --ext \".ts\" --ignore-path .gitignore .",
     "lint:fix": "eslint --fix --debug --ext \".ts\" --ignore-path .gitignore ."
   },
@@ -23,10 +24,13 @@
     "node": ">= 18.0.0"
   },
   "devDependencies": {
+    "@apollo/sandbox": "^2.6.0",
+    "@fastify/static": "^5.0.0",
     "@types/graphql-fields": "^1.3.4",
     "@types/node": "17.0.21",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
+    "esbuild": "0.21.5",
     "eslint": "^8.42.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
@@ -36,6 +40,7 @@
   },
   "dependencies": {
     "@prisma/client": "^5.15.1",
+    "chalk": "^4.1.0",
     "class-validator": ">=0.12.0",
     "fastify": "^3.27.2",
     "fastify-static": "^4.5.0",
