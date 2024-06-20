@@ -48,38 +48,38 @@ input BoolWithAggregatesFilter {
   not: NestedBoolWithAggregatesFilter
 }
 
-"""
-The javascript `Date` as string. Type represents date and time as the ISO Date string.
-"""
-scalar DateTime
-
 input DateTimeFieldUpdateOperationsInput {
-  set: DateTime
+  set: DateTimeISO
 }
 
 input DateTimeFilter {
-  equals: DateTime
-  gt: DateTime
-  gte: DateTime
-  in: [DateTime!]
-  lt: DateTime
-  lte: DateTime
+  equals: DateTimeISO
+  gt: DateTimeISO
+  gte: DateTimeISO
+  in: [DateTimeISO!]
+  lt: DateTimeISO
+  lte: DateTimeISO
   not: NestedDateTimeFilter
-  notIn: [DateTime!]
+  notIn: [DateTimeISO!]
 }
+
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.This scalar is serialized to a string in ISO 8601 format and parsed from a string in ISO 8601 format.
+"""
+scalar DateTimeISO
 
 input DateTimeWithAggregatesFilter {
   _count: NestedIntFilter
   _max: NestedDateTimeFilter
   _min: NestedDateTimeFilter
-  equals: DateTime
-  gt: DateTime
-  gte: DateTime
-  in: [DateTime!]
-  lt: DateTime
-  lte: DateTime
+  equals: DateTimeISO
+  gt: DateTimeISO
+  gte: DateTimeISO
+  in: [DateTimeISO!]
+  lt: DateTimeISO
+  lte: DateTimeISO
   not: NestedDateTimeWithAggregatesFilter
-  notIn: [DateTime!]
+  notIn: [DateTimeISO!]
 }
 
 input IntFilter {
@@ -147,28 +147,28 @@ input NestedBoolWithAggregatesFilter {
 }
 
 input NestedDateTimeFilter {
-  equals: DateTime
-  gt: DateTime
-  gte: DateTime
-  in: [DateTime!]
-  lt: DateTime
-  lte: DateTime
+  equals: DateTimeISO
+  gt: DateTimeISO
+  gte: DateTimeISO
+  in: [DateTimeISO!]
+  lt: DateTimeISO
+  lte: DateTimeISO
   not: NestedDateTimeFilter
-  notIn: [DateTime!]
+  notIn: [DateTimeISO!]
 }
 
 input NestedDateTimeWithAggregatesFilter {
   _count: NestedIntFilter
   _max: NestedDateTimeFilter
   _min: NestedDateTimeFilter
-  equals: DateTime
-  gt: DateTime
-  gte: DateTime
-  in: [DateTime!]
-  lt: DateTime
-  lte: DateTime
+  equals: DateTimeISO
+  gt: DateTimeISO
+  gte: DateTimeISO
+  in: [DateTimeISO!]
+  lt: DateTimeISO
+  lte: DateTimeISO
   not: NestedDateTimeWithAggregatesFilter
-  notIn: [DateTime!]
+  notIn: [DateTimeISO!]
 }
 
 input NestedFloatFilter {
@@ -295,11 +295,11 @@ type Post {
   author: User!
   authorId: Int!
   content: String
-  createdAt: DateTime!
+  createdAt: DateTimeISO!
   id: Int!
   published: Boolean!
   title: String!
-  updatedAt: DateTime!
+  updatedAt: DateTimeISO!
 }
 
 type PostAvgAggregate {
@@ -336,19 +336,19 @@ input PostCountOrderByAggregateInput {
 input PostCreateInput {
   author: UserCreateNestedOneWithoutPostsInput!
   content: String
-  createdAt: DateTime
+  createdAt: DateTimeISO
   published: Boolean
   title: String!
-  updatedAt: DateTime
+  updatedAt: DateTimeISO
 }
 
 input PostCreateManyAuthorInput {
   content: String
-  createdAt: DateTime
+  createdAt: DateTimeISO
   id: Int
   published: Boolean
   title: String!
-  updatedAt: DateTime
+  updatedAt: DateTimeISO
 }
 
 input PostCreateManyAuthorInputEnvelope {
@@ -359,11 +359,11 @@ input PostCreateManyAuthorInputEnvelope {
 input PostCreateManyInput {
   authorId: Int!
   content: String
-  createdAt: DateTime
+  createdAt: DateTimeISO
   id: Int
   published: Boolean
   title: String!
-  updatedAt: DateTime
+  updatedAt: DateTimeISO
 }
 
 input PostCreateNestedManyWithoutAuthorInput {
@@ -380,10 +380,10 @@ input PostCreateOrConnectWithoutAuthorInput {
 
 input PostCreateWithoutAuthorInput {
   content: String
-  createdAt: DateTime
+  createdAt: DateTimeISO
   published: Boolean
   title: String!
-  updatedAt: DateTime
+  updatedAt: DateTimeISO
 }
 
 type PostGroupBy {
@@ -394,11 +394,11 @@ type PostGroupBy {
   _sum: PostSumAggregate
   authorId: Int!
   content: String
-  createdAt: DateTime!
+  createdAt: DateTimeISO!
   id: Int!
   published: Boolean!
   title: String!
-  updatedAt: DateTime!
+  updatedAt: DateTimeISO!
 }
 
 input PostListRelationFilter {
@@ -410,11 +410,11 @@ input PostListRelationFilter {
 type PostMaxAggregate {
   authorId: Int
   content: String
-  createdAt: DateTime
+  createdAt: DateTimeISO
   id: Int
   published: Boolean
   title: String
-  updatedAt: DateTime
+  updatedAt: DateTimeISO
 }
 
 input PostMaxOrderByAggregateInput {
@@ -430,11 +430,11 @@ input PostMaxOrderByAggregateInput {
 type PostMinAggregate {
   authorId: Int
   content: String
-  createdAt: DateTime
+  createdAt: DateTimeISO
   id: Int
   published: Boolean
   title: String
-  updatedAt: DateTime
+  updatedAt: DateTimeISO
 }
 
 input PostMinOrderByAggregateInput {
@@ -608,9 +608,9 @@ input PostWhereUniqueInput {
 
 type Profile {
   bio: String
-  createdAt: DateTime!
+  createdAt: DateTimeISO!
   id: Int!
-  updatedAt: DateTime!
+  updatedAt: DateTimeISO!
   user: User!
   userId: Int!
 }
@@ -644,24 +644,24 @@ input ProfileCountOrderByAggregateInput {
 
 input ProfileCreateInput {
   bio: String
-  createdAt: DateTime
-  updatedAt: DateTime
+  createdAt: DateTimeISO
+  updatedAt: DateTimeISO
   user: UserCreateNestedOneWithoutProfileInput!
 }
 
 input ProfileCreateManyInput {
   bio: String
-  createdAt: DateTime
+  createdAt: DateTimeISO
   id: Int
-  updatedAt: DateTime
+  updatedAt: DateTimeISO
   userId: Int!
 }
 
 input ProfileCreateManyUserInput {
   bio: String
-  createdAt: DateTime
+  createdAt: DateTimeISO
   id: Int
-  updatedAt: DateTime
+  updatedAt: DateTimeISO
 }
 
 input ProfileCreateManyUserInputEnvelope {
@@ -683,8 +683,8 @@ input ProfileCreateOrConnectWithoutUserInput {
 
 input ProfileCreateWithoutUserInput {
   bio: String
-  createdAt: DateTime
-  updatedAt: DateTime
+  createdAt: DateTimeISO
+  updatedAt: DateTimeISO
 }
 
 type ProfileGroupBy {
@@ -694,9 +694,9 @@ type ProfileGroupBy {
   _min: ProfileMinAggregate
   _sum: ProfileSumAggregate
   bio: String
-  createdAt: DateTime!
+  createdAt: DateTimeISO!
   id: Int!
-  updatedAt: DateTime!
+  updatedAt: DateTimeISO!
   userId: Int!
 }
 
@@ -708,9 +708,9 @@ input ProfileListRelationFilter {
 
 type ProfileMaxAggregate {
   bio: String
-  createdAt: DateTime
+  createdAt: DateTimeISO
   id: Int
-  updatedAt: DateTime
+  updatedAt: DateTimeISO
   userId: Int
 }
 
@@ -724,9 +724,9 @@ input ProfileMaxOrderByAggregateInput {
 
 type ProfileMinAggregate {
   bio: String
-  createdAt: DateTime
+  createdAt: DateTimeISO
   id: Int
-  updatedAt: DateTime
+  updatedAt: DateTimeISO
   userId: Int
 }
 
@@ -979,14 +979,14 @@ input StringWithAggregatesFilter {
 
 type User {
   _count: UserCount
-  createdAt: DateTime!
+  createdAt: DateTimeISO!
   email: String!
   id: Int!
   name: String!
   password: String!
   posts(cursor: PostWhereUniqueInput, distinct: [PostScalarFieldEnum!], orderBy: [PostOrderByWithRelationInput!], skip: Int, take: Int, where: PostWhereInput): [Post!]!
   profile(cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): [Profile!]!
-  updatedAt: DateTime!
+  updatedAt: DateTimeISO!
 }
 
 type UserAvgAggregate {
@@ -1022,22 +1022,22 @@ input UserCountOrderByAggregateInput {
 }
 
 input UserCreateInput {
-  createdAt: DateTime
+  createdAt: DateTimeISO
   email: String!
   name: String!
   password: String!
   posts: PostCreateNestedManyWithoutAuthorInput
   profile: ProfileCreateNestedManyWithoutUserInput
-  updatedAt: DateTime
+  updatedAt: DateTimeISO
 }
 
 input UserCreateManyInput {
-  createdAt: DateTime
+  createdAt: DateTimeISO
   email: String!
   id: Int
   name: String!
   password: String!
-  updatedAt: DateTime
+  updatedAt: DateTimeISO
 }
 
 input UserCreateNestedOneWithoutPostsInput {
@@ -1063,21 +1063,21 @@ input UserCreateOrConnectWithoutProfileInput {
 }
 
 input UserCreateWithoutPostsInput {
-  createdAt: DateTime
+  createdAt: DateTimeISO
   email: String!
   name: String!
   password: String!
   profile: ProfileCreateNestedManyWithoutUserInput
-  updatedAt: DateTime
+  updatedAt: DateTimeISO
 }
 
 input UserCreateWithoutProfileInput {
-  createdAt: DateTime
+  createdAt: DateTimeISO
   email: String!
   name: String!
   password: String!
   posts: PostCreateNestedManyWithoutAuthorInput
-  updatedAt: DateTime
+  updatedAt: DateTimeISO
 }
 
 type UserGroupBy {
@@ -1086,21 +1086,21 @@ type UserGroupBy {
   _max: UserMaxAggregate
   _min: UserMinAggregate
   _sum: UserSumAggregate
-  createdAt: DateTime!
+  createdAt: DateTimeISO!
   email: String!
   id: Int!
   name: String!
   password: String!
-  updatedAt: DateTime!
+  updatedAt: DateTimeISO!
 }
 
 type UserMaxAggregate {
-  createdAt: DateTime
+  createdAt: DateTimeISO
   email: String
   id: Int
   name: String
   password: String
-  updatedAt: DateTime
+  updatedAt: DateTimeISO
 }
 
 input UserMaxOrderByAggregateInput {
@@ -1113,12 +1113,12 @@ input UserMaxOrderByAggregateInput {
 }
 
 type UserMinAggregate {
-  createdAt: DateTime
+  createdAt: DateTimeISO
   email: String
   id: Int
   name: String
   password: String
-  updatedAt: DateTime
+  updatedAt: DateTimeISO
 }
 
 input UserMinOrderByAggregateInput {

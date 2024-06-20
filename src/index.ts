@@ -35,7 +35,7 @@ async function main() {
     context: () => ({ prisma }),
   })
 
-  await app.listen(port)
+  await app.listen({ port })
 
   console.log(`🚀  ${chalk.greenBright('Server ready at:')} ${chalk.cyanBright(`http://localhost:${port}`)}`)
   console.log(`🍕  ${chalk.greenBright('Graphiql ready at:')} ${chalk.cyanBright(`http://localhost:${port}/graphiql`)}`)
