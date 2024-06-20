@@ -1,13 +1,19 @@
+import { ApolloServer } from '@apollo/server'
+import fastifyApollo, { ApolloFastifyContextFunction, fastifyApolloDrainPlugin } from '@as-integrations/fastify'
 import { PrismaClient } from '@prisma/client'
 import chalk from 'chalk'
 import fastify from 'fastify'
-import mercurius from 'mercurius'
 import path from 'path'
 import 'reflect-metadata'
 import { buildSchema } from 'type-graphql'
 import { resolvers } from '../prisma/type-graphql'
 
 const port = 3000
+const graphqlPath = '/graphql'
+
+export interface Context {
+  prisma: PrismaClient
+}
 
 async function main() {
   const schema = await buildSchema({
@@ -19,28 +25,31 @@ async function main() {
   const app = fastify()
   const prisma = new PrismaClient()
 
-  // app.register(fastifyStatic, {
-  //   root: path.join(__dirname, '../public/apollo'),
-  //   prefix: '/apollo/',
-  // })
-
-  // app.register(fastifyStatic, {
-  //   root: path.join(__dirname, '../public/gql-client'),
-  //   prefix: '/gql-client/',
-  // })
-
-  app.register(mercurius, {
+  const apollo = new ApolloServer<Context>({
     schema,
-    graphiql: true,
-    context: () => ({ prisma }),
+    plugins: [fastifyApolloDrainPlugin(app)],
   })
+
+  const apolloContext: ApolloFastifyContextFunction<Context> = async (req) => {
+    return new Promise((resolve) => resolve({ prisma }))
+  }
+
+  await apollo.start()
+
+  await app.register(fastifyApollo(apollo), {
+    context: apolloContext,
+  })
+
+  // app.register(mercurius, {
+  //   schema,
+  //   graphiql: true,
+  //   context: () => ({ prisma }),
+  // })
 
   await app.listen({ port })
 
-  console.log(`🚀  ${chalk.greenBright('Server ready at:')} ${chalk.cyanBright(`http://localhost:${port}`)}`)
-  console.log(`🍕  ${chalk.greenBright('Graphiql ready at:')} ${chalk.cyanBright(`http://localhost:${port}/graphiql`)}`)
-  // console.log(`🌈  ${chalk.greenBright('Sandbox ready at:')} ${chalk.cyanBright(`http://localhost:${port}/apollo/`)}`)
-  // console.log(`🌈  ${chalk.greenBright('GqlClient ready at:')} ${chalk.cyanBright(`http://localhost:${port}/gql-client/`)}`)
+  console.log(`🍕  ${chalk.greenBright('Graphql ready at:')} ${chalk.cyanBright(`http://localhost:${port}${graphqlPath}`)}`)
+  // console.log(`🌈  ${chalk.greenBright('Sandbox ready at:')} ${chalk.cyanBright(`http://localhost:${port}/graphiql`)}`)
 }
 
 main().catch(console.error)
