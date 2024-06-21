@@ -48,39 +48,10 @@ input BoolWithAggregatesFilter {
   not: NestedBoolWithAggregatesFilter
 }
 
-input DateTimeFieldUpdateOperationsInput {
-  set: DateTimeISO
-}
-
-input DateTimeFilter {
-  equals: DateTimeISO
-  gt: DateTimeISO
-  gte: DateTimeISO
-  in: [DateTimeISO!]
-  lt: DateTimeISO
-  lte: DateTimeISO
-  not: NestedDateTimeFilter
-  notIn: [DateTimeISO!]
-}
-
 """
 A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.This scalar is serialized to a string in ISO 8601 format and parsed from a string in ISO 8601 format.
 """
 scalar DateTimeISO
-
-input DateTimeWithAggregatesFilter {
-  _count: NestedIntFilter
-  _max: NestedDateTimeFilter
-  _min: NestedDateTimeFilter
-  equals: DateTimeISO
-  gt: DateTimeISO
-  gte: DateTimeISO
-  in: [DateTimeISO!]
-  lt: DateTimeISO
-  lte: DateTimeISO
-  not: NestedDateTimeWithAggregatesFilter
-  notIn: [DateTimeISO!]
-}
 
 input IntFilter {
   equals: Int
@@ -144,31 +115,6 @@ input NestedBoolWithAggregatesFilter {
   _min: NestedBoolFilter
   equals: Boolean
   not: NestedBoolWithAggregatesFilter
-}
-
-input NestedDateTimeFilter {
-  equals: DateTimeISO
-  gt: DateTimeISO
-  gte: DateTimeISO
-  in: [DateTimeISO!]
-  lt: DateTimeISO
-  lte: DateTimeISO
-  not: NestedDateTimeFilter
-  notIn: [DateTimeISO!]
-}
-
-input NestedDateTimeWithAggregatesFilter {
-  _count: NestedIntFilter
-  _max: NestedDateTimeFilter
-  _min: NestedDateTimeFilter
-  equals: DateTimeISO
-  gt: DateTimeISO
-  gte: DateTimeISO
-  in: [DateTimeISO!]
-  lt: DateTimeISO
-  lte: DateTimeISO
-  not: NestedDateTimeWithAggregatesFilter
-  notIn: [DateTimeISO!]
 }
 
 input NestedFloatFilter {
@@ -326,29 +272,23 @@ type PostCountAggregate {
 input PostCountOrderByAggregateInput {
   authorId: SortOrder
   content: SortOrder
-  createdAt: SortOrder
   id: SortOrder
   published: SortOrder
   title: SortOrder
-  updatedAt: SortOrder
 }
 
 input PostCreateInput {
   author: UserCreateNestedOneWithoutPostsInput!
   content: String
-  createdAt: DateTimeISO
   published: Boolean
   title: String!
-  updatedAt: DateTimeISO
 }
 
 input PostCreateManyAuthorInput {
   content: String
-  createdAt: DateTimeISO
   id: Int
   published: Boolean
   title: String!
-  updatedAt: DateTimeISO
 }
 
 input PostCreateManyAuthorInputEnvelope {
@@ -359,11 +299,9 @@ input PostCreateManyAuthorInputEnvelope {
 input PostCreateManyInput {
   authorId: Int!
   content: String
-  createdAt: DateTimeISO
   id: Int
   published: Boolean
   title: String!
-  updatedAt: DateTimeISO
 }
 
 input PostCreateNestedManyWithoutAuthorInput {
@@ -380,10 +318,8 @@ input PostCreateOrConnectWithoutAuthorInput {
 
 input PostCreateWithoutAuthorInput {
   content: String
-  createdAt: DateTimeISO
   published: Boolean
   title: String!
-  updatedAt: DateTimeISO
 }
 
 type PostGroupBy {
@@ -420,11 +356,9 @@ type PostMaxAggregate {
 input PostMaxOrderByAggregateInput {
   authorId: SortOrder
   content: SortOrder
-  createdAt: SortOrder
   id: SortOrder
   published: SortOrder
   title: SortOrder
-  updatedAt: SortOrder
 }
 
 type PostMinAggregate {
@@ -440,11 +374,9 @@ type PostMinAggregate {
 input PostMinOrderByAggregateInput {
   authorId: SortOrder
   content: SortOrder
-  createdAt: SortOrder
   id: SortOrder
   published: SortOrder
   title: SortOrder
-  updatedAt: SortOrder
 }
 
 input PostOrderByRelationAggregateInput {
@@ -459,22 +391,18 @@ input PostOrderByWithAggregationInput {
   _sum: PostSumOrderByAggregateInput
   authorId: SortOrder
   content: SortOrderInput
-  createdAt: SortOrder
   id: SortOrder
   published: SortOrder
   title: SortOrder
-  updatedAt: SortOrder
 }
 
 input PostOrderByWithRelationInput {
   author: UserOrderByWithRelationInput
   authorId: SortOrder
   content: SortOrderInput
-  createdAt: SortOrder
   id: SortOrder
   published: SortOrder
   title: SortOrder
-  updatedAt: SortOrder
 }
 
 enum PostScalarFieldEnum {
@@ -493,11 +421,9 @@ input PostScalarWhereInput {
   OR: [PostScalarWhereInput!]
   authorId: IntFilter
   content: StringNullableFilter
-  createdAt: DateTimeFilter
   id: IntFilter
   published: BoolFilter
   title: StringFilter
-  updatedAt: DateTimeFilter
 }
 
 input PostScalarWhereWithAggregatesInput {
@@ -506,11 +432,9 @@ input PostScalarWhereWithAggregatesInput {
   OR: [PostScalarWhereWithAggregatesInput!]
   authorId: IntWithAggregatesFilter
   content: StringNullableWithAggregatesFilter
-  createdAt: DateTimeWithAggregatesFilter
   id: IntWithAggregatesFilter
   published: BoolWithAggregatesFilter
   title: StringWithAggregatesFilter
-  updatedAt: DateTimeWithAggregatesFilter
 }
 
 type PostSumAggregate {
@@ -526,18 +450,14 @@ input PostSumOrderByAggregateInput {
 input PostUpdateInput {
   author: UserUpdateOneRequiredWithoutPostsNestedInput
   content: NullableStringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
   published: BoolFieldUpdateOperationsInput
   title: StringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input PostUpdateManyMutationInput {
   content: NullableStringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
   published: BoolFieldUpdateOperationsInput
   title: StringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input PostUpdateManyWithWhereWithoutAuthorInput {
@@ -566,10 +486,8 @@ input PostUpdateWithWhereUniqueWithoutAuthorInput {
 
 input PostUpdateWithoutAuthorInput {
   content: NullableStringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
   published: BoolFieldUpdateOperationsInput
   title: StringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input PostUpsertWithWhereUniqueWithoutAuthorInput {
@@ -585,11 +503,9 @@ input PostWhereInput {
   author: UserRelationFilter
   authorId: IntFilter
   content: StringNullableFilter
-  createdAt: DateTimeFilter
   id: IntFilter
   published: BoolFilter
   title: StringFilter
-  updatedAt: DateTimeFilter
 }
 
 input PostWhereUniqueInput {
@@ -599,11 +515,9 @@ input PostWhereUniqueInput {
   author: UserRelationFilter
   authorId: IntFilter
   content: StringNullableFilter
-  createdAt: DateTimeFilter
   id: Int
   published: BoolFilter
   title: StringFilter
-  updatedAt: DateTimeFilter
 }
 
 type Profile {
@@ -636,32 +550,24 @@ type ProfileCountAggregate {
 
 input ProfileCountOrderByAggregateInput {
   bio: SortOrder
-  createdAt: SortOrder
   id: SortOrder
-  updatedAt: SortOrder
   userId: SortOrder
 }
 
 input ProfileCreateInput {
   bio: String
-  createdAt: DateTimeISO
-  updatedAt: DateTimeISO
   user: UserCreateNestedOneWithoutProfileInput!
 }
 
 input ProfileCreateManyInput {
   bio: String
-  createdAt: DateTimeISO
   id: Int
-  updatedAt: DateTimeISO
   userId: Int!
 }
 
 input ProfileCreateManyUserInput {
   bio: String
-  createdAt: DateTimeISO
   id: Int
-  updatedAt: DateTimeISO
 }
 
 input ProfileCreateManyUserInputEnvelope {
@@ -683,8 +589,6 @@ input ProfileCreateOrConnectWithoutUserInput {
 
 input ProfileCreateWithoutUserInput {
   bio: String
-  createdAt: DateTimeISO
-  updatedAt: DateTimeISO
 }
 
 type ProfileGroupBy {
@@ -716,9 +620,7 @@ type ProfileMaxAggregate {
 
 input ProfileMaxOrderByAggregateInput {
   bio: SortOrder
-  createdAt: SortOrder
   id: SortOrder
-  updatedAt: SortOrder
   userId: SortOrder
 }
 
@@ -732,9 +634,7 @@ type ProfileMinAggregate {
 
 input ProfileMinOrderByAggregateInput {
   bio: SortOrder
-  createdAt: SortOrder
   id: SortOrder
-  updatedAt: SortOrder
   userId: SortOrder
 }
 
@@ -749,17 +649,13 @@ input ProfileOrderByWithAggregationInput {
   _min: ProfileMinOrderByAggregateInput
   _sum: ProfileSumOrderByAggregateInput
   bio: SortOrderInput
-  createdAt: SortOrder
   id: SortOrder
-  updatedAt: SortOrder
   userId: SortOrder
 }
 
 input ProfileOrderByWithRelationInput {
   bio: SortOrderInput
-  createdAt: SortOrder
   id: SortOrder
-  updatedAt: SortOrder
   user: UserOrderByWithRelationInput
   userId: SortOrder
 }
@@ -777,9 +673,7 @@ input ProfileScalarWhereInput {
   NOT: [ProfileScalarWhereInput!]
   OR: [ProfileScalarWhereInput!]
   bio: StringNullableFilter
-  createdAt: DateTimeFilter
   id: IntFilter
-  updatedAt: DateTimeFilter
   userId: IntFilter
 }
 
@@ -788,9 +682,7 @@ input ProfileScalarWhereWithAggregatesInput {
   NOT: [ProfileScalarWhereWithAggregatesInput!]
   OR: [ProfileScalarWhereWithAggregatesInput!]
   bio: StringNullableWithAggregatesFilter
-  createdAt: DateTimeWithAggregatesFilter
   id: IntWithAggregatesFilter
-  updatedAt: DateTimeWithAggregatesFilter
   userId: IntWithAggregatesFilter
 }
 
@@ -806,15 +698,11 @@ input ProfileSumOrderByAggregateInput {
 
 input ProfileUpdateInput {
   bio: NullableStringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
   user: UserUpdateOneRequiredWithoutProfileNestedInput
 }
 
 input ProfileUpdateManyMutationInput {
   bio: NullableStringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input ProfileUpdateManyWithWhereWithoutUserInput {
@@ -843,8 +731,6 @@ input ProfileUpdateWithWhereUniqueWithoutUserInput {
 
 input ProfileUpdateWithoutUserInput {
   bio: NullableStringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input ProfileUpsertWithWhereUniqueWithoutUserInput {
@@ -858,9 +744,7 @@ input ProfileWhereInput {
   NOT: [ProfileWhereInput!]
   OR: [ProfileWhereInput!]
   bio: StringNullableFilter
-  createdAt: DateTimeFilter
   id: IntFilter
-  updatedAt: DateTimeFilter
   user: UserRelationFilter
   userId: IntFilter
 }
@@ -870,9 +754,7 @@ input ProfileWhereUniqueInput {
   NOT: [ProfileWhereInput!]
   OR: [ProfileWhereInput!]
   bio: StringNullableFilter
-  createdAt: DateTimeFilter
   id: Int
-  updatedAt: DateTimeFilter
   user: UserRelationFilter
   userId: Int
 }
@@ -983,7 +865,6 @@ type User {
   email: String!
   id: Int!
   name: String!
-  password: String!
   posts(cursor: PostWhereUniqueInput, distinct: [PostScalarFieldEnum!], orderBy: [PostOrderByWithRelationInput!], skip: Int, take: Int, where: PostWhereInput): [Post!]!
   profile(cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): [Profile!]!
   updatedAt: DateTimeISO!
@@ -1013,31 +894,25 @@ type UserCountAggregate {
 }
 
 input UserCountOrderByAggregateInput {
-  createdAt: SortOrder
   email: SortOrder
   id: SortOrder
   name: SortOrder
   password: SortOrder
-  updatedAt: SortOrder
 }
 
 input UserCreateInput {
-  createdAt: DateTimeISO
   email: String!
   name: String!
   password: String!
   posts: PostCreateNestedManyWithoutAuthorInput
   profile: ProfileCreateNestedManyWithoutUserInput
-  updatedAt: DateTimeISO
 }
 
 input UserCreateManyInput {
-  createdAt: DateTimeISO
   email: String!
   id: Int
   name: String!
   password: String!
-  updatedAt: DateTimeISO
 }
 
 input UserCreateNestedOneWithoutPostsInput {
@@ -1063,21 +938,17 @@ input UserCreateOrConnectWithoutProfileInput {
 }
 
 input UserCreateWithoutPostsInput {
-  createdAt: DateTimeISO
   email: String!
   name: String!
   password: String!
   profile: ProfileCreateNestedManyWithoutUserInput
-  updatedAt: DateTimeISO
 }
 
 input UserCreateWithoutProfileInput {
-  createdAt: DateTimeISO
   email: String!
   name: String!
   password: String!
   posts: PostCreateNestedManyWithoutAuthorInput
-  updatedAt: DateTimeISO
 }
 
 type UserGroupBy {
@@ -1104,12 +975,10 @@ type UserMaxAggregate {
 }
 
 input UserMaxOrderByAggregateInput {
-  createdAt: SortOrder
   email: SortOrder
   id: SortOrder
   name: SortOrder
   password: SortOrder
-  updatedAt: SortOrder
 }
 
 type UserMinAggregate {
@@ -1122,12 +991,10 @@ type UserMinAggregate {
 }
 
 input UserMinOrderByAggregateInput {
-  createdAt: SortOrder
   email: SortOrder
   id: SortOrder
   name: SortOrder
   password: SortOrder
-  updatedAt: SortOrder
 }
 
 input UserOrderByWithAggregationInput {
@@ -1136,23 +1003,19 @@ input UserOrderByWithAggregationInput {
   _max: UserMaxOrderByAggregateInput
   _min: UserMinOrderByAggregateInput
   _sum: UserSumOrderByAggregateInput
-  createdAt: SortOrder
   email: SortOrder
   id: SortOrder
   name: SortOrder
   password: SortOrder
-  updatedAt: SortOrder
 }
 
 input UserOrderByWithRelationInput {
-  createdAt: SortOrder
   email: SortOrder
   id: SortOrder
   name: SortOrder
   password: SortOrder
   posts: PostOrderByRelationAggregateInput
   profile: ProfileOrderByRelationAggregateInput
-  updatedAt: SortOrder
 }
 
 input UserRelationFilter {
@@ -1173,12 +1036,10 @@ input UserScalarWhereWithAggregatesInput {
   AND: [UserScalarWhereWithAggregatesInput!]
   NOT: [UserScalarWhereWithAggregatesInput!]
   OR: [UserScalarWhereWithAggregatesInput!]
-  createdAt: DateTimeWithAggregatesFilter
   email: StringWithAggregatesFilter
   id: IntWithAggregatesFilter
   name: StringWithAggregatesFilter
   password: StringWithAggregatesFilter
-  updatedAt: DateTimeWithAggregatesFilter
 }
 
 type UserSumAggregate {
@@ -1190,21 +1051,17 @@ input UserSumOrderByAggregateInput {
 }
 
 input UserUpdateInput {
-  createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   password: StringFieldUpdateOperationsInput
   posts: PostUpdateManyWithoutAuthorNestedInput
   profile: ProfileUpdateManyWithoutUserNestedInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input UserUpdateManyMutationInput {
-  createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   password: StringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input UserUpdateOneRequiredWithoutPostsNestedInput {
@@ -1234,21 +1091,17 @@ input UserUpdateToOneWithWhereWithoutProfileInput {
 }
 
 input UserUpdateWithoutPostsInput {
-  createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   password: StringFieldUpdateOperationsInput
   profile: ProfileUpdateManyWithoutUserNestedInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input UserUpdateWithoutProfileInput {
-  createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   password: StringFieldUpdateOperationsInput
   posts: PostUpdateManyWithoutAuthorNestedInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input UserUpsertWithoutPostsInput {
@@ -1267,26 +1120,22 @@ input UserWhereInput {
   AND: [UserWhereInput!]
   NOT: [UserWhereInput!]
   OR: [UserWhereInput!]
-  createdAt: DateTimeFilter
   email: StringFilter
   id: IntFilter
   name: StringFilter
   password: StringFilter
   posts: PostListRelationFilter
   profile: ProfileListRelationFilter
-  updatedAt: DateTimeFilter
 }
 
 input UserWhereUniqueInput {
   AND: [UserWhereInput!]
   NOT: [UserWhereInput!]
   OR: [UserWhereInput!]
-  createdAt: DateTimeFilter
   email: String
   id: Int
   name: StringFilter
   password: StringFilter
   posts: PostListRelationFilter
   profile: ProfileListRelationFilter
-  updatedAt: DateTimeFilter
 }

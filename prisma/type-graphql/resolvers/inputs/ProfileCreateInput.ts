@@ -6,16 +6,6 @@ import { UserCreateNestedOneWithoutProfileInput } from '../inputs/UserCreateNest
 
 @TypeGraphQL.InputType('ProfileCreateInput', {})
 export class ProfileCreateInput {
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
-  })
-  createdAt?: Date | undefined
-
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
-  })
-  updatedAt?: Date | undefined
-
   @TypeGraphQL.Field((_type) => String, {
     nullable: true,
   })

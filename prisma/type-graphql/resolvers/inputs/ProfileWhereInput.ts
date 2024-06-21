@@ -29,16 +29,6 @@ export class ProfileWhereInput {
   })
   id?: IntFilter | undefined
 
-  @TypeGraphQL.Field((_type) => DateTimeFilter, {
-    nullable: true,
-  })
-  createdAt?: DateTimeFilter | undefined
-
-  @TypeGraphQL.Field((_type) => DateTimeFilter, {
-    nullable: true,
-  })
-  updatedAt?: DateTimeFilter | undefined
-
   @TypeGraphQL.Field((_type) => StringNullableFilter, {
     nullable: true,
   })

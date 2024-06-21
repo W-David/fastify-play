@@ -315,7 +315,7 @@ function applyTypeClassEnhanceConfig<TEnhanceConfig extends TypeConfig, TType ex
 const modelsInfo = {
   Post: ['id', 'createdAt', 'updatedAt', 'title', 'content', 'published', 'authorId'],
   Profile: ['id', 'createdAt', 'updatedAt', 'bio', 'userId'],
-  User: ['id', 'createdAt', 'updatedAt', 'name', 'email', 'password'],
+  User: ['id', 'createdAt', 'updatedAt', 'name', 'email'],
 }
 
 type ModelNames = keyof typeof models

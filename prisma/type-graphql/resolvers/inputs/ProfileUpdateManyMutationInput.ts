@@ -7,16 +7,6 @@ import { NullableStringFieldUpdateOperationsInput } from '../inputs/NullableStri
 
 @TypeGraphQL.InputType('ProfileUpdateManyMutationInput', {})
 export class ProfileUpdateManyMutationInput {
-  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
-  })
-  createdAt?: DateTimeFieldUpdateOperationsInput | undefined
-
-  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
-  })
-  updatedAt?: DateTimeFieldUpdateOperationsInput | undefined
-
   @TypeGraphQL.Field((_type) => NullableStringFieldUpdateOperationsInput, {
     nullable: true,
   })

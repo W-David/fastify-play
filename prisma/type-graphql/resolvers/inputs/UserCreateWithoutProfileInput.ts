@@ -6,16 +6,6 @@ import { PostCreateNestedManyWithoutAuthorInput } from '../inputs/PostCreateNest
 
 @TypeGraphQL.InputType('UserCreateWithoutProfileInput', {})
 export class UserCreateWithoutProfileInput {
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
-  })
-  createdAt?: Date | undefined
-
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
-  })
-  updatedAt?: Date | undefined
-
   @TypeGraphQL.Field((_type) => String, {
     nullable: false,
   })

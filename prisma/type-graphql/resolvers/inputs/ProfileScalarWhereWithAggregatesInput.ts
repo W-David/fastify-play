@@ -28,16 +28,6 @@ export class ProfileScalarWhereWithAggregatesInput {
   })
   id?: IntWithAggregatesFilter | undefined
 
-  @TypeGraphQL.Field((_type) => DateTimeWithAggregatesFilter, {
-    nullable: true,
-  })
-  createdAt?: DateTimeWithAggregatesFilter | undefined
-
-  @TypeGraphQL.Field((_type) => DateTimeWithAggregatesFilter, {
-    nullable: true,
-  })
-  updatedAt?: DateTimeWithAggregatesFilter | undefined
-
   @TypeGraphQL.Field((_type) => StringNullableWithAggregatesFilter, {
     nullable: true,
   })
