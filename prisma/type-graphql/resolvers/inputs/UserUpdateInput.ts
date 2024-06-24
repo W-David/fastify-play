@@ -3,6 +3,7 @@ import * as GraphQLScalars from 'graphql-scalars'
 import { Prisma } from '@prisma/client'
 import { DecimalJSScalar } from '../../scalars'
 import { DateTimeFieldUpdateOperationsInput } from '../inputs/DateTimeFieldUpdateOperationsInput'
+import { EnumRoleFieldUpdateOperationsInput } from '../inputs/EnumRoleFieldUpdateOperationsInput'
 import { PostUpdateManyWithoutAuthorNestedInput } from '../inputs/PostUpdateManyWithoutAuthorNestedInput'
 import { ProfileUpdateManyWithoutUserNestedInput } from '../inputs/ProfileUpdateManyWithoutUserNestedInput'
 import { StringFieldUpdateOperationsInput } from '../inputs/StringFieldUpdateOperationsInput'
@@ -23,6 +24,11 @@ export class UserUpdateInput {
     nullable: true,
   })
   password?: StringFieldUpdateOperationsInput | undefined
+
+  @TypeGraphQL.Field((_type) => EnumRoleFieldUpdateOperationsInput, {
+    nullable: true,
+  })
+  role?: EnumRoleFieldUpdateOperationsInput | undefined
 
   @TypeGraphQL.Field((_type) => PostUpdateManyWithoutAuthorNestedInput, {
     nullable: true,

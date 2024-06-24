@@ -1,5 +1,6 @@
 import fastifyAuth from '@fastify/auth'
 import fastifyJwt, { FastifyJWTOptions } from '@fastify/jwt'
+import { $Enums } from '@prisma/client'
 import { FastifyInstance } from 'fastify'
 
 export interface AuthOptions {
@@ -7,8 +8,10 @@ export interface AuthOptions {
 }
 
 export interface AuthBody {
-  username: string
+  name: string
+  email: string
   password: string
+  role: $Enums.Role
 }
 
 const defaultOptions: AuthOptions & FastifyJWTOptions = {
@@ -19,7 +22,11 @@ export async function createAuth(fastify: FastifyInstance, options: AuthOptions)
   await fastify.register(fastifyJwt, Object.assign({}, defaultOptions, options))
   fastify.post('/auth', async (request, reply) => {
     const payload = request.body as AuthBody
-    const token = fastify.jwt.sign(payload)
+    const token = fastify.jwt.sign({
+      name: payload.name,
+      email: payload.email,
+      role: payload.role,
+    })
     reply.code(200).send({ token })
   })
 
@@ -35,10 +42,14 @@ export async function createAuth(fastify: FastifyInstance, options: AuthOptions)
 
   await fastify
     .decorate('authenticate', (request, reply, done) => {
-      request
-        .jwtVerify()
-        .then(() => done())
-        .catch((err: Error) => done(err))
+      if (request.url === '/graphql' && request.method === 'GET') {
+        done()
+      } else {
+        request
+          .jwtVerify()
+          .then(() => done())
+          .catch((err: Error) => done(err))
+      }
     })
     .register(fastifyAuth)
 }

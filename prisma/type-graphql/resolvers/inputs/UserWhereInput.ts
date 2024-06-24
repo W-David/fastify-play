@@ -3,6 +3,7 @@ import * as GraphQLScalars from 'graphql-scalars'
 import { Prisma } from '@prisma/client'
 import { DecimalJSScalar } from '../../scalars'
 import { DateTimeFilter } from '../inputs/DateTimeFilter'
+import { EnumRoleFilter } from '../inputs/EnumRoleFilter'
 import { IntFilter } from '../inputs/IntFilter'
 import { PostListRelationFilter } from '../inputs/PostListRelationFilter'
 import { ProfileListRelationFilter } from '../inputs/ProfileListRelationFilter'
@@ -44,6 +45,11 @@ export class UserWhereInput {
     nullable: true,
   })
   password?: StringFilter | undefined
+
+  @TypeGraphQL.Field((_type) => EnumRoleFilter, {
+    nullable: true,
+  })
+  role?: EnumRoleFilter | undefined
 
   @TypeGraphQL.Field((_type) => PostListRelationFilter, {
     nullable: true,

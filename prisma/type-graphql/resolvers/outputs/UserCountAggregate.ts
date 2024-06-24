@@ -38,5 +38,10 @@ export class UserCountAggregate {
   @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
     nullable: false,
   })
+  role!: number
+
+  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+    nullable: false,
+  })
   _all!: number
 }

@@ -4,6 +4,7 @@ import { Prisma } from '@prisma/client'
 import { DecimalJSScalar } from '../scalars'
 import { Post } from '../models/Post'
 import { Profile } from '../models/Profile'
+import { Role } from '../enums/Role'
 import { UserCount } from '../resolvers/outputs/UserCount'
 
 @TypeGraphQL.ObjectType('User', {})
@@ -34,6 +35,11 @@ export class User {
   email!: string
 
   password?: string
+
+  @TypeGraphQL.Field((_type) => Role, {
+    nullable: false,
+  })
+  role!: 'ROOT' | 'ADMIN' | 'USER'
 
   posts?: Post[]
 

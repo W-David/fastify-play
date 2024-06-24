@@ -7,6 +7,7 @@ import { UserCountAggregate } from '../outputs/UserCountAggregate'
 import { UserMaxAggregate } from '../outputs/UserMaxAggregate'
 import { UserMinAggregate } from '../outputs/UserMinAggregate'
 import { UserSumAggregate } from '../outputs/UserSumAggregate'
+import { Role } from '../../enums/Role'
 
 @TypeGraphQL.ObjectType('UserGroupBy', {})
 export class UserGroupBy {
@@ -39,6 +40,11 @@ export class UserGroupBy {
     nullable: false,
   })
   password!: string
+
+  @TypeGraphQL.Field((_type) => Role, {
+    nullable: false,
+  })
+  role!: 'ROOT' | 'ADMIN' | 'USER'
 
   @TypeGraphQL.Field((_type) => UserCountAggregate, {
     nullable: true,

@@ -4,6 +4,7 @@ import { Prisma } from '@prisma/client'
 import { DecimalJSScalar } from '../../scalars'
 import { PostCreateNestedManyWithoutAuthorInput } from '../inputs/PostCreateNestedManyWithoutAuthorInput'
 import { ProfileCreateNestedManyWithoutUserInput } from '../inputs/ProfileCreateNestedManyWithoutUserInput'
+import { Role } from '../../enums/Role'
 
 @TypeGraphQL.InputType('UserCreateInput', {})
 export class UserCreateInput {
@@ -21,6 +22,11 @@ export class UserCreateInput {
     nullable: false,
   })
   password!: string
+
+  @TypeGraphQL.Field((_type) => Role, {
+    nullable: true,
+  })
+  role?: 'ROOT' | 'ADMIN' | 'USER' | undefined
 
   @TypeGraphQL.Field((_type) => PostCreateNestedManyWithoutAuthorInput, {
     nullable: true,

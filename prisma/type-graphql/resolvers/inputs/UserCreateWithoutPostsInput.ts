@@ -3,6 +3,7 @@ import * as GraphQLScalars from 'graphql-scalars'
 import { Prisma } from '@prisma/client'
 import { DecimalJSScalar } from '../../scalars'
 import { ProfileCreateNestedManyWithoutUserInput } from '../inputs/ProfileCreateNestedManyWithoutUserInput'
+import { Role } from '../../enums/Role'
 
 @TypeGraphQL.InputType('UserCreateWithoutPostsInput', {})
 export class UserCreateWithoutPostsInput {
@@ -20,6 +21,11 @@ export class UserCreateWithoutPostsInput {
     nullable: false,
   })
   password!: string
+
+  @TypeGraphQL.Field((_type) => Role, {
+    nullable: true,
+  })
+  role?: 'ROOT' | 'ADMIN' | 'USER' | undefined
 
   @TypeGraphQL.Field((_type) => ProfileCreateNestedManyWithoutUserInput, {
     nullable: true,

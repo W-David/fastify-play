@@ -7,11 +7,12 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@typegraphql/*": ["prisma/type-graphql/*"]
     },
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "removeComments": true,
+    "removeComments": true
   }
 }
