@@ -1,5 +1,5 @@
 import { User } from '@typegraphql/models/User'
-import { Args, ArgsType, Ctx, Field, ObjectType, Query, Resolver } from 'type-graphql'
+import { Args, ArgsType, Authorized, Ctx, Field, ObjectType, Query, Resolver } from 'type-graphql'
 import { Context } from './../../plugins/apollo/index'
 
 @ObjectType()
@@ -32,6 +32,7 @@ export class DecodeRes {
 @Resolver((_of) => User)
 export class UserResolver {
   @Query((_returns) => AuthRes, { nullable: true })
+  @Authorized()
   async auth(@Ctx() { prisma, fastify }: Context, @Args() args: AuthArgs): Promise<AuthRes | null> {
     const { email, password } = args
     const user = await prisma.user.findUnique({ where: { email, password } })
@@ -39,11 +40,16 @@ export class UserResolver {
       throw new Error('User not found')
     } else {
       const { name, email, role } = user
-      const token = fastify.jwt.sign({
-        name,
-        email,
-        role,
-      })
+      const token = fastify.jwt.sign(
+        {
+          name,
+          email,
+          role,
+        },
+        {
+          expiresIn: '30d',
+        },
+      )
       return { token }
     }
   }
