@@ -14,5 +14,8 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "removeComments": true
+  },
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
   }
 }

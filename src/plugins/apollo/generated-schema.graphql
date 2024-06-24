@@ -31,6 +31,10 @@ type AggregateUser {
   _sum: UserSumAggregate
 }
 
+type AuthRes {
+  token: String!
+}
+
 input BoolFieldUpdateOperationsInput {
   set: Boolean
 }
@@ -52,6 +56,33 @@ input BoolWithAggregatesFilter {
 A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.This scalar is serialized to a string in ISO 8601 format and parsed from a string in ISO 8601 format.
 """
 scalar DateTimeISO
+
+type DecodeRes {
+  email: String!
+  name: String!
+  role: String!
+}
+
+input EnumRoleFieldUpdateOperationsInput {
+  set: Role
+}
+
+input EnumRoleFilter {
+  equals: Role
+  in: [Role!]
+  not: NestedEnumRoleFilter
+  notIn: [Role!]
+}
+
+input EnumRoleWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedEnumRoleFilter
+  _min: NestedEnumRoleFilter
+  equals: Role
+  in: [Role!]
+  not: NestedEnumRoleWithAggregatesFilter
+  notIn: [Role!]
+}
 
 input IntFilter {
   equals: Int
@@ -115,6 +146,23 @@ input NestedBoolWithAggregatesFilter {
   _min: NestedBoolFilter
   equals: Boolean
   not: NestedBoolWithAggregatesFilter
+}
+
+input NestedEnumRoleFilter {
+  equals: Role
+  in: [Role!]
+  not: NestedEnumRoleFilter
+  notIn: [Role!]
+}
+
+input NestedEnumRoleWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedEnumRoleFilter
+  _min: NestedEnumRoleFilter
+  equals: Role
+  in: [Role!]
+  not: NestedEnumRoleWithAggregatesFilter
+  notIn: [Role!]
 }
 
 input NestedFloatFilter {
@@ -763,6 +811,8 @@ type Query {
   aggregatePost(cursor: PostWhereUniqueInput, orderBy: [PostOrderByWithRelationInput!], skip: Int, take: Int, where: PostWhereInput): AggregatePost!
   aggregateProfile(cursor: ProfileWhereUniqueInput, orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): AggregateProfile!
   aggregateUser(cursor: UserWhereUniqueInput, orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): AggregateUser!
+  auth(email: String!, password: String!): AuthRes
+  decode: DecodeRes
   findFirstPost(cursor: PostWhereUniqueInput, distinct: [PostScalarFieldEnum!], orderBy: [PostOrderByWithRelationInput!], skip: Int, take: Int, where: PostWhereInput): Post
   findFirstPostOrThrow(cursor: PostWhereUniqueInput, distinct: [PostScalarFieldEnum!], orderBy: [PostOrderByWithRelationInput!], skip: Int, take: Int, where: PostWhereInput): Post
   findFirstProfile(cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): Profile
@@ -781,6 +831,12 @@ type Query {
   profiles(cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): [Profile!]!
   user(where: UserWhereUniqueInput!): User
   users(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): [User!]!
+}
+
+enum Role {
+  ADMIN
+  ROOT
+  USER
 }
 
 enum SortOrder {
@@ -867,6 +923,7 @@ type User {
   name: String!
   posts(cursor: PostWhereUniqueInput, distinct: [PostScalarFieldEnum!], orderBy: [PostOrderByWithRelationInput!], skip: Int, take: Int, where: PostWhereInput): [Post!]!
   profile(cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): [Profile!]!
+  role: Role!
   updatedAt: DateTimeISO!
 }
 
@@ -890,6 +947,7 @@ type UserCountAggregate {
   id: Int!
   name: Int!
   password: Int!
+  role: Int!
   updatedAt: Int!
 }
 
@@ -898,6 +956,7 @@ input UserCountOrderByAggregateInput {
   id: SortOrder
   name: SortOrder
   password: SortOrder
+  role: SortOrder
 }
 
 input UserCreateInput {
@@ -906,6 +965,7 @@ input UserCreateInput {
   password: String!
   posts: PostCreateNestedManyWithoutAuthorInput
   profile: ProfileCreateNestedManyWithoutUserInput
+  role: Role
 }
 
 input UserCreateManyInput {
@@ -913,6 +973,7 @@ input UserCreateManyInput {
   id: Int
   name: String!
   password: String!
+  role: Role
 }
 
 input UserCreateNestedOneWithoutPostsInput {
@@ -942,6 +1003,7 @@ input UserCreateWithoutPostsInput {
   name: String!
   password: String!
   profile: ProfileCreateNestedManyWithoutUserInput
+  role: Role
 }
 
 input UserCreateWithoutProfileInput {
@@ -949,6 +1011,7 @@ input UserCreateWithoutProfileInput {
   name: String!
   password: String!
   posts: PostCreateNestedManyWithoutAuthorInput
+  role: Role
 }
 
 type UserGroupBy {
@@ -962,6 +1025,7 @@ type UserGroupBy {
   id: Int!
   name: String!
   password: String!
+  role: Role!
   updatedAt: DateTimeISO!
 }
 
@@ -971,6 +1035,7 @@ type UserMaxAggregate {
   id: Int
   name: String
   password: String
+  role: Role
   updatedAt: DateTimeISO
 }
 
@@ -979,6 +1044,7 @@ input UserMaxOrderByAggregateInput {
   id: SortOrder
   name: SortOrder
   password: SortOrder
+  role: SortOrder
 }
 
 type UserMinAggregate {
@@ -987,6 +1053,7 @@ type UserMinAggregate {
   id: Int
   name: String
   password: String
+  role: Role
   updatedAt: DateTimeISO
 }
 
@@ -995,6 +1062,7 @@ input UserMinOrderByAggregateInput {
   id: SortOrder
   name: SortOrder
   password: SortOrder
+  role: SortOrder
 }
 
 input UserOrderByWithAggregationInput {
@@ -1007,6 +1075,7 @@ input UserOrderByWithAggregationInput {
   id: SortOrder
   name: SortOrder
   password: SortOrder
+  role: SortOrder
 }
 
 input UserOrderByWithRelationInput {
@@ -1016,6 +1085,7 @@ input UserOrderByWithRelationInput {
   password: SortOrder
   posts: PostOrderByRelationAggregateInput
   profile: ProfileOrderByRelationAggregateInput
+  role: SortOrder
 }
 
 input UserRelationFilter {
@@ -1029,6 +1099,7 @@ enum UserScalarFieldEnum {
   id
   name
   password
+  role
   updatedAt
 }
 
@@ -1040,6 +1111,7 @@ input UserScalarWhereWithAggregatesInput {
   id: IntWithAggregatesFilter
   name: StringWithAggregatesFilter
   password: StringWithAggregatesFilter
+  role: EnumRoleWithAggregatesFilter
 }
 
 type UserSumAggregate {
@@ -1056,12 +1128,14 @@ input UserUpdateInput {
   password: StringFieldUpdateOperationsInput
   posts: PostUpdateManyWithoutAuthorNestedInput
   profile: ProfileUpdateManyWithoutUserNestedInput
+  role: EnumRoleFieldUpdateOperationsInput
 }
 
 input UserUpdateManyMutationInput {
   email: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   password: StringFieldUpdateOperationsInput
+  role: EnumRoleFieldUpdateOperationsInput
 }
 
 input UserUpdateOneRequiredWithoutPostsNestedInput {
@@ -1095,6 +1169,7 @@ input UserUpdateWithoutPostsInput {
   name: StringFieldUpdateOperationsInput
   password: StringFieldUpdateOperationsInput
   profile: ProfileUpdateManyWithoutUserNestedInput
+  role: EnumRoleFieldUpdateOperationsInput
 }
 
 input UserUpdateWithoutProfileInput {
@@ -1102,6 +1177,7 @@ input UserUpdateWithoutProfileInput {
   name: StringFieldUpdateOperationsInput
   password: StringFieldUpdateOperationsInput
   posts: PostUpdateManyWithoutAuthorNestedInput
+  role: EnumRoleFieldUpdateOperationsInput
 }
 
 input UserUpsertWithoutPostsInput {
@@ -1126,6 +1202,7 @@ input UserWhereInput {
   password: StringFilter
   posts: PostListRelationFilter
   profile: ProfileListRelationFilter
+  role: EnumRoleFilter
 }
 
 input UserWhereUniqueInput {
@@ -1138,4 +1215,5 @@ input UserWhereUniqueInput {
   password: StringFilter
   posts: PostListRelationFilter
   profile: ProfileListRelationFilter
+  role: EnumRoleFilter
 }
