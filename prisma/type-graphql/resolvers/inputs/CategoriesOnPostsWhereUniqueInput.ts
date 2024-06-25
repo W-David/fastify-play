@@ -1,0 +1,53 @@
+import * as TypeGraphQL from 'type-graphql'
+import * as GraphQLScalars from 'graphql-scalars'
+import { Prisma } from '@prisma/client'
+import { DecimalJSScalar } from '../../scalars'
+import { CategoriesOnPostsPostIdCategoryIdCompoundUniqueInput } from '../inputs/CategoriesOnPostsPostIdCategoryIdCompoundUniqueInput'
+import { CategoriesOnPostsWhereInput } from '../inputs/CategoriesOnPostsWhereInput'
+import { CategoryRelationFilter } from '../inputs/CategoryRelationFilter'
+import { DateTimeFilter } from '../inputs/DateTimeFilter'
+import { IntFilter } from '../inputs/IntFilter'
+import { PostRelationFilter } from '../inputs/PostRelationFilter'
+
+@TypeGraphQL.InputType('CategoriesOnPostsWhereUniqueInput', {})
+export class CategoriesOnPostsWhereUniqueInput {
+  @TypeGraphQL.Field((_type) => CategoriesOnPostsPostIdCategoryIdCompoundUniqueInput, {
+    nullable: true,
+  })
+  postId_categoryId?: CategoriesOnPostsPostIdCategoryIdCompoundUniqueInput | undefined
+
+  @TypeGraphQL.Field((_type) => [CategoriesOnPostsWhereInput], {
+    nullable: true,
+  })
+  AND?: CategoriesOnPostsWhereInput[] | undefined
+
+  @TypeGraphQL.Field((_type) => [CategoriesOnPostsWhereInput], {
+    nullable: true,
+  })
+  OR?: CategoriesOnPostsWhereInput[] | undefined
+
+  @TypeGraphQL.Field((_type) => [CategoriesOnPostsWhereInput], {
+    nullable: true,
+  })
+  NOT?: CategoriesOnPostsWhereInput[] | undefined
+
+  @TypeGraphQL.Field((_type) => IntFilter, {
+    nullable: true,
+  })
+  postId?: IntFilter | undefined
+
+  @TypeGraphQL.Field((_type) => IntFilter, {
+    nullable: true,
+  })
+  categoryId?: IntFilter | undefined
+
+  @TypeGraphQL.Field((_type) => PostRelationFilter, {
+    nullable: true,
+  })
+  post?: PostRelationFilter | undefined
+
+  @TypeGraphQL.Field((_type) => CategoryRelationFilter, {
+    nullable: true,
+  })
+  category?: CategoryRelationFilter | undefined
+}

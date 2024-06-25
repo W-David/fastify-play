@@ -38,12 +38,27 @@ export class PostScalarWhereInput {
   @TypeGraphQL.Field((_type) => StringNullableFilter, {
     nullable: true,
   })
+  description?: StringNullableFilter | undefined
+
+  @TypeGraphQL.Field((_type) => StringNullableFilter, {
+    nullable: true,
+  })
   content?: StringNullableFilter | undefined
 
   @TypeGraphQL.Field((_type) => BoolFilter, {
     nullable: true,
   })
   published?: BoolFilter | undefined
+
+  @TypeGraphQL.Field((_type) => IntFilter, {
+    nullable: true,
+  })
+  favoNum?: IntFilter | undefined
+
+  @TypeGraphQL.Field((_type) => IntFilter, {
+    nullable: true,
+  })
+  browNum?: IntFilter | undefined
 
   @TypeGraphQL.Field((_type) => IntFilter, {
     nullable: true,

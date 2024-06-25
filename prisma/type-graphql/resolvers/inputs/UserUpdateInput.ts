@@ -4,16 +4,16 @@ import { Prisma } from '@prisma/client'
 import { DecimalJSScalar } from '../../scalars'
 import { DateTimeFieldUpdateOperationsInput } from '../inputs/DateTimeFieldUpdateOperationsInput'
 import { EnumRoleFieldUpdateOperationsInput } from '../inputs/EnumRoleFieldUpdateOperationsInput'
+import { NullableStringFieldUpdateOperationsInput } from '../inputs/NullableStringFieldUpdateOperationsInput'
 import { PostUpdateManyWithoutAuthorNestedInput } from '../inputs/PostUpdateManyWithoutAuthorNestedInput'
-import { ProfileUpdateManyWithoutUserNestedInput } from '../inputs/ProfileUpdateManyWithoutUserNestedInput'
 import { StringFieldUpdateOperationsInput } from '../inputs/StringFieldUpdateOperationsInput'
 
 @TypeGraphQL.InputType('UserUpdateInput', {})
 export class UserUpdateInput {
-  @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
+  @TypeGraphQL.Field((_type) => NullableStringFieldUpdateOperationsInput, {
     nullable: true,
   })
-  name?: StringFieldUpdateOperationsInput | undefined
+  nickName?: NullableStringFieldUpdateOperationsInput | undefined
 
   @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
     nullable: true,
@@ -25,6 +25,11 @@ export class UserUpdateInput {
   })
   password?: StringFieldUpdateOperationsInput | undefined
 
+  @TypeGraphQL.Field((_type) => NullableStringFieldUpdateOperationsInput, {
+    nullable: true,
+  })
+  avatar?: NullableStringFieldUpdateOperationsInput | undefined
+
   @TypeGraphQL.Field((_type) => EnumRoleFieldUpdateOperationsInput, {
     nullable: true,
   })
@@ -34,9 +39,4 @@ export class UserUpdateInput {
     nullable: true,
   })
   posts?: PostUpdateManyWithoutAuthorNestedInput | undefined
-
-  @TypeGraphQL.Field((_type) => ProfileUpdateManyWithoutUserNestedInput, {
-    nullable: true,
-  })
-  profile?: ProfileUpdateManyWithoutUserNestedInput | undefined
 }

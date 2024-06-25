@@ -1,0 +1,1 @@
+export { CategoryCategoriesOnPostsArgs } from './CategoryCategoriesOnPostsArgs'

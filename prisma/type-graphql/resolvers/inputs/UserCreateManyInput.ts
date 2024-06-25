@@ -12,9 +12,9 @@ export class UserCreateManyInput {
   id?: number | undefined
 
   @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+    nullable: true,
   })
-  name!: string
+  nickName?: string | undefined
 
   @TypeGraphQL.Field((_type) => String, {
     nullable: false,
@@ -25,6 +25,11 @@ export class UserCreateManyInput {
     nullable: false,
   })
   password!: string
+
+  @TypeGraphQL.Field((_type) => String, {
+    nullable: true,
+  })
+  avatar?: string | undefined
 
   @TypeGraphQL.Field((_type) => Role, {
     nullable: true,

@@ -3,7 +3,6 @@ import * as GraphQLScalars from 'graphql-scalars'
 import { Prisma } from '@prisma/client'
 import { DecimalJSScalar } from '../scalars'
 import { Post } from '../models/Post'
-import { Profile } from '../models/Profile'
 import { Role } from '../enums/Role'
 import { UserCount } from '../resolvers/outputs/UserCount'
 
@@ -25,9 +24,9 @@ export class User {
   updatedAt!: Date
 
   @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+    nullable: true,
   })
-  name!: string
+  nickName?: string | null
 
   @TypeGraphQL.Field((_type) => String, {
     nullable: false,
@@ -36,14 +35,17 @@ export class User {
 
   password?: string
 
+  @TypeGraphQL.Field((_type) => String, {
+    nullable: true,
+  })
+  avatar?: string | null
+
   @TypeGraphQL.Field((_type) => Role, {
     nullable: false,
   })
   role!: 'ROOT' | 'ADMIN' | 'USER'
 
   posts?: Post[]
-
-  profile?: Profile[]
 
   @TypeGraphQL.Field((_type) => UserCount, {
     nullable: true,

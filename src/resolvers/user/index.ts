@@ -39,10 +39,10 @@ export class UserResolver {
     if (!user) {
       throw new Error('User not found')
     } else {
-      const { name, email, role } = user
+      const { nickName: name, email, role } = user
       const token = fastify.jwt.sign(
         {
-          name,
+          name: name || '',
           email,
           role,
         },

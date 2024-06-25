@@ -1,0 +1,1 @@
+export { TagTagsOnPostsArgs } from './TagTagsOnPostsArgs'

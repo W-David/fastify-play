@@ -28,12 +28,27 @@ export class PostMinAggregate {
   @TypeGraphQL.Field((_type) => String, {
     nullable: true,
   })
+  description!: string | null
+
+  @TypeGraphQL.Field((_type) => String, {
+    nullable: true,
+  })
   content!: string | null
 
   @TypeGraphQL.Field((_type) => Boolean, {
     nullable: true,
   })
   published!: boolean | null
+
+  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+    nullable: true,
+  })
+  favoNum!: number | null
+
+  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+    nullable: true,
+  })
+  browNum!: number | null
 
   @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
     nullable: true,

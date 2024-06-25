@@ -38,12 +38,27 @@ export class PostScalarWhereWithAggregatesInput {
   @TypeGraphQL.Field((_type) => StringNullableWithAggregatesFilter, {
     nullable: true,
   })
+  description?: StringNullableWithAggregatesFilter | undefined
+
+  @TypeGraphQL.Field((_type) => StringNullableWithAggregatesFilter, {
+    nullable: true,
+  })
   content?: StringNullableWithAggregatesFilter | undefined
 
   @TypeGraphQL.Field((_type) => BoolWithAggregatesFilter, {
     nullable: true,
   })
   published?: BoolWithAggregatesFilter | undefined
+
+  @TypeGraphQL.Field((_type) => IntWithAggregatesFilter, {
+    nullable: true,
+  })
+  favoNum?: IntWithAggregatesFilter | undefined
+
+  @TypeGraphQL.Field((_type) => IntWithAggregatesFilter, {
+    nullable: true,
+  })
+  browNum?: IntWithAggregatesFilter | undefined
 
   @TypeGraphQL.Field((_type) => IntWithAggregatesFilter, {
     nullable: true,

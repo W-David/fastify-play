@@ -1,3 +1,7 @@
+export { CategoriesOnPosts } from './CategoriesOnPosts'
+export { Category } from './Category'
+export { File } from './File'
 export { Post } from './Post'
-export { Profile } from './Profile'
+export { Tag } from './Tag'
+export { TagsOnPosts } from './TagsOnPosts'
 export { User } from './User'

@@ -3,7 +3,7 @@ import * as GraphQLScalars from 'graphql-scalars'
 import { Prisma } from '@prisma/client'
 import { DecimalJSScalar } from '../../scalars'
 import { PostOrderByRelationAggregateInput } from '../inputs/PostOrderByRelationAggregateInput'
-import { ProfileOrderByRelationAggregateInput } from '../inputs/ProfileOrderByRelationAggregateInput'
+import { SortOrderInput } from '../inputs/SortOrderInput'
 import { SortOrder } from '../../enums/SortOrder'
 
 @TypeGraphQL.InputType('UserOrderByWithRelationInput', {})
@@ -13,10 +13,10 @@ export class UserOrderByWithRelationInput {
   })
   id?: 'asc' | 'desc' | undefined
 
-  @TypeGraphQL.Field((_type) => SortOrder, {
+  @TypeGraphQL.Field((_type) => SortOrderInput, {
     nullable: true,
   })
-  name?: 'asc' | 'desc' | undefined
+  nickName?: SortOrderInput | undefined
 
   @TypeGraphQL.Field((_type) => SortOrder, {
     nullable: true,
@@ -28,6 +28,11 @@ export class UserOrderByWithRelationInput {
   })
   password?: 'asc' | 'desc' | undefined
 
+  @TypeGraphQL.Field((_type) => SortOrderInput, {
+    nullable: true,
+  })
+  avatar?: SortOrderInput | undefined
+
   @TypeGraphQL.Field((_type) => SortOrder, {
     nullable: true,
   })
@@ -37,9 +42,4 @@ export class UserOrderByWithRelationInput {
     nullable: true,
   })
   posts?: PostOrderByRelationAggregateInput | undefined
-
-  @TypeGraphQL.Field((_type) => ProfileOrderByRelationAggregateInput, {
-    nullable: true,
-  })
-  profile?: ProfileOrderByRelationAggregateInput | undefined
 }

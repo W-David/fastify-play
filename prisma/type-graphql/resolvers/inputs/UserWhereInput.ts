@@ -6,8 +6,8 @@ import { DateTimeFilter } from '../inputs/DateTimeFilter'
 import { EnumRoleFilter } from '../inputs/EnumRoleFilter'
 import { IntFilter } from '../inputs/IntFilter'
 import { PostListRelationFilter } from '../inputs/PostListRelationFilter'
-import { ProfileListRelationFilter } from '../inputs/ProfileListRelationFilter'
 import { StringFilter } from '../inputs/StringFilter'
+import { StringNullableFilter } from '../inputs/StringNullableFilter'
 
 @TypeGraphQL.InputType('UserWhereInput', {})
 export class UserWhereInput {
@@ -31,10 +31,10 @@ export class UserWhereInput {
   })
   id?: IntFilter | undefined
 
-  @TypeGraphQL.Field((_type) => StringFilter, {
+  @TypeGraphQL.Field((_type) => StringNullableFilter, {
     nullable: true,
   })
-  name?: StringFilter | undefined
+  nickName?: StringNullableFilter | undefined
 
   @TypeGraphQL.Field((_type) => StringFilter, {
     nullable: true,
@@ -46,6 +46,11 @@ export class UserWhereInput {
   })
   password?: StringFilter | undefined
 
+  @TypeGraphQL.Field((_type) => StringNullableFilter, {
+    nullable: true,
+  })
+  avatar?: StringNullableFilter | undefined
+
   @TypeGraphQL.Field((_type) => EnumRoleFilter, {
     nullable: true,
   })
@@ -55,9 +60,4 @@ export class UserWhereInput {
     nullable: true,
   })
   posts?: PostListRelationFilter | undefined
-
-  @TypeGraphQL.Field((_type) => ProfileListRelationFilter, {
-    nullable: true,
-  })
-  profile?: ProfileListRelationFilter | undefined
 }

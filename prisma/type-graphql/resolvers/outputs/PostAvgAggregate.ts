@@ -13,5 +13,15 @@ export class PostAvgAggregate {
   @TypeGraphQL.Field((_type) => TypeGraphQL.Float, {
     nullable: true,
   })
+  favoNum!: number | null
+
+  @TypeGraphQL.Field((_type) => TypeGraphQL.Float, {
+    nullable: true,
+  })
+  browNum!: number | null
+
+  @TypeGraphQL.Field((_type) => TypeGraphQL.Float, {
+    nullable: true,
+  })
   authorId!: number | null
 }

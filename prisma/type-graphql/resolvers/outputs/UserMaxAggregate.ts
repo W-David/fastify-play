@@ -24,7 +24,7 @@ export class UserMaxAggregate {
   @TypeGraphQL.Field((_type) => String, {
     nullable: true,
   })
-  name!: string | null
+  nickName!: string | null
 
   @TypeGraphQL.Field((_type) => String, {
     nullable: true,
@@ -35,6 +35,11 @@ export class UserMaxAggregate {
     nullable: true,
   })
   password!: string | null
+
+  @TypeGraphQL.Field((_type) => String, {
+    nullable: true,
+  })
+  avatar!: string | null
 
   @TypeGraphQL.Field((_type) => Role, {
     nullable: true,

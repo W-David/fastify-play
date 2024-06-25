@@ -1,3 +1,7 @@
+export { CategoriesOnPostsCrudResolver } from './CategoriesOnPosts/CategoriesOnPostsCrudResolver'
+export { CategoryCrudResolver } from './Category/CategoryCrudResolver'
+export { FileCrudResolver } from './File/FileCrudResolver'
 export { PostCrudResolver } from './Post/PostCrudResolver'
-export { ProfileCrudResolver } from './Profile/ProfileCrudResolver'
+export { TagCrudResolver } from './Tag/TagCrudResolver'
+export { TagsOnPostsCrudResolver } from './TagsOnPosts/TagsOnPostsCrudResolver'
 export { UserCrudResolver } from './User/UserCrudResolver'

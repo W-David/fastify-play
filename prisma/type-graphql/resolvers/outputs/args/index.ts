@@ -1,2 +1,5 @@
+export { CategoryCountCategoriesOnPostsArgs } from './CategoryCountCategoriesOnPostsArgs'
+export { PostCountCategoriesOnPostsArgs } from './PostCountCategoriesOnPostsArgs'
+export { PostCountTagsOnPostsArgs } from './PostCountTagsOnPostsArgs'
+export { TagCountTagsOnPostsArgs } from './TagCountTagsOnPostsArgs'
 export { UserCountPostsArgs } from './UserCountPostsArgs'
-export { UserCountProfileArgs } from './UserCountProfileArgs'

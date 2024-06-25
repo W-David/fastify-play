@@ -13,5 +13,15 @@ export class PostSumAggregate {
   @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
     nullable: true,
   })
+  favoNum!: number | null
+
+  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+    nullable: true,
+  })
+  browNum!: number | null
+
+  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+    nullable: true,
+  })
   authorId!: number | null
 }

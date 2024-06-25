@@ -22,35 +22,85 @@ datasource db {
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  title     String   @db.VarChar(255)
-  content   String?  @db.Text
-  published Boolean  @default(false)
-  author    User     @relation(fields: [authorId], references: [id])
-  authorId  Int
+  id                Int                 @id @default(autoincrement())
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  title             String              @db.VarChar(255)
+  description       String?             @db.Text
+  content           String?             @db.Text
+  published         Boolean             @default(false)
+  favoNum           Int                 @default(0)
+  browNum           Int                 @default(0)
+  author            User                @relation(fields: [authorId], references: [id])
+  authorId          Int
+  CategoriesOnPosts CategoriesOnPosts[]
+  TagsOnPosts       TagsOnPosts[]
 }
 
-model Profile {
+model File {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  bio       String?  @db.Text
-  user      User     @relation(fields: [userId], references: [id])
-  userId    Int      @unique
+  name      String   @db.VarChar(255)
+  path      String   @db.VarChar(255)
+  extension String   @db.VarChar(255)
+  size      Int      @default(0)
+}
+
+model Tag {
+  id          Int           @id @default(autoincrement())
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  name        String        @db.VarChar(255)
+  TagsOnPosts TagsOnPosts[]
+}
+
+model Category {
+  id                Int                 @id @default(autoincrement())
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  name              String              @db.VarChar(255)
+  CategoriesOnPosts CategoriesOnPosts[]
+}
+
+model CategoriesOnPosts {
+  post        Post     @relation(fields: [postId], references: [id])
+  postId      Int
+  category    Category @relation(fields: [categoryId], references: [id])
+  categoryId  Int
+  createdBy   User     @relation(fields: [createdById], references: [id])
+  createdById Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@id([postId, categoryId])
+}
+
+model TagsOnPosts {
+  post        Post     @relation(fields: [postId], references: [id])
+  postId      Int
+  tag         Tag      @relation(fields: [tagId], references: [id])
+  tagId       Int
+  createdBy   User     @relation(fields: [createdById], references: [id])
+  createdById Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@id([postId, tagId])
 }
 
 model User {
-  id        Int       @id @default(autoincrement())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  name      String    @db.VarChar(255)
-  email     String    @unique @db.VarChar(255)
-  password  String    @db.VarChar(255)
-  role      Role      @default(USER)
-  posts     Post[]
-  profile   Profile[]
+  id                Int                 @id @default(autoincrement())
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  nickName          String?             @db.VarChar(255)
+  email             String              @unique @db.VarChar(255)
+  password          String              @db.VarChar(255)
+  avatar            String?             @db.VarChar(255)
+  role              Role                @default(USER)
+  posts             Post[]
+  CategoriesOnPosts CategoriesOnPosts[]
+  TagsOnPosts       TagsOnPosts[]
 }
 
 enum Role {

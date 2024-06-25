@@ -2,6 +2,7 @@ import * as TypeGraphQL from 'type-graphql'
 import * as GraphQLScalars from 'graphql-scalars'
 import { Prisma } from '@prisma/client'
 import { DecimalJSScalar } from '../../scalars'
+import { SortOrderInput } from '../inputs/SortOrderInput'
 import { UserAvgOrderByAggregateInput } from '../inputs/UserAvgOrderByAggregateInput'
 import { UserCountOrderByAggregateInput } from '../inputs/UserCountOrderByAggregateInput'
 import { UserMaxOrderByAggregateInput } from '../inputs/UserMaxOrderByAggregateInput'
@@ -16,10 +17,10 @@ export class UserOrderByWithAggregationInput {
   })
   id?: 'asc' | 'desc' | undefined
 
-  @TypeGraphQL.Field((_type) => SortOrder, {
+  @TypeGraphQL.Field((_type) => SortOrderInput, {
     nullable: true,
   })
-  name?: 'asc' | 'desc' | undefined
+  nickName?: SortOrderInput | undefined
 
   @TypeGraphQL.Field((_type) => SortOrder, {
     nullable: true,
@@ -30,6 +31,11 @@ export class UserOrderByWithAggregationInput {
     nullable: true,
   })
   password?: 'asc' | 'desc' | undefined
+
+  @TypeGraphQL.Field((_type) => SortOrderInput, {
+    nullable: true,
+  })
+  avatar?: SortOrderInput | undefined
 
   @TypeGraphQL.Field((_type) => SortOrder, {
     nullable: true,

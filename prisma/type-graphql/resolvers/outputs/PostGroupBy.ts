@@ -33,12 +33,27 @@ export class PostGroupBy {
   @TypeGraphQL.Field((_type) => String, {
     nullable: true,
   })
+  description!: string | null
+
+  @TypeGraphQL.Field((_type) => String, {
+    nullable: true,
+  })
   content!: string | null
 
   @TypeGraphQL.Field((_type) => Boolean, {
     nullable: false,
   })
   published!: boolean
+
+  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+    nullable: false,
+  })
+  favoNum!: number
+
+  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+    nullable: false,
+  })
+  browNum!: number
 
   @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
     nullable: false,

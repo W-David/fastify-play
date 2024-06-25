@@ -25,12 +25,27 @@ export class PostOrderByWithAggregationInput {
   @TypeGraphQL.Field((_type) => SortOrderInput, {
     nullable: true,
   })
+  description?: SortOrderInput | undefined
+
+  @TypeGraphQL.Field((_type) => SortOrderInput, {
+    nullable: true,
+  })
   content?: SortOrderInput | undefined
 
   @TypeGraphQL.Field((_type) => SortOrder, {
     nullable: true,
   })
   published?: 'asc' | 'desc' | undefined
+
+  @TypeGraphQL.Field((_type) => SortOrder, {
+    nullable: true,
+  })
+  favoNum?: 'asc' | 'desc' | undefined
+
+  @TypeGraphQL.Field((_type) => SortOrder, {
+    nullable: true,
+  })
+  browNum?: 'asc' | 'desc' | undefined
 
   @TypeGraphQL.Field((_type) => SortOrder, {
     nullable: true,

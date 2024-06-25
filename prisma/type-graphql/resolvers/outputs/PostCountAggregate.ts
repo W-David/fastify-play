@@ -28,12 +28,27 @@ export class PostCountAggregate {
   @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
     nullable: false,
   })
+  description!: number
+
+  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+    nullable: false,
+  })
   content!: number
 
   @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
     nullable: false,
   })
   published!: number
+
+  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+    nullable: false,
+  })
+  favoNum!: number
+
+  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+    nullable: false,
+  })
+  browNum!: number
 
   @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
     nullable: false,

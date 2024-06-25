@@ -4,6 +4,7 @@ import { Prisma } from '@prisma/client'
 import { DecimalJSScalar } from '../../scalars'
 import { BoolFieldUpdateOperationsInput } from '../inputs/BoolFieldUpdateOperationsInput'
 import { DateTimeFieldUpdateOperationsInput } from '../inputs/DateTimeFieldUpdateOperationsInput'
+import { IntFieldUpdateOperationsInput } from '../inputs/IntFieldUpdateOperationsInput'
 import { NullableStringFieldUpdateOperationsInput } from '../inputs/NullableStringFieldUpdateOperationsInput'
 import { StringFieldUpdateOperationsInput } from '../inputs/StringFieldUpdateOperationsInput'
 
@@ -17,10 +18,25 @@ export class PostUpdateManyMutationInput {
   @TypeGraphQL.Field((_type) => NullableStringFieldUpdateOperationsInput, {
     nullable: true,
   })
+  description?: NullableStringFieldUpdateOperationsInput | undefined
+
+  @TypeGraphQL.Field((_type) => NullableStringFieldUpdateOperationsInput, {
+    nullable: true,
+  })
   content?: NullableStringFieldUpdateOperationsInput | undefined
 
   @TypeGraphQL.Field((_type) => BoolFieldUpdateOperationsInput, {
     nullable: true,
   })
   published?: BoolFieldUpdateOperationsInput | undefined
+
+  @TypeGraphQL.Field((_type) => IntFieldUpdateOperationsInput, {
+    nullable: true,
+  })
+  favoNum?: IntFieldUpdateOperationsInput | undefined
+
+  @TypeGraphQL.Field((_type) => IntFieldUpdateOperationsInput, {
+    nullable: true,
+  })
+  browNum?: IntFieldUpdateOperationsInput | undefined
 }

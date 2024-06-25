@@ -5,6 +5,7 @@ import { DecimalJSScalar } from '../../scalars'
 import { DateTimeWithAggregatesFilter } from '../inputs/DateTimeWithAggregatesFilter'
 import { EnumRoleWithAggregatesFilter } from '../inputs/EnumRoleWithAggregatesFilter'
 import { IntWithAggregatesFilter } from '../inputs/IntWithAggregatesFilter'
+import { StringNullableWithAggregatesFilter } from '../inputs/StringNullableWithAggregatesFilter'
 import { StringWithAggregatesFilter } from '../inputs/StringWithAggregatesFilter'
 
 @TypeGraphQL.InputType('UserScalarWhereWithAggregatesInput', {})
@@ -29,10 +30,10 @@ export class UserScalarWhereWithAggregatesInput {
   })
   id?: IntWithAggregatesFilter | undefined
 
-  @TypeGraphQL.Field((_type) => StringWithAggregatesFilter, {
+  @TypeGraphQL.Field((_type) => StringNullableWithAggregatesFilter, {
     nullable: true,
   })
-  name?: StringWithAggregatesFilter | undefined
+  nickName?: StringNullableWithAggregatesFilter | undefined
 
   @TypeGraphQL.Field((_type) => StringWithAggregatesFilter, {
     nullable: true,
@@ -43,6 +44,11 @@ export class UserScalarWhereWithAggregatesInput {
     nullable: true,
   })
   password?: StringWithAggregatesFilter | undefined
+
+  @TypeGraphQL.Field((_type) => StringNullableWithAggregatesFilter, {
+    nullable: true,
+  })
+  avatar?: StringNullableWithAggregatesFilter | undefined
 
   @TypeGraphQL.Field((_type) => EnumRoleWithAggregatesFilter, {
     nullable: true,

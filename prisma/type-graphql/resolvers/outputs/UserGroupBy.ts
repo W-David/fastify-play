@@ -27,9 +27,9 @@ export class UserGroupBy {
   updatedAt!: Date
 
   @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+    nullable: true,
   })
-  name!: string
+  nickName!: string | null
 
   @TypeGraphQL.Field((_type) => String, {
     nullable: false,
@@ -40,6 +40,11 @@ export class UserGroupBy {
     nullable: false,
   })
   password!: string
+
+  @TypeGraphQL.Field((_type) => String, {
+    nullable: true,
+  })
+  avatar!: string | null
 
   @TypeGraphQL.Field((_type) => Role, {
     nullable: false,

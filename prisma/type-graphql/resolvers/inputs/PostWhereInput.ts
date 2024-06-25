@@ -3,10 +3,12 @@ import * as GraphQLScalars from 'graphql-scalars'
 import { Prisma } from '@prisma/client'
 import { DecimalJSScalar } from '../../scalars'
 import { BoolFilter } from '../inputs/BoolFilter'
+import { CategoriesOnPostsListRelationFilter } from '../inputs/CategoriesOnPostsListRelationFilter'
 import { DateTimeFilter } from '../inputs/DateTimeFilter'
 import { IntFilter } from '../inputs/IntFilter'
 import { StringFilter } from '../inputs/StringFilter'
 import { StringNullableFilter } from '../inputs/StringNullableFilter'
+import { TagsOnPostsListRelationFilter } from '../inputs/TagsOnPostsListRelationFilter'
 import { UserRelationFilter } from '../inputs/UserRelationFilter'
 
 @TypeGraphQL.InputType('PostWhereInput', {})
@@ -39,6 +41,11 @@ export class PostWhereInput {
   @TypeGraphQL.Field((_type) => StringNullableFilter, {
     nullable: true,
   })
+  description?: StringNullableFilter | undefined
+
+  @TypeGraphQL.Field((_type) => StringNullableFilter, {
+    nullable: true,
+  })
   content?: StringNullableFilter | undefined
 
   @TypeGraphQL.Field((_type) => BoolFilter, {
@@ -49,10 +56,30 @@ export class PostWhereInput {
   @TypeGraphQL.Field((_type) => IntFilter, {
     nullable: true,
   })
+  favoNum?: IntFilter | undefined
+
+  @TypeGraphQL.Field((_type) => IntFilter, {
+    nullable: true,
+  })
+  browNum?: IntFilter | undefined
+
+  @TypeGraphQL.Field((_type) => IntFilter, {
+    nullable: true,
+  })
   authorId?: IntFilter | undefined
 
   @TypeGraphQL.Field((_type) => UserRelationFilter, {
     nullable: true,
   })
   author?: UserRelationFilter | undefined
+
+  @TypeGraphQL.Field((_type) => CategoriesOnPostsListRelationFilter, {
+    nullable: true,
+  })
+  CategoriesOnPosts?: CategoriesOnPostsListRelationFilter | undefined
+
+  @TypeGraphQL.Field((_type) => TagsOnPostsListRelationFilter, {
+    nullable: true,
+  })
+  TagsOnPosts?: TagsOnPostsListRelationFilter | undefined
 }

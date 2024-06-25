@@ -14,7 +14,7 @@ export class UserCountOrderByAggregateInput {
   @TypeGraphQL.Field((_type) => SortOrder, {
     nullable: true,
   })
-  name?: 'asc' | 'desc' | undefined
+  nickName?: 'asc' | 'desc' | undefined
 
   @TypeGraphQL.Field((_type) => SortOrder, {
     nullable: true,
@@ -25,6 +25,11 @@ export class UserCountOrderByAggregateInput {
     nullable: true,
   })
   password?: 'asc' | 'desc' | undefined
+
+  @TypeGraphQL.Field((_type) => SortOrder, {
+    nullable: true,
+  })
+  avatar?: 'asc' | 'desc' | undefined
 
   @TypeGraphQL.Field((_type) => SortOrder, {
     nullable: true,
