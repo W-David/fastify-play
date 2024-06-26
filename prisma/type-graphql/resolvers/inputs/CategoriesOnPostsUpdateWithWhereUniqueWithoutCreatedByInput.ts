@@ -1,0 +1,19 @@
+import * as TypeGraphQL from 'type-graphql'
+import * as GraphQLScalars from 'graphql-scalars'
+import { Prisma } from '@prisma/client'
+import { DecimalJSScalar } from '../../scalars'
+import { CategoriesOnPostsUpdateWithoutCreatedByInput } from '../inputs/CategoriesOnPostsUpdateWithoutCreatedByInput'
+import { CategoriesOnPostsWhereUniqueInput } from '../inputs/CategoriesOnPostsWhereUniqueInput'
+
+@TypeGraphQL.InputType('CategoriesOnPostsUpdateWithWhereUniqueWithoutCreatedByInput', {})
+export class CategoriesOnPostsUpdateWithWhereUniqueWithoutCreatedByInput {
+  @TypeGraphQL.Field((_type) => CategoriesOnPostsWhereUniqueInput, {
+    nullable: false,
+  })
+  where!: CategoriesOnPostsWhereUniqueInput
+
+  @TypeGraphQL.Field((_type) => CategoriesOnPostsUpdateWithoutCreatedByInput, {
+    nullable: false,
+  })
+  data!: CategoriesOnPostsUpdateWithoutCreatedByInput
+}

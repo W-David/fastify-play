@@ -30,6 +30,11 @@ export class UserScalarWhereWithAggregatesInput {
   })
   id?: IntWithAggregatesFilter | undefined
 
+  @TypeGraphQL.Field((_type) => DateTimeWithAggregatesFilter, {
+    nullable: true,
+  })
+  updatedAt?: DateTimeWithAggregatesFilter | undefined
+
   @TypeGraphQL.Field((_type) => StringNullableWithAggregatesFilter, {
     nullable: true,
   })

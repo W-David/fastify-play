@@ -15,4 +15,14 @@ export class TagsOnPostsCountOrderByAggregateInput {
     nullable: true,
   })
   tagId?: 'asc' | 'desc' | undefined
+
+  @TypeGraphQL.Field((_type) => SortOrder, {
+    nullable: true,
+  })
+  createdById?: 'asc' | 'desc' | undefined
+
+  @TypeGraphQL.Field((_type) => SortOrder, {
+    nullable: true,
+  })
+  updatedAt?: 'asc' | 'desc' | undefined
 }

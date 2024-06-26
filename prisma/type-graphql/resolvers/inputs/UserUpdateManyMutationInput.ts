@@ -9,6 +9,11 @@ import { StringFieldUpdateOperationsInput } from '../inputs/StringFieldUpdateOpe
 
 @TypeGraphQL.InputType('UserUpdateManyMutationInput', {})
 export class UserUpdateManyMutationInput {
+  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
+    nullable: true,
+  })
+  updatedAt?: DateTimeFieldUpdateOperationsInput | undefined
+
   @TypeGraphQL.Field((_type) => NullableStringFieldUpdateOperationsInput, {
     nullable: true,
   })

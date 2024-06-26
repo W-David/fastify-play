@@ -20,7 +20,7 @@ export class GroupByCategoriesOnPostsArgs {
   @TypeGraphQL.Field((_type) => [CategoriesOnPostsScalarFieldEnum], {
     nullable: false,
   })
-  by!: Array<'postId' | 'categoryId' | 'createdAt' | 'updatedAt'>
+  by!: Array<'postId' | 'categoryId' | 'createdById' | 'createdAt' | 'updatedAt'>
 
   @TypeGraphQL.Field((_type) => CategoriesOnPostsScalarWhereWithAggregatesInput, {
     nullable: true,

@@ -8,6 +8,11 @@ import { TagsOnPostsUpdateManyWithoutTagNestedInput } from '../inputs/TagsOnPost
 
 @TypeGraphQL.InputType('TagUpdateInput', {})
 export class TagUpdateInput {
+  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
+    nullable: true,
+  })
+  updatedAt?: DateTimeFieldUpdateOperationsInput | undefined
+
   @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
     nullable: true,
   })

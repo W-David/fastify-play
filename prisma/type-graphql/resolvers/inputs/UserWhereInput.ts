@@ -2,12 +2,14 @@ import * as TypeGraphQL from 'type-graphql'
 import * as GraphQLScalars from 'graphql-scalars'
 import { Prisma } from '@prisma/client'
 import { DecimalJSScalar } from '../../scalars'
+import { CategoriesOnPostsListRelationFilter } from '../inputs/CategoriesOnPostsListRelationFilter'
 import { DateTimeFilter } from '../inputs/DateTimeFilter'
 import { EnumRoleFilter } from '../inputs/EnumRoleFilter'
 import { IntFilter } from '../inputs/IntFilter'
 import { PostListRelationFilter } from '../inputs/PostListRelationFilter'
 import { StringFilter } from '../inputs/StringFilter'
 import { StringNullableFilter } from '../inputs/StringNullableFilter'
+import { TagsOnPostsListRelationFilter } from '../inputs/TagsOnPostsListRelationFilter'
 
 @TypeGraphQL.InputType('UserWhereInput', {})
 export class UserWhereInput {
@@ -30,6 +32,11 @@ export class UserWhereInput {
     nullable: true,
   })
   id?: IntFilter | undefined
+
+  @TypeGraphQL.Field((_type) => DateTimeFilter, {
+    nullable: true,
+  })
+  updatedAt?: DateTimeFilter | undefined
 
   @TypeGraphQL.Field((_type) => StringNullableFilter, {
     nullable: true,
@@ -60,4 +67,14 @@ export class UserWhereInput {
     nullable: true,
   })
   posts?: PostListRelationFilter | undefined
+
+  @TypeGraphQL.Field((_type) => CategoriesOnPostsListRelationFilter, {
+    nullable: true,
+  })
+  CategoriesOnPosts?: CategoriesOnPostsListRelationFilter | undefined
+
+  @TypeGraphQL.Field((_type) => TagsOnPostsListRelationFilter, {
+    nullable: true,
+  })
+  TagsOnPosts?: TagsOnPostsListRelationFilter | undefined
 }

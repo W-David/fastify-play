@@ -14,5 +14,10 @@ export class TagCountOrderByAggregateInput {
   @TypeGraphQL.Field((_type) => SortOrder, {
     nullable: true,
   })
+  updatedAt?: 'asc' | 'desc' | undefined
+
+  @TypeGraphQL.Field((_type) => SortOrder, {
+    nullable: true,
+  })
   name?: 'asc' | 'desc' | undefined
 }

@@ -5,9 +5,15 @@ import { DecimalJSScalar } from '../../scalars'
 import { DateTimeFieldUpdateOperationsInput } from '../inputs/DateTimeFieldUpdateOperationsInput'
 import { PostUpdateOneRequiredWithoutTagsOnPostsNestedInput } from '../inputs/PostUpdateOneRequiredWithoutTagsOnPostsNestedInput'
 import { TagUpdateOneRequiredWithoutTagsOnPostsNestedInput } from '../inputs/TagUpdateOneRequiredWithoutTagsOnPostsNestedInput'
+import { UserUpdateOneRequiredWithoutTagsOnPostsNestedInput } from '../inputs/UserUpdateOneRequiredWithoutTagsOnPostsNestedInput'
 
 @TypeGraphQL.InputType('TagsOnPostsUpdateInput', {})
 export class TagsOnPostsUpdateInput {
+  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
+    nullable: true,
+  })
+  updatedAt?: DateTimeFieldUpdateOperationsInput | undefined
+
   @TypeGraphQL.Field((_type) => PostUpdateOneRequiredWithoutTagsOnPostsNestedInput, {
     nullable: true,
   })
@@ -17,4 +23,9 @@ export class TagsOnPostsUpdateInput {
     nullable: true,
   })
   tag?: TagUpdateOneRequiredWithoutTagsOnPostsNestedInput | undefined
+
+  @TypeGraphQL.Field((_type) => UserUpdateOneRequiredWithoutTagsOnPostsNestedInput, {
+    nullable: true,
+  })
+  createdBy?: UserUpdateOneRequiredWithoutTagsOnPostsNestedInput | undefined
 }

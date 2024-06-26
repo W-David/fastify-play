@@ -5,6 +5,11 @@ import { DecimalJSScalar } from '../../scalars'
 
 @TypeGraphQL.InputType('CategoryCreateWithoutCategoriesOnPostsInput', {})
 export class CategoryCreateWithoutCategoriesOnPostsInput {
+  @TypeGraphQL.Field((_type) => Date, {
+    nullable: true,
+  })
+  updatedAt?: Date | undefined
+
   @TypeGraphQL.Field((_type) => String, {
     nullable: false,
   })

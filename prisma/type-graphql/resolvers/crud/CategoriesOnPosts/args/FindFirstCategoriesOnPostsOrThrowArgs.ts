@@ -35,5 +35,5 @@ export class FindFirstCategoriesOnPostsOrThrowArgs {
   @TypeGraphQL.Field((_type) => [CategoriesOnPostsScalarFieldEnum], {
     nullable: true,
   })
-  distinct?: Array<'postId' | 'categoryId' | 'createdAt' | 'updatedAt'> | undefined
+  distinct?: Array<'postId' | 'categoryId' | 'createdById' | 'createdAt' | 'updatedAt'> | undefined
 }

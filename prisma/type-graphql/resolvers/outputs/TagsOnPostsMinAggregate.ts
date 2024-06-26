@@ -15,6 +15,11 @@ export class TagsOnPostsMinAggregate {
   })
   tagId!: number | null
 
+  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+    nullable: true,
+  })
+  createdById!: number | null
+
   @TypeGraphQL.Field((_type) => Date, {
     nullable: true,
   })

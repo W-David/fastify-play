@@ -6,6 +6,7 @@ import { CategoryRelationFilter } from '../inputs/CategoryRelationFilter'
 import { DateTimeFilter } from '../inputs/DateTimeFilter'
 import { IntFilter } from '../inputs/IntFilter'
 import { PostRelationFilter } from '../inputs/PostRelationFilter'
+import { UserRelationFilter } from '../inputs/UserRelationFilter'
 
 @TypeGraphQL.InputType('CategoriesOnPostsWhereInput', {})
 export class CategoriesOnPostsWhereInput {
@@ -34,6 +35,16 @@ export class CategoriesOnPostsWhereInput {
   })
   categoryId?: IntFilter | undefined
 
+  @TypeGraphQL.Field((_type) => IntFilter, {
+    nullable: true,
+  })
+  createdById?: IntFilter | undefined
+
+  @TypeGraphQL.Field((_type) => DateTimeFilter, {
+    nullable: true,
+  })
+  updatedAt?: DateTimeFilter | undefined
+
   @TypeGraphQL.Field((_type) => PostRelationFilter, {
     nullable: true,
   })
@@ -43,4 +54,9 @@ export class CategoriesOnPostsWhereInput {
     nullable: true,
   })
   category?: CategoryRelationFilter | undefined
+
+  @TypeGraphQL.Field((_type) => UserRelationFilter, {
+    nullable: true,
+  })
+  createdBy?: UserRelationFilter | undefined
 }

@@ -4,6 +4,7 @@ import { Prisma } from '@prisma/client'
 import { DecimalJSScalar } from '../../scalars'
 import { PostOrderByWithRelationInput } from '../inputs/PostOrderByWithRelationInput'
 import { TagOrderByWithRelationInput } from '../inputs/TagOrderByWithRelationInput'
+import { UserOrderByWithRelationInput } from '../inputs/UserOrderByWithRelationInput'
 import { SortOrder } from '../../enums/SortOrder'
 
 @TypeGraphQL.InputType('TagsOnPostsOrderByWithRelationInput', {})
@@ -18,6 +19,16 @@ export class TagsOnPostsOrderByWithRelationInput {
   })
   tagId?: 'asc' | 'desc' | undefined
 
+  @TypeGraphQL.Field((_type) => SortOrder, {
+    nullable: true,
+  })
+  createdById?: 'asc' | 'desc' | undefined
+
+  @TypeGraphQL.Field((_type) => SortOrder, {
+    nullable: true,
+  })
+  updatedAt?: 'asc' | 'desc' | undefined
+
   @TypeGraphQL.Field((_type) => PostOrderByWithRelationInput, {
     nullable: true,
   })
@@ -27,4 +38,9 @@ export class TagsOnPostsOrderByWithRelationInput {
     nullable: true,
   })
   tag?: TagOrderByWithRelationInput | undefined
+
+  @TypeGraphQL.Field((_type) => UserOrderByWithRelationInput, {
+    nullable: true,
+  })
+  createdBy?: UserOrderByWithRelationInput | undefined
 }

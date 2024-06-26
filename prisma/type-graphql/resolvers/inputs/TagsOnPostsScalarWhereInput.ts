@@ -31,4 +31,14 @@ export class TagsOnPostsScalarWhereInput {
     nullable: true,
   })
   tagId?: IntFilter | undefined
+
+  @TypeGraphQL.Field((_type) => IntFilter, {
+    nullable: true,
+  })
+  createdById?: IntFilter | undefined
+
+  @TypeGraphQL.Field((_type) => DateTimeFilter, {
+    nullable: true,
+  })
+  updatedAt?: DateTimeFilter | undefined
 }

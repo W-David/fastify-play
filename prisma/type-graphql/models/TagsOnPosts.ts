@@ -4,6 +4,7 @@ import { Prisma } from '@prisma/client'
 import { DecimalJSScalar } from '../scalars'
 import { Post } from '../models/Post'
 import { Tag } from '../models/Tag'
+import { User } from '../models/User'
 
 @TypeGraphQL.ObjectType('TagsOnPosts', {})
 export class TagsOnPosts {
@@ -20,6 +21,13 @@ export class TagsOnPosts {
     nullable: false,
   })
   tagId!: number
+
+  createdBy?: User
+
+  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+    nullable: false,
+  })
+  createdById!: number
 
   @TypeGraphQL.Field((_type) => Date, {
     nullable: false,

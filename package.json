@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon",
     "seed": "ts-node --transpile-only ./prisma/seed.ts",
-    "prisma:migrate": "prisma migrate dev --name init",
+    "prisma:migrate": "prisma migrate dev --name init --skip-generate",
     "prisma:generate": "prisma generate",
     "prisma:studio": "prisma studio",
     "prisma:reset": "prisma reset --force",

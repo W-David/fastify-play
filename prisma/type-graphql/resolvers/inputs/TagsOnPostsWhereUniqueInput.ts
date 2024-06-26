@@ -8,6 +8,7 @@ import { PostRelationFilter } from '../inputs/PostRelationFilter'
 import { TagRelationFilter } from '../inputs/TagRelationFilter'
 import { TagsOnPostsPostIdTagIdCompoundUniqueInput } from '../inputs/TagsOnPostsPostIdTagIdCompoundUniqueInput'
 import { TagsOnPostsWhereInput } from '../inputs/TagsOnPostsWhereInput'
+import { UserRelationFilter } from '../inputs/UserRelationFilter'
 
 @TypeGraphQL.InputType('TagsOnPostsWhereUniqueInput', {})
 export class TagsOnPostsWhereUniqueInput {
@@ -41,6 +42,16 @@ export class TagsOnPostsWhereUniqueInput {
   })
   tagId?: IntFilter | undefined
 
+  @TypeGraphQL.Field((_type) => IntFilter, {
+    nullable: true,
+  })
+  createdById?: IntFilter | undefined
+
+  @TypeGraphQL.Field((_type) => DateTimeFilter, {
+    nullable: true,
+  })
+  updatedAt?: DateTimeFilter | undefined
+
   @TypeGraphQL.Field((_type) => PostRelationFilter, {
     nullable: true,
   })
@@ -50,4 +61,9 @@ export class TagsOnPostsWhereUniqueInput {
     nullable: true,
   })
   tag?: TagRelationFilter | undefined
+
+  @TypeGraphQL.Field((_type) => UserRelationFilter, {
+    nullable: true,
+  })
+  createdBy?: UserRelationFilter | undefined
 }

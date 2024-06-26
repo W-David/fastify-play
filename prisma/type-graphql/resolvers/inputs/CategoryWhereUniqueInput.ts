@@ -29,6 +29,11 @@ export class CategoryWhereUniqueInput {
   })
   NOT?: CategoryWhereInput[] | undefined
 
+  @TypeGraphQL.Field((_type) => DateTimeFilter, {
+    nullable: true,
+  })
+  updatedAt?: DateTimeFilter | undefined
+
   @TypeGraphQL.Field((_type) => StringFilter, {
     nullable: true,
   })

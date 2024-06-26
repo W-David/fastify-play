@@ -2,7 +2,9 @@ import * as TypeGraphQL from 'type-graphql'
 import * as GraphQLScalars from 'graphql-scalars'
 import { Prisma } from '@prisma/client'
 import { DecimalJSScalar } from '../scalars'
+import { CategoriesOnPosts } from '../models/CategoriesOnPosts'
 import { Post } from '../models/Post'
+import { TagsOnPosts } from '../models/TagsOnPosts'
 import { Role } from '../enums/Role'
 import { UserCount } from '../resolvers/outputs/UserCount'
 
@@ -46,6 +48,10 @@ export class User {
   role!: 'ROOT' | 'ADMIN' | 'USER'
 
   posts?: Post[]
+
+  CategoriesOnPosts?: CategoriesOnPosts[]
+
+  TagsOnPosts?: TagsOnPosts[]
 
   @TypeGraphQL.Field((_type) => UserCount, {
     nullable: true,

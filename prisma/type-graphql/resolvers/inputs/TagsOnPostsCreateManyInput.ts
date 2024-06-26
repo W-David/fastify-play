@@ -14,4 +14,14 @@ export class TagsOnPostsCreateManyInput {
     nullable: false,
   })
   tagId!: number
+
+  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+    nullable: false,
+  })
+  createdById!: number
+
+  @TypeGraphQL.Field((_type) => Date, {
+    nullable: true,
+  })
+  updatedAt?: Date | undefined
 }

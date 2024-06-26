@@ -15,6 +15,11 @@ export class CategoryOrderByWithRelationInput {
   @TypeGraphQL.Field((_type) => SortOrder, {
     nullable: true,
   })
+  updatedAt?: 'asc' | 'desc' | undefined
+
+  @TypeGraphQL.Field((_type) => SortOrder, {
+    nullable: true,
+  })
   name?: 'asc' | 'desc' | undefined
 
   @TypeGraphQL.Field((_type) => CategoriesOnPostsOrderByRelationAggregateInput, {

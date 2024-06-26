@@ -14,4 +14,9 @@ export class CategoriesOnPostsAvgAggregate {
     nullable: true,
   })
   categoryId!: number | null
+
+  @TypeGraphQL.Field((_type) => TypeGraphQL.Float, {
+    nullable: true,
+  })
+  createdById!: number | null
 }

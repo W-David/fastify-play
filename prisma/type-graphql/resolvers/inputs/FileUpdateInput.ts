@@ -8,6 +8,11 @@ import { StringFieldUpdateOperationsInput } from '../inputs/StringFieldUpdateOpe
 
 @TypeGraphQL.InputType('FileUpdateInput', {})
 export class FileUpdateInput {
+  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
+    nullable: true,
+  })
+  updatedAt?: DateTimeFieldUpdateOperationsInput | undefined
+
   @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
     nullable: true,
   })

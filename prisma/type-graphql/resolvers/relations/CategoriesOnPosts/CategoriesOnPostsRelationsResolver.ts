@@ -3,6 +3,7 @@ import type { GraphQLResolveInfo } from 'graphql'
 import { CategoriesOnPosts } from '../../../models/CategoriesOnPosts'
 import { Category } from '../../../models/Category'
 import { Post } from '../../../models/Post'
+import { User } from '../../../models/User'
 import { transformInfoIntoPrismaArgs, getPrismaFromContext, transformCountFieldIntoSelectRelationsCount } from '../../../helpers'
 
 @TypeGraphQL.Resolver((_of) => CategoriesOnPosts)
@@ -49,6 +50,29 @@ export class CategoriesOnPostsRelationsResolver {
         },
       })
       .category({
+        ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
+      })
+  }
+
+  @TypeGraphQL.FieldResolver((_type) => User, {
+    nullable: false,
+  })
+  async createdBy(
+    @TypeGraphQL.Root() categoriesOnPosts: CategoriesOnPosts,
+    @TypeGraphQL.Ctx() ctx: any,
+    @TypeGraphQL.Info() info: GraphQLResolveInfo,
+  ): Promise<User> {
+    const { _count } = transformInfoIntoPrismaArgs(info)
+    return getPrismaFromContext(ctx)
+      .categoriesOnPosts.findUniqueOrThrow({
+        where: {
+          postId_categoryId: {
+            postId: categoriesOnPosts.postId,
+            categoryId: categoriesOnPosts.categoryId,
+          },
+        },
+      })
+      .createdBy({
         ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
       })
   }

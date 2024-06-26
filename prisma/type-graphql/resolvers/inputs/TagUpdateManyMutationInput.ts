@@ -7,6 +7,11 @@ import { StringFieldUpdateOperationsInput } from '../inputs/StringFieldUpdateOpe
 
 @TypeGraphQL.InputType('TagUpdateManyMutationInput', {})
 export class TagUpdateManyMutationInput {
+  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
+    nullable: true,
+  })
+  updatedAt?: DateTimeFieldUpdateOperationsInput | undefined
+
   @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
     nullable: true,
   })

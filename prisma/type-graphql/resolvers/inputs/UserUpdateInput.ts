@@ -2,14 +2,21 @@ import * as TypeGraphQL from 'type-graphql'
 import * as GraphQLScalars from 'graphql-scalars'
 import { Prisma } from '@prisma/client'
 import { DecimalJSScalar } from '../../scalars'
+import { CategoriesOnPostsUpdateManyWithoutCreatedByNestedInput } from '../inputs/CategoriesOnPostsUpdateManyWithoutCreatedByNestedInput'
 import { DateTimeFieldUpdateOperationsInput } from '../inputs/DateTimeFieldUpdateOperationsInput'
 import { EnumRoleFieldUpdateOperationsInput } from '../inputs/EnumRoleFieldUpdateOperationsInput'
 import { NullableStringFieldUpdateOperationsInput } from '../inputs/NullableStringFieldUpdateOperationsInput'
 import { PostUpdateManyWithoutAuthorNestedInput } from '../inputs/PostUpdateManyWithoutAuthorNestedInput'
 import { StringFieldUpdateOperationsInput } from '../inputs/StringFieldUpdateOperationsInput'
+import { TagsOnPostsUpdateManyWithoutCreatedByNestedInput } from '../inputs/TagsOnPostsUpdateManyWithoutCreatedByNestedInput'
 
 @TypeGraphQL.InputType('UserUpdateInput', {})
 export class UserUpdateInput {
+  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
+    nullable: true,
+  })
+  updatedAt?: DateTimeFieldUpdateOperationsInput | undefined
+
   @TypeGraphQL.Field((_type) => NullableStringFieldUpdateOperationsInput, {
     nullable: true,
   })
@@ -39,4 +46,14 @@ export class UserUpdateInput {
     nullable: true,
   })
   posts?: PostUpdateManyWithoutAuthorNestedInput | undefined
+
+  @TypeGraphQL.Field((_type) => CategoriesOnPostsUpdateManyWithoutCreatedByNestedInput, {
+    nullable: true,
+  })
+  CategoriesOnPosts?: CategoriesOnPostsUpdateManyWithoutCreatedByNestedInput | undefined
+
+  @TypeGraphQL.Field((_type) => TagsOnPostsUpdateManyWithoutCreatedByNestedInput, {
+    nullable: true,
+  })
+  TagsOnPosts?: TagsOnPostsUpdateManyWithoutCreatedByNestedInput | undefined
 }

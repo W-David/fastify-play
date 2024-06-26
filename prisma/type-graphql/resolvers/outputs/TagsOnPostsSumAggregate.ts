@@ -14,4 +14,9 @@ export class TagsOnPostsSumAggregate {
     nullable: true,
   })
   tagId!: number | null
+
+  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+    nullable: true,
+  })
+  createdById!: number | null
 }

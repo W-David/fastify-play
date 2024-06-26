@@ -5,4 +5,9 @@ import { DecimalJSScalar } from '../../scalars'
 import { DateTimeFieldUpdateOperationsInput } from '../inputs/DateTimeFieldUpdateOperationsInput'
 
 @TypeGraphQL.InputType('TagsOnPostsUpdateManyMutationInput', {})
-export class TagsOnPostsUpdateManyMutationInput {}
+export class TagsOnPostsUpdateManyMutationInput {
+  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
+    nullable: true,
+  })
+  updatedAt?: DateTimeFieldUpdateOperationsInput | undefined
+}

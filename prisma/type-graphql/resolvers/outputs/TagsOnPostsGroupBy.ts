@@ -20,6 +20,11 @@ export class TagsOnPostsGroupBy {
   })
   tagId!: number
 
+  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+    nullable: false,
+  })
+  createdById!: number
+
   @TypeGraphQL.Field((_type) => Date, {
     nullable: false,
   })

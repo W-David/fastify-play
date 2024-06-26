@@ -35,5 +35,5 @@ export class FindManyTagsOnPostsArgs {
   @TypeGraphQL.Field((_type) => [TagsOnPostsScalarFieldEnum], {
     nullable: true,
   })
-  distinct?: Array<'postId' | 'tagId' | 'createdAt' | 'updatedAt'> | undefined
+  distinct?: Array<'postId' | 'tagId' | 'createdById' | 'createdAt' | 'updatedAt'> | undefined
 }

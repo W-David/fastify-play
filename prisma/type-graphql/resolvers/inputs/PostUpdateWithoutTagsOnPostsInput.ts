@@ -12,6 +12,11 @@ import { UserUpdateOneRequiredWithoutPostsNestedInput } from '../inputs/UserUpda
 
 @TypeGraphQL.InputType('PostUpdateWithoutTagsOnPostsInput', {})
 export class PostUpdateWithoutTagsOnPostsInput {
+  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
+    nullable: true,
+  })
+  updatedAt?: DateTimeFieldUpdateOperationsInput | undefined
+
   @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
     nullable: true,
   })

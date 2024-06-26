@@ -14,4 +14,14 @@ export class CategoriesOnPostsCreateManyInput {
     nullable: false,
   })
   categoryId!: number
+
+  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+    nullable: false,
+  })
+  createdById!: number
+
+  @TypeGraphQL.Field((_type) => Date, {
+    nullable: true,
+  })
+  updatedAt?: Date | undefined
 }

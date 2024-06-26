@@ -15,4 +15,9 @@ export class TagsOnPostsAvgOrderByAggregateInput {
     nullable: true,
   })
   tagId?: 'asc' | 'desc' | undefined
+
+  @TypeGraphQL.Field((_type) => SortOrder, {
+    nullable: true,
+  })
+  createdById?: 'asc' | 'desc' | undefined
 }

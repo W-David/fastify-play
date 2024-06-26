@@ -14,4 +14,9 @@ export class TagsOnPostsAvgAggregate {
     nullable: true,
   })
   tagId!: number | null
+
+  @TypeGraphQL.Field((_type) => TypeGraphQL.Float, {
+    nullable: true,
+  })
+  createdById!: number | null
 }
