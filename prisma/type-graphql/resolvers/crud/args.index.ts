@@ -1,7 +1,0 @@
-export * from './CategoriesOnPosts/args'
-export * from './Category/args'
-export * from './File/args'
-export * from './Post/args'
-export * from './Tag/args'
-export * from './TagsOnPosts/args'
-export * from './User/args'

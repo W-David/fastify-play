@@ -1,6 +1,0 @@
-export { CategoriesOnPostsRelationsResolver } from './CategoriesOnPosts/CategoriesOnPostsRelationsResolver'
-export { CategoryRelationsResolver } from './Category/CategoryRelationsResolver'
-export { PostRelationsResolver } from './Post/PostRelationsResolver'
-export { TagRelationsResolver } from './Tag/TagRelationsResolver'
-export { TagsOnPostsRelationsResolver } from './TagsOnPosts/TagsOnPostsRelationsResolver'
-export { UserRelationsResolver } from './User/UserRelationsResolver'
