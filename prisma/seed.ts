@@ -5,14 +5,13 @@ const prisma = new PrismaClient()
 async function main() {
   await prisma.$connect()
 
-  await prisma.profile.deleteMany({})
   await prisma.post.deleteMany({})
   await prisma.user.deleteMany({})
 
   const root = await prisma.user.create({
     data: {
       email: 'root@root.com',
-      name: 'root',
+      nickName: 'root',
       password: 'root',
       role: $Enums.Role.ROOT,
       posts: {
@@ -29,18 +28,13 @@ async function main() {
           },
         ],
       },
-      profile: {
-        create: {
-          bio: 'I am a root',
-        },
-      },
     },
   })
 
   const admin = await prisma.user.create({
     data: {
       email: 'admin@root.com',
-      name: 'admin',
+      nickName: 'admin',
       password: 'admin',
       role: $Enums.Role.ADMIN,
       posts: {
@@ -57,18 +51,13 @@ async function main() {
           },
         ],
       },
-      profile: {
-        create: {
-          bio: 'I am an admin',
-        },
-      },
     },
   })
 
   const user = await prisma.user.create({
     data: {
       email: 'user@root.com',
-      name: 'user',
+      nickName: 'user',
       password: 'user',
       role: $Enums.Role.USER,
       posts: {
@@ -84,11 +73,6 @@ async function main() {
             published: false,
           },
         ],
-      },
-      profile: {
-        create: {
-          bio: 'I am a user',
-        },
       },
     },
   })

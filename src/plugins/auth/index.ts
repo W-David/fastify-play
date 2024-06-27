@@ -15,6 +15,21 @@ export interface AuthBody {
   role: $Enums.Role
 }
 
+export function preGenertateToken(fastify: FastifyInstance) {
+  const { TOKEN_EXPIRATION_TIME } = fastify.getEnvs<EnvType>()
+  const token = fastify.jwt.sign(
+    {
+      name: 'root',
+      email: 'root@root.com',
+      role: $Enums.Role.ROOT,
+    },
+    {
+      expiresIn: TOKEN_EXPIRATION_TIME,
+    },
+  )
+  return token
+}
+
 export async function createAuth(fastify: FastifyInstance, options: AuthOptions) {
   const { TOKEN_SECRET } = fastify.getEnvs<EnvType>()
   await fastify.register(fastifyJwt, Object.assign({}, { secret: TOKEN_SECRET }, options))

@@ -9,12 +9,12 @@ declare module 'fastify' {
 declare module '@fastify/jwt' {
   interface FastifyJWT {
     payload: {
-      name: string
+      name?: string
       email: string
       role: $Enums.Role
     }
     user: {
-      name: string
+      name?: string
       email: string
       role: $Enums.Role
     }

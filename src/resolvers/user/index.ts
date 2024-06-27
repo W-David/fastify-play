@@ -21,7 +21,7 @@ export class AuthArgs {
 @ObjectType()
 export class DecodeRes {
   @Field(() => String)
-  name!: string
+  name?: string
 
   @Field(() => String)
   email!: string
@@ -40,11 +40,11 @@ export class UserResolver {
     if (!user) {
       throw new Error('User not found')
     } else {
-      const { nickName: name, email, role } = user
+      const { nickName, email, role } = user
       const { TOKEN_EXPIRATION_TIME } = fastify.getEnvs<EnvType>()
       const token = fastify.jwt.sign(
         {
-          name: name || '',
+          name: nickName || undefined,
           email,
           role,
         },
