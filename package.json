@@ -12,7 +12,7 @@
     "prisma:reset": "prisma reset --force",
     "build:sandbox": "esbuild apollo/load.js --bundle --outfile=public/apollo/load.js",
     "lint": "eslint --ext \".ts\" --ignore-path .gitignore .",
-    "lint:fix": "eslint --fix --debug --ext \".ts\" --ignore-path .gitignore ."
+    "lint:fix": "eslint --fix --debug --ext \".ts\" ."
   },
   "repository": {
     "type": "git",
@@ -50,6 +50,7 @@
     "@fastify/auth": "^4.6.1",
     "@fastify/env": "^4.4.0",
     "@fastify/jwt": "^8.0.1",
+    "@fastify/multipart": "^8.3.0",
     "@prisma/client": "^5.15.1",
     "ali-oss": "^6.20.0",
     "chalk": "^4.1.0",
