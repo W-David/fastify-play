@@ -1038,6 +1038,8 @@ type Mutation {
   updateOneTag(data: TagUpdateInput!, where: TagWhereUniqueInput!): Tag
   updateOneTagsOnPosts(data: TagsOnPostsUpdateInput!, where: TagsOnPostsWhereUniqueInput!): TagsOnPosts
   updateOneUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  uploadFile: File
+  uploadFiles: [File!]
   upsertOneCategoriesOnPosts(create: CategoriesOnPostsCreateInput!, update: CategoriesOnPostsUpdateInput!, where: CategoriesOnPostsWhereUniqueInput!): CategoriesOnPosts!
   upsertOneCategory(create: CategoryCreateInput!, update: CategoryUpdateInput!, where: CategoryWhereUniqueInput!): Category!
   upsertOneFile(create: FileCreateInput!, update: FileUpdateInput!, where: FileWhereUniqueInput!): File!
@@ -1778,6 +1780,7 @@ type Query {
   groupByUser(by: [UserScalarFieldEnum!]!, having: UserScalarWhereWithAggregatesInput, orderBy: [UserOrderByWithAggregationInput!], skip: Int, take: Int, where: UserWhereInput): [UserGroupBy!]!
   post(where: PostWhereUniqueInput!): Post
   posts(cursor: PostWhereUniqueInput, distinct: [PostScalarFieldEnum!], orderBy: [PostOrderByWithRelationInput!], skip: Int, take: Int, where: PostWhereInput): [Post!]!
+  sts: STSRes
   tag(where: TagWhereUniqueInput!): Tag
   tags(cursor: TagWhereUniqueInput, distinct: [TagScalarFieldEnum!], orderBy: [TagOrderByWithRelationInput!], skip: Int, take: Int, where: TagWhereInput): [Tag!]!
   user(where: UserWhereUniqueInput!): User
@@ -1788,6 +1791,13 @@ enum Role {
   ADMIN
   ROOT
   USER
+}
+
+type STSRes {
+  AccessKeySecret: String!
+  AccesskeyId: String!
+  Expiration: String!
+  SecurityToken: String!
 }
 
 enum SortOrder {

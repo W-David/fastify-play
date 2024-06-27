@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import fastify from 'fastify'
 import 'reflect-metadata'
-import { apollo, auth, env, multipart } from './plugins'
+import { apollo, auth, env, multipart, staticServer } from './plugins'
 import { EnvType } from './plugins/env'
 
 const port = 3000
@@ -13,6 +13,7 @@ async function main() {
   await app.register(auth)
   await app.register(multipart)
   await app.register(apollo)
+  await app.register(staticServer)
 
   await app.listen({ port })
 
