@@ -48,7 +48,7 @@
     "@apollo/server": "^4.10.4",
     "@as-integrations/fastify": "^2.1.1",
     "@fastify/auth": "^4.6.1",
-    "@fastify/env": "^4.3.0",
+    "@fastify/env": "^4.4.0",
     "@fastify/jwt": "^8.0.1",
     "@prisma/client": "^5.15.1",
     "ali-oss": "^6.20.0",

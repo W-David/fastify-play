@@ -1,3 +1,4 @@
+import { EnvType } from '@/plugins/env'
 import { User } from '@typegraphql/models/User'
 import { Args, ArgsType, Authorized, Ctx, Field, ObjectType, Query, Resolver } from 'type-graphql'
 import { Context } from './../../plugins/apollo/index'
@@ -40,6 +41,7 @@ export class UserResolver {
       throw new Error('User not found')
     } else {
       const { nickName: name, email, role } = user
+      const { TOKEN_EXPIRATION_TIME } = fastify.getEnvs<EnvType>()
       const token = fastify.jwt.sign(
         {
           name: name || '',
@@ -47,7 +49,7 @@ export class UserResolver {
           role,
         },
         {
-          expiresIn: '30d',
+          expiresIn: TOKEN_EXPIRATION_TIME,
         },
       )
       return { token }

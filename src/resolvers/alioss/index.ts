@@ -1,6 +1,7 @@
-import { localConfig } from '@/config'
+import { EnvType } from '@/plugins/env'
 import { STS } from 'ali-oss'
-import { Field, ObjectType, Query, Resolver } from 'type-graphql'
+import { Ctx, Field, ObjectType, Query, Resolver } from 'type-graphql'
+import { Context } from './../../plugins/apollo/index'
 
 @ObjectType()
 export class STSRes {
@@ -17,15 +18,13 @@ export class STSRes {
 @Resolver()
 export class AliOSSResolver {
   @Query(() => STSRes, { nullable: true })
-  async sts(): Promise<STSRes | null> {
-    const {
-      alioss: { accessKeyId, accessKeySecret, roleArn, tokenExpireTime },
-    } = localConfig
+  async sts(@Ctx() { fastify }: Context): Promise<STSRes | null> {
+    const { ALIOSS_ACCESS_KEY_ID, ALIOSS_ACCESS_KEY_SECRET, ALIOSS_ROLE_ARN, ALIOSS_TOKEN_EXPIRE_TIME } = fastify.getEnvs<EnvType>()
     const client = new STS({
-      accessKeyId,
-      accessKeySecret,
+      accessKeyId: ALIOSS_ACCESS_KEY_ID,
+      accessKeySecret: ALIOSS_ACCESS_KEY_SECRET,
     })
-    const { credentials } = await client.assumeRole(roleArn, undefined, tokenExpireTime)
+    const { credentials } = await client.assumeRole(ALIOSS_ROLE_ARN, undefined, ALIOSS_TOKEN_EXPIRE_TIME)
     return {
       AccesskeyId: credentials.AccessKeyId,
       AccessKeySecret: credentials.AccessKeySecret,

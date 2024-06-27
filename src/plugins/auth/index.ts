@@ -1,7 +1,8 @@
 import fastifyAuth from '@fastify/auth'
-import fastifyJwt, { FastifyJWTOptions } from '@fastify/jwt'
+import fastifyJwt from '@fastify/jwt'
 import { $Enums } from '@prisma/client'
 import { FastifyInstance } from 'fastify'
+import { EnvType } from '../env'
 
 export interface AuthOptions {
   [key: string]: string
@@ -14,12 +15,9 @@ export interface AuthBody {
   role: $Enums.Role
 }
 
-const defaultOptions: AuthOptions & FastifyJWTOptions = {
-  secret: 'fastify-secret',
-}
-
 export async function createAuth(fastify: FastifyInstance, options: AuthOptions) {
-  await fastify.register(fastifyJwt, Object.assign({}, defaultOptions, options))
+  const { TOKEN_SECRET } = fastify.getEnvs<EnvType>()
+  await fastify.register(fastifyJwt, Object.assign({}, { secret: TOKEN_SECRET }, options))
 
   await fastify
     .decorate('authenticate', (request, reply, done) => {
