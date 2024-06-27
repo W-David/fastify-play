@@ -36,3 +36,6 @@ Prisma 自带一个 studio web UI，可直接管理数据源。
 ```shell
 npm run studio
 ```
+
+## REF
+- [Apollo Server Integration with Fastify](https://www.apollographql.com/docs/apollo-server/v3/data/file-uploads/#integrating-with-fastify)
