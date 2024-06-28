@@ -5,8 +5,8 @@
   "main": "src/server.ts",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
-    "seed": "tsx ./prisma/seed.ts",
+    "dev": "nodemon",
+    "seed": "ts-node ./prisma/seed.ts",
     "prisma:migrate": "prisma migrate dev --name init --skip-generate",
     "prisma:generate": "prisma generate",
     "prisma:studio": "prisma studio",
@@ -36,9 +36,11 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "fastify-cli": "^6.2.1",
+    "nodemon": "^3.1.4",
     "prettier": "^3.0.0",
     "prisma-generator-fake-data": "^0.14.2",
-    "tsx": "^4.15.7",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typegraphql-prisma": "^0.27.2",
     "typescript": "^5.5.2"
   },

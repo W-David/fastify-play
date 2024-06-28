@@ -30,13 +30,13 @@ export interface createApolloServerOptions {
 export async function createApolloServer(fastify: FastifyInstance, options: createApolloServerOptions) {
   
 
-  // const resolversEnhanceMap: Enhance.ResolversEnhanceMap = {}
+  const resolversEnhanceMap: Enhance.ResolversEnhanceMap = {}
 
-  // Enhance.applyResolversEnhanceMap(resolversEnhanceMap)
+  Enhance.applyResolversEnhanceMap(resolversEnhanceMap)
 
   const schema = await buildSchema({
-    // resolvers: [...TypegraphqlModule.resolvers, ...resolvers],
-    resolvers: [...resolvers],
+    resolvers: [...TypegraphqlModule.resolvers, ...resolvers],
+    // resolvers: [...resolvers],
     scalarsMap: [{ type: Upload, scalar: GraphQLUpload }],
     emitSchemaFile: path.resolve(__dirname, './generated-schema.graphql'),
     authChecker,

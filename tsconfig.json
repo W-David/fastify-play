@@ -10,11 +10,17 @@
     "emitDecoratorMetadata": true,
     "maxNodeModuleJsDepth": 15,
     "allowImportingTsExtensions": true,
+    "esModuleInterop": true,
     "noEmit": true,
     "removeComments": true,
     "paths": {
       "@/*": ["src/*"],
       "@typegraphql/*": ["prisma/type-graphql/*"]
     }
+  },
+  "ts-node": {
+    "esm": true,
+    "require": ["tsconfig-paths/register"],
+    "experimentalSpecifierResolution": "node"
   }
 }
