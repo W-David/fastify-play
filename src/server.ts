@@ -1,6 +1,6 @@
+import 'reflect-metadata'
 import chalk from 'chalk'
 import fastify from 'fastify'
-import 'reflect-metadata'
 import { apollo, auth, env, multipart, staticServer } from './plugins'
 import { EnvType } from './plugins/env'
 
