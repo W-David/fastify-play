@@ -1,7 +1,7 @@
-import { EnvType } from '@/plugins/env'
-import { User } from '@typegraphql/models/User'
+import { Context } from '@/plugins/apollo/index.ts'
+import { EnvType } from '@/plugins/env/index.ts'
+import Models from '@typegraphql/models/index.ts'
 import { Args, ArgsType, Authorized, Ctx, Field, ObjectType, Query, Resolver } from 'type-graphql'
-import { Context } from './../../plugins/apollo/index'
 
 @ObjectType()
 export class AuthRes {
@@ -30,7 +30,7 @@ export class DecodeRes {
   role!: string
 }
 
-@Resolver((_of) => User)
+@Resolver((_of) => Models.User)
 export class UserResolver {
   @Query((_returns) => AuthRes, { nullable: true })
   @Authorized()

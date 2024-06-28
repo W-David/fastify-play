@@ -1,5 +1,5 @@
 import { AuthChecker } from 'type-graphql'
-import { Context } from '../apollo'
+import { Context } from '../apollo/index.ts'
 
 export const authChecker: AuthChecker<Context> = ({ root, args, context, info }, roles) => {
   const { user } = context

@@ -1,8 +1,8 @@
+import 'reflect-metadata'
+import { EnvType } from '@/plugins/env/index.ts'
+import { apollo, auth, env, staticServer, upload } from '@/plugins/index.ts'
 import chalk from 'chalk'
 import fastify from 'fastify'
-import 'reflect-metadata'
-import { apollo, auth, env, multipart, staticServer } from './plugins'
-import { EnvType } from './plugins/env'
 
 const port = 3000
 
@@ -11,9 +11,9 @@ async function main() {
 
   await app.register(env)
   await app.register(auth)
-  await app.register(multipart)
   await app.register(apollo)
   await app.register(staticServer)
+  await app.register(upload)
 
   await app.listen({ port })
 

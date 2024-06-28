@@ -1,5 +1,5 @@
-import { Post } from '@typegraphql/models'
+import Models from '@typegraphql/models/index.ts'
 import { Resolver } from 'type-graphql'
 
-@Resolver((_of) => Post)
+@Resolver((_of) => Models.Post)
 export class PostResolver {}

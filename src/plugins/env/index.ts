@@ -2,6 +2,9 @@ import type { FastifyEnvOptions } from '@fastify/env'
 import fastifyEnv from '@fastify/env'
 import { FastifyInstance } from 'fastify'
 import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const defaultOptions: FastifyEnvOptions = {
   dotenv: {
