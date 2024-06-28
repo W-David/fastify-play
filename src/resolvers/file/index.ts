@@ -1,10 +1,10 @@
-import { File } from '@typegraphql/models'
+import { File } from '@typegraphql'
 import fs from 'node:fs'
 import path from 'node:path'
 import { pipeline } from 'node:stream'
 import { promisify } from 'node:util'
 import { Ctx, Mutation, Resolver } from 'type-graphql'
-import { Context } from './../../plugins/apollo/index'
+import { Context } from '@/plugins/apollo'
 
 @Resolver((_of) => File)
 export class FileResolver {

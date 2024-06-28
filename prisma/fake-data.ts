@@ -1,5 +1,6 @@
-import { faker } from '@faker-js/faker'
 import { Role } from '@prisma/client'
+import { faker } from '@faker-js/faker'
+import Decimal from 'decimal.js'
 
 export function fakePost() {
   return {

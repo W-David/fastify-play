@@ -1,7 +1,7 @@
 import { EnvType } from '@/plugins/env'
-import { User } from '@typegraphql/models/User'
+import { User } from '@typegraphql'
 import { Args, ArgsType, Authorized, Ctx, Field, ObjectType, Query, Resolver } from 'type-graphql'
-import { Context } from './../../plugins/apollo/index'
+import { Context } from '@/plugins/apollo'
 
 @ObjectType()
 export class AuthRes {
