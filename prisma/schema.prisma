@@ -16,11 +16,6 @@ generator typegraphql {
   omitOutputFieldsByDefault = ["password"]
 }
 
-generator fakedata {
-  provider = "prisma-generator-fake-data"
-  output   = "../prisma/fake-data.ts"
-}
-
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")

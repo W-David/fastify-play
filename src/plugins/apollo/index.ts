@@ -17,10 +17,13 @@ export interface Context {
 }
 
 export interface createApolloServerOptions {
-  [key: string]: string
+  prisma: PrismaClient
 }
 
 export async function createApolloServer(fastify: FastifyInstance, options: createApolloServerOptions) {
+
+  const { prisma } = options
+
   const resolversEnhanceMap: ResolversEnhanceMap = {}
 
   applyResolversEnhanceMap(resolversEnhanceMap)
@@ -31,8 +34,6 @@ export async function createApolloServer(fastify: FastifyInstance, options: crea
     authChecker,
     validate: false,
   })
-
-  const prisma = new PrismaClient()
 
   const apollo = new ApolloServer<Context>({
     schema,

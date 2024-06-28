@@ -3,16 +3,19 @@ import chalk from 'chalk'
 import fastify from 'fastify'
 import { apollo, auth, env, multipart, staticServer } from './plugins'
 import { EnvType } from './plugins/env'
+import { PrismaClient } from '@prisma/client'
+// import { preGenertateToken } from './plugins/auth'
 
 const port = 3000
 
 async function main() {
   const app = fastify()
+  const prisma = new PrismaClient()
 
   await app.register(env)
   await app.register(auth)
-  await app.register(multipart)
-  await app.register(apollo)
+  await app.register(multipart, { prisma })
+  await app.register(apollo, { prisma })
   await app.register(staticServer)
 
   await app.listen({ port })

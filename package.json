@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "fastify-play",
   "main": "src/server.ts",
+  "type": "commonjs",
   "scripts": {
     "dev": "nodemon",
     "seed": "ts-node --transpile-only ./prisma/seed.ts",
@@ -37,7 +38,6 @@
     "fastify-cli": "^6.2.1",
     "nodemon": "^3.1.4",
     "prettier": "^3.0.0",
-    "prisma-generator-fake-data": "^0.14.2",
     "tsconfig-paths": "^4.2.0",
     "typegraphql-prisma": "^0.27.2",
     "typescript": "^4.6.2"
