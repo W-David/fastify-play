@@ -43,8 +43,8 @@ model File {
   updatedAt DateTime @updatedAt
   name      String   @db.VarChar(255)
   path      String   @db.VarChar(255)
+  urlPath   String   @db.VarChar(255)
   extension String   @db.VarChar(255)
-  size      Int      @default(0)
 }
 
 model Tag {
