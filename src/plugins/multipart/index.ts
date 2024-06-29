@@ -23,62 +23,77 @@ const fastifyMultipartOptions: FastifyMultipartBaseOptions = {
 }
 
 const createUploadHandler = (prisma: PrismaClient) => {
-  const uploadHandler = async (request: FastifyRequest, reply: FastifyReply) => { 
+  const uploadHandler = async (request: FastifyRequest, reply: FastifyReply) => {
     const pump = promisify(pipeline)
     const fileRootPath = path.resolve(__dirname, '../../../upload')
     const data = await request.file()
     if (!data) {
       const errMsg = 'No file uploaded'
-      reply.code(400).send({ error: errMsg })
+      return {
+        code: 500,
+        data: null,
+        message: errMsg,
+      }
     } else {
-    // save file to local disk
-    const fileFullPath = path.join(fileRootPath, data.filename)
-    const bufferData = await data.toBuffer()
-    await pump(data.file, fs.createWriteStream(fileFullPath))
+      // save file to local disk
+      try {
+        const fileFullPath = path.join(fileRootPath, data.filename)
+        await pump(data.file, fs.createWriteStream(fileFullPath))
 
-    // save file record to database
-    const file = await prisma.file.create({
-      data: {
-        name: data.filename,
-        path: fileFullPath,
-        size: bufferData.length,
-        extension: data.mimetype.split('/')[1],
-      },
-    })
-     reply.code(200).send({ data: file})
+        // save file record to database
+        const file = await prisma.file.create({
+          data: {
+            name: data.filename,
+            path: fileFullPath,
+            urlPath: `/upload/${data.filename}`,
+            extension: data.mimetype.split('/')[1],
+          },
+        })
+        return {
+          code: 200,
+          data: file,
+          message: null,
+        }
+      } catch (error) {
+        throw error
+      }
     }
   }
   return uploadHandler
 }
 
-const createUploadsHandler = (prisma: PrismaClient) => { 
+const createUploadsHandler = (prisma: PrismaClient) => {
   const uploadsHandler = async (request: FastifyRequest, reply: FastifyReply) => {
-    const pump = promisify(pipeline)
-    const parts = request.files()
-    const fileRootPath = path.resolve(__dirname, '../../../upload')
-    const fileRecords = []
-    for await (const part of parts) {
-      await pump(part.file, fs.createWriteStream(path.join(fileRootPath, part.filename)))
-      const bufferData = await part.toBuffer()
-      const file = await prisma.file.create({
-        data: {
-          name: part.filename,
-          path: path.join(fileRootPath, part.filename),
-          size: bufferData.length,
-          extension: part.mimetype.split('/')[1],
-        },
-      })
-      fileRecords.push(file)
+    try {
+      const pump = promisify(pipeline)
+      const parts = request.files()
+      const fileRootPath = path.resolve(__dirname, '../../../upload')
+      const fileRecords = []
+      for await (const part of parts) {
+        await pump(part.file, fs.createWriteStream(path.join(fileRootPath, part.filename)))
+        const file = await prisma.file.create({
+          data: {
+            name: part.filename,
+            path: path.join(fileRootPath, part.filename),
+            urlPath: `/upload/${part.filename}`,
+            extension: part.mimetype.split('/')[1],
+          },
+        })
+        fileRecords.push(file)
+      }
+      return {
+        code: 200,
+        data: fileRecords,
+        message: null,
+      }
+    } catch (error) {
+      throw error
     }
-    reply.code(200).send({ data: fileRecords })
   }
   return uploadsHandler
 }
 
-
-
 export async function createMultipart(fastify: FastifyInstance, options: createMultipartOptions) {
-
   const { prisma } = options
 
   await fastify.register(fastifyMultipart, fastifyMultipartOptions)

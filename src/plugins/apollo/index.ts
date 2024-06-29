@@ -21,7 +21,6 @@ export interface createApolloServerOptions {
 }
 
 export async function createApolloServer(fastify: FastifyInstance, options: createApolloServerOptions) {
-
   const { prisma } = options
 
   const resolversEnhanceMap: ResolversEnhanceMap = {}

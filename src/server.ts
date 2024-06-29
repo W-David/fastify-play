@@ -1,15 +1,15 @@
 import 'reflect-metadata'
 import chalk from 'chalk'
-import fastify from 'fastify'
 import { apollo, auth, env, multipart, staticServer } from './plugins'
 import { EnvType } from './plugins/env'
 import { PrismaClient } from '@prisma/client'
+import createApp from './app'
 // import { preGenertateToken } from './plugins/auth'
 
 const port = 3000
 
 async function main() {
-  const app = fastify()
+  const app = createApp()
   const prisma = new PrismaClient()
 
   await app.register(env)

@@ -761,18 +761,16 @@ type File {
   id: Int!
   name: String!
   path: String!
-  size: Int!
   updatedAt: DateTimeISO!
+  urlPath: String!
 }
 
 type FileAvgAggregate {
   id: Float
-  size: Float
 }
 
 input FileAvgOrderByAggregateInput {
   id: SortOrder
-  size: SortOrder
 }
 
 type FileCountAggregate {
@@ -782,8 +780,8 @@ type FileCountAggregate {
   id: Int!
   name: Int!
   path: Int!
-  size: Int!
   updatedAt: Int!
+  urlPath: Int!
 }
 
 input FileCountOrderByAggregateInput {
@@ -791,16 +789,16 @@ input FileCountOrderByAggregateInput {
   id: SortOrder
   name: SortOrder
   path: SortOrder
-  size: SortOrder
   updatedAt: SortOrder
+  urlPath: SortOrder
 }
 
 input FileCreateInput {
   extension: String!
   name: String!
   path: String!
-  size: Int
   updatedAt: DateTimeISO
+  urlPath: String!
 }
 
 input FileCreateManyInput {
@@ -808,8 +806,8 @@ input FileCreateManyInput {
   id: Int
   name: String!
   path: String!
-  size: Int
   updatedAt: DateTimeISO
+  urlPath: String!
 }
 
 type FileGroupBy {
@@ -823,8 +821,8 @@ type FileGroupBy {
   id: Int!
   name: String!
   path: String!
-  size: Int!
   updatedAt: DateTimeISO!
+  urlPath: String!
 }
 
 type FileMaxAggregate {
@@ -833,8 +831,8 @@ type FileMaxAggregate {
   id: Int
   name: String
   path: String
-  size: Int
   updatedAt: DateTimeISO
+  urlPath: String
 }
 
 input FileMaxOrderByAggregateInput {
@@ -842,8 +840,8 @@ input FileMaxOrderByAggregateInput {
   id: SortOrder
   name: SortOrder
   path: SortOrder
-  size: SortOrder
   updatedAt: SortOrder
+  urlPath: SortOrder
 }
 
 type FileMinAggregate {
@@ -852,8 +850,8 @@ type FileMinAggregate {
   id: Int
   name: String
   path: String
-  size: Int
   updatedAt: DateTimeISO
+  urlPath: String
 }
 
 input FileMinOrderByAggregateInput {
@@ -861,8 +859,8 @@ input FileMinOrderByAggregateInput {
   id: SortOrder
   name: SortOrder
   path: SortOrder
-  size: SortOrder
   updatedAt: SortOrder
+  urlPath: SortOrder
 }
 
 input FileOrderByWithAggregationInput {
@@ -875,8 +873,8 @@ input FileOrderByWithAggregationInput {
   id: SortOrder
   name: SortOrder
   path: SortOrder
-  size: SortOrder
   updatedAt: SortOrder
+  urlPath: SortOrder
 }
 
 input FileOrderByWithRelationInput {
@@ -884,8 +882,8 @@ input FileOrderByWithRelationInput {
   id: SortOrder
   name: SortOrder
   path: SortOrder
-  size: SortOrder
   updatedAt: SortOrder
+  urlPath: SortOrder
 }
 
 enum FileScalarFieldEnum {
@@ -894,8 +892,8 @@ enum FileScalarFieldEnum {
   id
   name
   path
-  size
   updatedAt
+  urlPath
 }
 
 input FileScalarWhereWithAggregatesInput {
@@ -906,34 +904,32 @@ input FileScalarWhereWithAggregatesInput {
   id: IntWithAggregatesFilter
   name: StringWithAggregatesFilter
   path: StringWithAggregatesFilter
-  size: IntWithAggregatesFilter
   updatedAt: DateTimeWithAggregatesFilter
+  urlPath: StringWithAggregatesFilter
 }
 
 type FileSumAggregate {
   id: Int
-  size: Int
 }
 
 input FileSumOrderByAggregateInput {
   id: SortOrder
-  size: SortOrder
 }
 
 input FileUpdateInput {
   extension: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   path: StringFieldUpdateOperationsInput
-  size: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
+  urlPath: StringFieldUpdateOperationsInput
 }
 
 input FileUpdateManyMutationInput {
   extension: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   path: StringFieldUpdateOperationsInput
-  size: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
+  urlPath: StringFieldUpdateOperationsInput
 }
 
 input FileWhereInput {
@@ -944,8 +940,8 @@ input FileWhereInput {
   id: IntFilter
   name: StringFilter
   path: StringFilter
-  size: IntFilter
   updatedAt: DateTimeFilter
+  urlPath: StringFilter
 }
 
 input FileWhereUniqueInput {
@@ -956,8 +952,8 @@ input FileWhereUniqueInput {
   id: Int
   name: StringFilter
   path: StringFilter
-  size: IntFilter
   updatedAt: DateTimeFilter
+  urlPath: StringFilter
 }
 
 input IntFieldUpdateOperationsInput {
