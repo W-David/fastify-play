@@ -9,7 +9,7 @@ import createApp from './app'
 const port = 3000
 
 async function main() {
-  const app = createApp()
+  const app = createApp({ logger: false })
   const prisma = new PrismaClient()
 
   await app.register(env)
