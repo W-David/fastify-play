@@ -98,6 +98,17 @@ export async function createMultipart(fastify: FastifyInstance, options: createM
 
   await fastify.register(fastifyMultipart, fastifyMultipartOptions)
 
-  fastify.post('/upload', createUploadHandler(prisma))
-  fastify.post('/uploads', createUploadsHandler(prisma))
+  fastify.route({
+    method: ['POST'],
+    url: '/upload',
+    // onRequest: fastify.auth([fastify.authenticate]),
+    handler: createUploadHandler(prisma),
+  })
+
+  fastify.route({
+    method: ['POST'],
+    url: '/uploads',
+    // onRequest: fastify.auth([fastify.authenticate]),
+    handler: createUploadsHandler(prisma),
+  })
 }
