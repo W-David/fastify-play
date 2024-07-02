@@ -15,7 +15,7 @@ export interface AuthBody {
   role: $Enums.Role
 }
 
-export function preGenertateToken(fastify: FastifyInstance) {
+export function genertateToken(fastify: FastifyInstance) {
   const { TOKEN_EXPIRATION_TIME } = fastify.getEnvs<EnvType>()
   const token = fastify.jwt.sign(
     {
