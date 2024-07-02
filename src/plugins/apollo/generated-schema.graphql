@@ -1034,8 +1034,6 @@ type Mutation {
   updateOneTag(data: TagUpdateInput!, where: TagWhereUniqueInput!): Tag
   updateOneTagsOnPosts(data: TagsOnPostsUpdateInput!, where: TagsOnPostsWhereUniqueInput!): TagsOnPosts
   updateOneUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-  uploadFile: File
-  uploadFiles: [File!]
   upsertOneCategoriesOnPosts(create: CategoriesOnPostsCreateInput!, update: CategoriesOnPostsUpdateInput!, where: CategoriesOnPostsWhereUniqueInput!): CategoriesOnPosts!
   upsertOneCategory(create: CategoryCreateInput!, update: CategoryUpdateInput!, where: CategoryWhereUniqueInput!): Category!
   upsertOneFile(create: FileCreateInput!, update: FileUpdateInput!, where: FileWhereUniqueInput!): File!
