@@ -50,7 +50,7 @@ export class DecodeRes {
 export class UserResolver {
   @Query((_returns) => AuthRes, { nullable: true })
   @Authorized()
-  async auth(@Ctx() { prisma, fastify }: Context, @Args() args: AuthArgs): Promise<AuthRes | null> {
+  async login(@Ctx() { prisma, fastify }: Context, @Args() args: AuthArgs): Promise<AuthRes | null> {
     const { email, password } = args
     const user = await prisma.user.findUnique({ where: { email, password } })
     if (!user) {
@@ -70,19 +70,16 @@ export class UserResolver {
       return { token }
     }
   }
-  @Query((_returns) => DecodeRes, { nullable: true })
-  async decode(@Ctx() { req, fastify }: Context): Promise<DecodeRes | null> {
+  @Query((_returns) => User, { nullable: true })
+  async auth(@Ctx() { req, fastify, prisma }: Context): Promise<User | null> {
     const token = req.headers.authorization?.split(' ')[1]
     if (!token) {
       throw new Error('Token not found')
     } else {
       const decoded = fastify.jwt.verify(token)
-      const { name, email, role } = decoded as { name: string; email: string; role: string }
-      return {
-        name,
-        email,
-        role,
-      }
+      const { name, email, role } = decoded as { name: string; email: string; role: $Enums.Role }
+      const user = await prisma.user.findUnique({ where: { nickName: name, email, role } })
+      return user
     }
   }
   @Mutation((_returns) => AuthRes)

@@ -747,12 +747,6 @@ input DateTimeWithAggregatesFilter {
   notIn: [DateTimeISO!]
 }
 
-type DecodeRes {
-  email: String!
-  name: String!
-  role: String!
-}
-
 input EnumRoleFieldUpdateOperationsInput {
   set: Role
 }
@@ -1812,10 +1806,9 @@ type Query {
   aggregateTag(cursor: TagWhereUniqueInput, orderBy: [TagOrderByWithRelationInput!], skip: Int, take: Int, where: TagWhereInput): AggregateTag!
   aggregateTagsOnPosts(cursor: TagsOnPostsWhereUniqueInput, orderBy: [TagsOnPostsOrderByWithRelationInput!], skip: Int, take: Int, where: TagsOnPostsWhereInput): AggregateTagsOnPosts!
   aggregateUser(cursor: UserWhereUniqueInput, orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): AggregateUser!
-  auth(email: String!, password: String!): AuthRes
+  auth: User
   categories(cursor: CategoryWhereUniqueInput, distinct: [CategoryScalarFieldEnum!], orderBy: [CategoryOrderByWithRelationInput!], skip: Int, take: Int, where: CategoryWhereInput): [Category!]!
   category(where: CategoryWhereUniqueInput!): Category
-  decode: DecodeRes
   file(where: FileWhereUniqueInput!): File
   files(cursor: FileWhereUniqueInput, distinct: [FileScalarFieldEnum!], orderBy: [FileOrderByWithRelationInput!], skip: Int, take: Int, where: FileWhereInput): [File!]!
   findFirstCategoriesOnPosts(cursor: CategoriesOnPostsWhereUniqueInput, distinct: [CategoriesOnPostsScalarFieldEnum!], orderBy: [CategoriesOnPostsOrderByWithRelationInput!], skip: Int, take: Int, where: CategoriesOnPostsWhereInput): CategoriesOnPosts
@@ -1850,6 +1843,7 @@ type Query {
   groupByTag(by: [TagScalarFieldEnum!]!, having: TagScalarWhereWithAggregatesInput, orderBy: [TagOrderByWithAggregationInput!], skip: Int, take: Int, where: TagWhereInput): [TagGroupBy!]!
   groupByTagsOnPosts(by: [TagsOnPostsScalarFieldEnum!]!, having: TagsOnPostsScalarWhereWithAggregatesInput, orderBy: [TagsOnPostsOrderByWithAggregationInput!], skip: Int, take: Int, where: TagsOnPostsWhereInput): [TagsOnPostsGroupBy!]!
   groupByUser(by: [UserScalarFieldEnum!]!, having: UserScalarWhereWithAggregatesInput, orderBy: [UserOrderByWithAggregationInput!], skip: Int, take: Int, where: UserWhereInput): [UserGroupBy!]!
+  login(email: String!, password: String!): AuthRes
   post(where: PostWhereUniqueInput!): Post
   posts(cursor: PostWhereUniqueInput, distinct: [PostScalarFieldEnum!], orderBy: [PostOrderByWithRelationInput!], skip: Int, take: Int, where: PostWhereInput): [Post!]!
   sts: STSRes
