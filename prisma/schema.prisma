@@ -64,29 +64,27 @@ model Category {
 }
 
 model CategoriesOnPosts {
-  post        Post     @relation(fields: [postId], references: [id])
-  postId      Int
-  category    Category @relation(fields: [categoryId], references: [id])
-  categoryId  Int
-  createdBy   User     @relation(fields: [createdById], references: [id])
-  createdById Int
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  @@id([postId, categoryId])
+  id          Int       @id @default(autoincrement())
+  post        Post?     @relation(fields: [postId], references: [id])
+  postId      Int?
+  category    Category? @relation(fields: [categoryId], references: [id])
+  categoryId  Int?
+  createdBy   User?     @relation(fields: [createdById], references: [id])
+  createdById Int?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
 model TagsOnPosts {
-  post        Post     @relation(fields: [postId], references: [id])
-  postId      Int
-  tag         Tag      @relation(fields: [tagId], references: [id])
-  tagId       Int
-  createdBy   User     @relation(fields: [createdById], references: [id])
-  createdById Int
+  id          Int      @id @default(autoincrement())
+  post        Post?    @relation(fields: [postId], references: [id])
+  postId      Int?
+  tag         Tag?     @relation(fields: [tagId], references: [id])
+  tagId       Int?
+  createdBy   User?    @relation(fields: [createdById], references: [id])
+  createdById Int?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-
-  @@id([postId, tagId])
 }
 
 model User {

@@ -7,6 +7,54 @@ async function main() {
 
   await prisma.post.deleteMany({})
   await prisma.user.deleteMany({})
+  await prisma.category.deleteMany({})
+  await prisma.tag.deleteMany({})
+  await prisma.categoriesOnPosts.deleteMany({})
+  await prisma.tagsOnPosts.deleteMany({})
+
+  const categoryDatas = [
+    { name: 'Technology' },
+    { name: 'Programming' },
+    { name: 'Design' },
+
+    { name: 'Culture' },
+    { name: 'Business' },
+    { name: 'Entrepreneurship' },
+
+    { name: 'Productivity' },
+    { name: 'Health' },
+    { name: 'Fitness' },
+
+    { name: 'Food' },
+    { name: 'Travel' },
+    { name: 'Art' },
+  ]
+
+  const tagDatas = [
+    { name: 'React' },
+    { name: 'Vue.js' },
+    { name: 'Angular' },
+    { name: 'GraphQL' },
+    { name: 'Prisma' },
+
+    { name: 'Node.js' },
+    { name: 'TypeScript' },
+    { name: 'JavaScript' },
+    { name: 'Python' },
+    { name: 'Java' },
+
+    { name: 'Swift' },
+    { name: 'Kotlin' },
+    { name: 'Go' },
+    { name: 'Clojure' },
+    { name: 'C#' },
+
+    { name: 'C++' },
+    { name: 'HTML' },
+    { name: 'CSS' },
+    { name: 'Sass' },
+    { name: 'Less' },
+  ]
 
   const root = await prisma.user.create({
     data: {
@@ -15,18 +63,7 @@ async function main() {
       password: 'root',
       role: $Enums.Role.ROOT,
       posts: {
-        create: [
-          {
-            title: 'Subscribe to GraphQL Weekly for community news',
-            content: 'https://graphqlweekly.com/',
-            published: true,
-          },
-          {
-            title: 'Follow Prisma on Twitter',
-            content: 'https://twitter.com/prisma',
-            published: false,
-          },
-        ],
+        create: [],
       },
     },
   })
@@ -38,18 +75,7 @@ async function main() {
       password: 'admin',
       role: $Enums.Role.ADMIN,
       posts: {
-        create: [
-          {
-            title: 'Join us for Prisma Day 2019 in Berlin',
-            content: 'https://www.prisma.io/day/',
-            published: true,
-          },
-          {
-            title: 'Join us for Prisma Day 2020 in Berlin',
-            content: 'https://www.prisma.io/day/',
-            published: false,
-          },
-        ],
+        create: [],
       },
     },
   })
@@ -61,23 +87,141 @@ async function main() {
       password: 'user',
       role: $Enums.Role.USER,
       posts: {
-        create: [
-          {
-            title: 'GraphQL is awesome',
-            content: 'https://graphql.org/',
-            published: true,
-          },
-          {
-            title: 'Prisma is awesome',
-            content: 'https://www.prisma.io/',
-            published: false,
-          },
-        ],
+        create: [],
       },
     },
   })
 
-  console.log({ root, admin, user })
+  await prisma.category.createMany({ data: categoryDatas })
+
+  await prisma.tag.createMany({ data: tagDatas })
+
+  await prisma.post.createMany({
+    data: [
+      {
+        title: 'Subscribe to GraphQL Weekly for community news',
+        description: 'Get the latest news about GraphQL, GraphQL Weekly, and community events.',
+        content: 'https://graphqlweekly.com/',
+        authorId: root.id,
+        published: true,
+      },
+      {
+        title: 'Follow Prisma on Twitter',
+        description: 'Learn how to build a GraphQL server with Prisma',
+        content: 'https://twitter.com/prisma',
+        authorId: root.id,
+        published: false,
+      },
+      {
+        title: 'Join us for Prisma Day 2019 in Berlin',
+        description: 'Learn about Prisma and GraphQL in a hands-on session.',
+        content: 'https://www.prisma.io/day/',
+        authorId: admin.id,
+        published: true,
+      },
+      {
+        title: 'Join us for Prisma Day 2020 in Berlin',
+        description: 'Learn about Prisma and GraphQL in a hands-on session.',
+        content: 'https://www.prisma.io/day/',
+        authorId: admin.id,
+        published: false,
+      },
+      {
+        title: 'GraphQL is awesome',
+        description: 'GraphQL is a query language for APIs and a runtime for fulfilling those queries with data.',
+        content: 'https://graphql.org/',
+        published: true,
+        authorId: user.id,
+      },
+      {
+        title: 'Prisma is awesome',
+        description: 'Prisma is a database toolkit that makes it easy to build type-safe, data-driven applications.',
+        content: 'https://www.prisma.io/',
+        published: false,
+        authorId: user.id,
+      },
+    ],
+  })
+
+  const categories = await prisma.category.findMany({})
+  const tags = await prisma.tag.findMany({})
+  const posts = await prisma.post.findMany({})
+
+  await prisma.categoriesOnPosts.createMany({
+    data: [
+      {
+        postId: posts[0].id,
+        categoryId: categories[0].id,
+      },
+      {
+        postId: posts[0].id,
+        categoryId: categories[1].id,
+      },
+      {
+        postId: posts[0].id,
+        categoryId: categories[3].id,
+      },
+      {
+        postId: posts[1].id,
+        categoryId: categories[4].id,
+      },
+      {
+        postId: posts[1].id,
+        categoryId: categories[5].id,
+      },
+      {
+        postId: posts[1].id,
+        categoryId: categories[6].id,
+      },
+    ],
+  })
+
+  await prisma.tagsOnPosts.createMany({
+    data: [
+      {
+        postId: posts[0].id,
+        tagId: tags[0].id,
+      },
+      {
+        postId: posts[0].id,
+        tagId: tags[1].id,
+      },
+      {
+        postId: posts[0].id,
+        tagId: tags[2].id,
+      },
+      {
+        postId: posts[0].id,
+        tagId: tags[3].id,
+      },
+      {
+        postId: posts[0].id,
+        tagId: tags[4].id,
+      },
+      {
+        postId: posts[1].id,
+        tagId: tags[5].id,
+      },
+      {
+        postId: posts[1].id,
+        tagId: tags[6].id,
+      },
+      {
+        postId: posts[1].id,
+        tagId: tags[7].id,
+      },
+      {
+        postId: posts[1].id,
+        tagId: tags[8].id,
+      },
+      {
+        postId: posts[1].id,
+        tagId: tags[9].id,
+      },
+    ],
+  })
+
+  console.log('seed all done!')
 }
 
 main()

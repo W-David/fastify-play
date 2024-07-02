@@ -1020,6 +1020,7 @@ type Mutation {
   deleteOneTag(where: TagWhereUniqueInput!): Tag
   deleteOneTagsOnPosts(where: TagsOnPostsWhereUniqueInput!): TagsOnPosts
   deleteOneUser(where: UserWhereUniqueInput!): User
+  register(email: String!, nickName: String, password: String!, role: String!): AuthRes!
   updateManyCategoriesOnPosts(data: CategoriesOnPostsUpdateManyMutationInput!, where: CategoriesOnPostsWhereInput): AffectedRowsOutput!
   updateManyCategory(data: CategoryUpdateManyMutationInput!, where: CategoryWhereInput): AffectedRowsOutput!
   updateManyFile(data: FileUpdateManyMutationInput!, where: FileWhereInput): AffectedRowsOutput!
