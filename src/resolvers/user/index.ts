@@ -1,7 +1,8 @@
 import { EnvType } from '@/plugins/env'
 import { User } from '@typegraphql'
-import { Args, ArgsType, Authorized, Ctx, Field, ObjectType, Query, Resolver } from 'type-graphql'
+import { Args, ArgsType, Authorized, Ctx, Field, Mutation, ObjectType, Query, Resolver } from 'type-graphql'
 import { Context } from '@/plugins/apollo'
+import { $Enums } from '@prisma/client'
 
 @ObjectType()
 export class AuthRes {
@@ -16,6 +17,21 @@ export class AuthArgs {
 
   @Field(() => String)
   password!: string
+}
+
+@ArgsType()
+export class RegisterArgs {
+  @Field(() => String)
+  email!: string
+
+  @Field(() => String)
+  password!: string
+
+  @Field(() => String, { nullable: true })
+  nickName?: string
+
+  @Field(() => String)
+  role!: $Enums.Role
 }
 
 @ObjectType()
@@ -40,13 +56,12 @@ export class UserResolver {
     if (!user) {
       throw new Error('User not found')
     } else {
-      const { nickName, email, role } = user
       const { TOKEN_EXPIRATION_TIME } = fastify.getEnvs<EnvType>()
       const token = fastify.jwt.sign(
         {
-          name: nickName || undefined,
-          email,
-          role,
+          name: user.nickName || 'anonymous',
+          email: user.email,
+          role: user.role,
         },
         {
           expiresIn: TOKEN_EXPIRATION_TIME,
@@ -68,6 +83,35 @@ export class UserResolver {
         email,
         role,
       }
+    }
+  }
+  @Mutation((_returns) => AuthRes)
+  async register(@Ctx() { prisma, fastify }: Context, @Args() args: RegisterArgs): Promise<AuthRes | null> {
+    const hasUser = await prisma.user.findUnique({ where: { email: args.email } })
+    if (hasUser) {
+      throw new Error('User already exists')
+    } else {
+      const { email, password, nickName, role } = args
+      const user = await prisma.user.create({
+        data: {
+          email,
+          password,
+          nickName,
+          role,
+        },
+      })
+      const { TOKEN_EXPIRATION_TIME } = fastify.getEnvs<EnvType>()
+      const token = fastify.jwt.sign(
+        {
+          name: user.nickName || 'anonymous',
+          email: user.email,
+          role: user.role,
+        },
+        {
+          expiresIn: TOKEN_EXPIRATION_TIME,
+        },
+      )
+      return { token }
     }
   }
 }
