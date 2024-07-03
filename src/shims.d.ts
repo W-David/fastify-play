@@ -3,6 +3,7 @@ import { $Enums } from '@prisma/client'
 declare module 'fastify' {
   interface FastifyInstance {
     authenticate: (request: FastifyRequest, reply: FastifyReply, done: (err?: Error) => void) => void
+    invalidatedTokens: Set<string>
   }
 }
 

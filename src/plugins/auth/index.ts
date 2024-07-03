@@ -36,8 +36,9 @@ export async function createAuth(fastify: FastifyInstance, options: AuthOptions)
 
   await fastify
     .decorate('authenticate', (request, reply, done) => {
-      if (request.url === '/graphql' && request.method === 'GET') {
-        done()
+      const token = request.headers.authorization?.split(' ')[1]
+      if (token && fastify.invalidatedTokens.has(token)) {
+        done(new Error('token has been invalidated'))
       } else {
         request
           .jwtVerify()

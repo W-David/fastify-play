@@ -5,9 +5,11 @@ import { createAuth } from './auth'
 import { createEnv } from './env'
 import { createMultipart } from './multipart'
 import { createStaticServer } from './static'
+import { createDecorate } from './decorate'
 
 export const apollo = fastifyPlugin(createApolloServer)
 export const env = fastifyPlugin(createEnv)
 export const auth = fastifyPlugin(createAuth)
 export const multipart = fastifyPlugin(createMultipart)
 export const staticServer = fastifyPlugin(createStaticServer)
+export const decorate = fastifyPlugin(createDecorate)

@@ -46,6 +46,12 @@ export class DecodeRes {
   role!: string
 }
 
+@ObjectType()
+export class LogoutRes {
+  @Field(() => Boolean)
+  success!: boolean
+}
+
 @Resolver((_of) => User)
 export class UserResolver {
   @Query((_returns) => AuthRes, { nullable: true })
@@ -109,6 +115,21 @@ export class UserResolver {
         },
       )
       return { token }
+    }
+  }
+  @Mutation((_returns) => LogoutRes)
+  async logout(@Ctx() { req, fastify }: Context): Promise<LogoutRes | null> {
+    const token = req.headers.authorization?.split(' ')[1]
+    if (!token) {
+      throw new Error('Token not found')
+    } else {
+      try {
+        fastify.jwt.verify(token)
+        fastify.invalidatedTokens.add(token)
+      } catch (error) {
+        throw new Error('Invalid token')
+      }
+      return { success: true }
     }
   }
 }

@@ -1,6 +1,6 @@
 import 'reflect-metadata'
 import chalk from 'chalk'
-import { apollo, auth, env, multipart, staticServer } from './plugins'
+import { apollo, auth, decorate, env, multipart, staticServer } from './plugins'
 import { EnvType } from './plugins/env'
 import { PrismaClient } from '@prisma/client'
 import createApp from './app'
@@ -12,6 +12,7 @@ async function main() {
   const app = createApp({ logger: false })
   const prisma = new PrismaClient()
 
+  app.register(decorate)
   await app.register(env)
   await app.register(auth)
   await app.register(multipart, { prisma })
