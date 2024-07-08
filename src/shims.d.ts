@@ -1,4 +1,9 @@
-import { $Enums } from '@prisma/client'
+import { $Enums, PrismaClient } from '@prisma/client'
+
+declare global {
+  // eslint-disable-next-line no-var
+  var prisma: PrismaClient
+}
 
 declare module 'fastify' {
   interface FastifyInstance {
