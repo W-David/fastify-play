@@ -151,27 +151,33 @@ async function main() {
     data: [
       {
         postId: posts[0].id,
-        categoryId: categories[0].id,
-      },
-      {
-        postId: posts[0].id,
         categoryId: categories[1].id,
-      },
-      {
-        postId: posts[0].id,
-        categoryId: categories[3].id,
+        createdById: root.id,
       },
       {
         postId: posts[1].id,
-        categoryId: categories[4].id,
+        categoryId: categories[1].id,
+        createdById: root.id,
       },
       {
-        postId: posts[1].id,
-        categoryId: categories[5].id,
+        postId: posts[2].id,
+        categoryId: categories[1].id,
+        createdById: root.id,
       },
       {
-        postId: posts[1].id,
-        categoryId: categories[6].id,
+        postId: posts[3].id,
+        categoryId: categories[1].id,
+        createdById: root.id,
+      },
+      {
+        postId: posts[4].id,
+        categoryId: categories[1].id,
+        createdById: root.id,
+      },
+      {
+        postId: posts[5].id,
+        categoryId: categories[1].id,
+        createdById: root.id,
       },
     ],
   })
@@ -181,42 +187,52 @@ async function main() {
       {
         postId: posts[0].id,
         tagId: tags[0].id,
+        createdById: root.id,
       },
       {
         postId: posts[0].id,
         tagId: tags[1].id,
+        createdById: root.id,
       },
       {
         postId: posts[0].id,
         tagId: tags[2].id,
+        createdById: root.id,
       },
       {
         postId: posts[0].id,
         tagId: tags[3].id,
+        createdById: root.id,
       },
       {
         postId: posts[0].id,
         tagId: tags[4].id,
+        createdById: root.id,
       },
       {
         postId: posts[1].id,
         tagId: tags[5].id,
+        createdById: root.id,
       },
       {
         postId: posts[1].id,
         tagId: tags[6].id,
+        createdById: root.id,
       },
       {
         postId: posts[1].id,
         tagId: tags[7].id,
+        createdById: root.id,
       },
       {
         postId: posts[1].id,
         tagId: tags[8].id,
+        createdById: root.id,
       },
       {
         postId: posts[1].id,
         tagId: tags[9].id,
+        createdById: root.id,
       },
     ],
   })

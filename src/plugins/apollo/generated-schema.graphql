@@ -85,28 +85,25 @@ input BoolWithAggregatesFilter {
 }
 
 type CategoriesOnPosts {
-  category(where: CategoryWhereInput): Category
-  categoryId: Int
+  category: Category!
+  categoryId: Int!
   createdAt: DateTimeISO!
-  createdBy(where: UserWhereInput): User
-  createdById: Int
-  id: Int!
-  post(where: PostWhereInput): Post
-  postId: Int
+  createdBy: User!
+  createdById: Int!
+  post: Post!
+  postId: Int!
   updatedAt: DateTimeISO!
 }
 
 type CategoriesOnPostsAvgAggregate {
   categoryId: Float
   createdById: Float
-  id: Float
   postId: Float
 }
 
 input CategoriesOnPostsAvgOrderByAggregateInput {
   categoryId: SortOrder
   createdById: SortOrder
-  id: SortOrder
   postId: SortOrder
 }
 
@@ -115,7 +112,6 @@ type CategoriesOnPostsCountAggregate {
   categoryId: Int!
   createdAt: Int!
   createdById: Int!
-  id: Int!
   postId: Int!
   updatedAt: Int!
 }
@@ -123,22 +119,20 @@ type CategoriesOnPostsCountAggregate {
 input CategoriesOnPostsCountOrderByAggregateInput {
   categoryId: SortOrder
   createdById: SortOrder
-  id: SortOrder
   postId: SortOrder
   updatedAt: SortOrder
 }
 
 input CategoriesOnPostsCreateInput {
-  category: CategoryCreateNestedOneWithoutCategoriesOnPostsInput
-  createdBy: UserCreateNestedOneWithoutCategoriesOnPostsInput
-  post: PostCreateNestedOneWithoutCategoriesOnPostsInput
+  category: CategoryCreateNestedOneWithoutCategoriesOnPostsInput!
+  createdBy: UserCreateNestedOneWithoutCategoriesOnPostsInput!
+  post: PostCreateNestedOneWithoutCategoriesOnPostsInput!
   updatedAt: DateTimeISO
 }
 
 input CategoriesOnPostsCreateManyCategoryInput {
-  createdById: Int
-  id: Int
-  postId: Int
+  createdById: Int!
+  postId: Int!
   updatedAt: DateTimeISO
 }
 
@@ -148,9 +142,8 @@ input CategoriesOnPostsCreateManyCategoryInputEnvelope {
 }
 
 input CategoriesOnPostsCreateManyCreatedByInput {
-  categoryId: Int
-  id: Int
-  postId: Int
+  categoryId: Int!
+  postId: Int!
   updatedAt: DateTimeISO
 }
 
@@ -160,17 +153,15 @@ input CategoriesOnPostsCreateManyCreatedByInputEnvelope {
 }
 
 input CategoriesOnPostsCreateManyInput {
-  categoryId: Int
-  createdById: Int
-  id: Int
-  postId: Int
+  categoryId: Int!
+  createdById: Int!
+  postId: Int!
   updatedAt: DateTimeISO
 }
 
 input CategoriesOnPostsCreateManyPostInput {
-  categoryId: Int
-  createdById: Int
-  id: Int
+  categoryId: Int!
+  createdById: Int!
   updatedAt: DateTimeISO
 }
 
@@ -216,20 +207,20 @@ input CategoriesOnPostsCreateOrConnectWithoutPostInput {
 }
 
 input CategoriesOnPostsCreateWithoutCategoryInput {
-  createdBy: UserCreateNestedOneWithoutCategoriesOnPostsInput
-  post: PostCreateNestedOneWithoutCategoriesOnPostsInput
+  createdBy: UserCreateNestedOneWithoutCategoriesOnPostsInput!
+  post: PostCreateNestedOneWithoutCategoriesOnPostsInput!
   updatedAt: DateTimeISO
 }
 
 input CategoriesOnPostsCreateWithoutCreatedByInput {
-  category: CategoryCreateNestedOneWithoutCategoriesOnPostsInput
-  post: PostCreateNestedOneWithoutCategoriesOnPostsInput
+  category: CategoryCreateNestedOneWithoutCategoriesOnPostsInput!
+  post: PostCreateNestedOneWithoutCategoriesOnPostsInput!
   updatedAt: DateTimeISO
 }
 
 input CategoriesOnPostsCreateWithoutPostInput {
-  category: CategoryCreateNestedOneWithoutCategoriesOnPostsInput
-  createdBy: UserCreateNestedOneWithoutCategoriesOnPostsInput
+  category: CategoryCreateNestedOneWithoutCategoriesOnPostsInput!
+  createdBy: UserCreateNestedOneWithoutCategoriesOnPostsInput!
   updatedAt: DateTimeISO
 }
 
@@ -239,11 +230,10 @@ type CategoriesOnPostsGroupBy {
   _max: CategoriesOnPostsMaxAggregate
   _min: CategoriesOnPostsMinAggregate
   _sum: CategoriesOnPostsSumAggregate
-  categoryId: Int
+  categoryId: Int!
   createdAt: DateTimeISO!
-  createdById: Int
-  id: Int!
-  postId: Int
+  createdById: Int!
+  postId: Int!
   updatedAt: DateTimeISO!
 }
 
@@ -257,7 +247,6 @@ type CategoriesOnPostsMaxAggregate {
   categoryId: Int
   createdAt: DateTimeISO
   createdById: Int
-  id: Int
   postId: Int
   updatedAt: DateTimeISO
 }
@@ -265,7 +254,6 @@ type CategoriesOnPostsMaxAggregate {
 input CategoriesOnPostsMaxOrderByAggregateInput {
   categoryId: SortOrder
   createdById: SortOrder
-  id: SortOrder
   postId: SortOrder
   updatedAt: SortOrder
 }
@@ -274,7 +262,6 @@ type CategoriesOnPostsMinAggregate {
   categoryId: Int
   createdAt: DateTimeISO
   createdById: Int
-  id: Int
   postId: Int
   updatedAt: DateTimeISO
 }
@@ -282,7 +269,6 @@ type CategoriesOnPostsMinAggregate {
 input CategoriesOnPostsMinOrderByAggregateInput {
   categoryId: SortOrder
   createdById: SortOrder
-  id: SortOrder
   postId: SortOrder
   updatedAt: SortOrder
 }
@@ -297,29 +283,31 @@ input CategoriesOnPostsOrderByWithAggregationInput {
   _max: CategoriesOnPostsMaxOrderByAggregateInput
   _min: CategoriesOnPostsMinOrderByAggregateInput
   _sum: CategoriesOnPostsSumOrderByAggregateInput
-  categoryId: SortOrderInput
-  createdById: SortOrderInput
-  id: SortOrder
-  postId: SortOrderInput
+  categoryId: SortOrder
+  createdById: SortOrder
+  postId: SortOrder
   updatedAt: SortOrder
 }
 
 input CategoriesOnPostsOrderByWithRelationInput {
   category: CategoryOrderByWithRelationInput
-  categoryId: SortOrderInput
+  categoryId: SortOrder
   createdBy: UserOrderByWithRelationInput
-  createdById: SortOrderInput
-  id: SortOrder
+  createdById: SortOrder
   post: PostOrderByWithRelationInput
-  postId: SortOrderInput
+  postId: SortOrder
   updatedAt: SortOrder
+}
+
+input CategoriesOnPostsPostIdCategoryIdCompoundUniqueInput {
+  categoryId: Int!
+  postId: Int!
 }
 
 enum CategoriesOnPostsScalarFieldEnum {
   categoryId
   createdAt
   createdById
-  id
   postId
   updatedAt
 }
@@ -328,10 +316,9 @@ input CategoriesOnPostsScalarWhereInput {
   AND: [CategoriesOnPostsScalarWhereInput!]
   NOT: [CategoriesOnPostsScalarWhereInput!]
   OR: [CategoriesOnPostsScalarWhereInput!]
-  categoryId: IntNullableFilter
-  createdById: IntNullableFilter
-  id: IntFilter
-  postId: IntNullableFilter
+  categoryId: IntFilter
+  createdById: IntFilter
+  postId: IntFilter
   updatedAt: DateTimeFilter
 }
 
@@ -339,31 +326,28 @@ input CategoriesOnPostsScalarWhereWithAggregatesInput {
   AND: [CategoriesOnPostsScalarWhereWithAggregatesInput!]
   NOT: [CategoriesOnPostsScalarWhereWithAggregatesInput!]
   OR: [CategoriesOnPostsScalarWhereWithAggregatesInput!]
-  categoryId: IntNullableWithAggregatesFilter
-  createdById: IntNullableWithAggregatesFilter
-  id: IntWithAggregatesFilter
-  postId: IntNullableWithAggregatesFilter
+  categoryId: IntWithAggregatesFilter
+  createdById: IntWithAggregatesFilter
+  postId: IntWithAggregatesFilter
   updatedAt: DateTimeWithAggregatesFilter
 }
 
 type CategoriesOnPostsSumAggregate {
   categoryId: Int
   createdById: Int
-  id: Int
   postId: Int
 }
 
 input CategoriesOnPostsSumOrderByAggregateInput {
   categoryId: SortOrder
   createdById: SortOrder
-  id: SortOrder
   postId: SortOrder
 }
 
 input CategoriesOnPostsUpdateInput {
-  category: CategoryUpdateOneWithoutCategoriesOnPostsNestedInput
-  createdBy: UserUpdateOneWithoutCategoriesOnPostsNestedInput
-  post: PostUpdateOneWithoutCategoriesOnPostsNestedInput
+  category: CategoryUpdateOneRequiredWithoutCategoriesOnPostsNestedInput
+  createdBy: UserUpdateOneRequiredWithoutCategoriesOnPostsNestedInput
+  post: PostUpdateOneRequiredWithoutCategoriesOnPostsNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -444,21 +428,21 @@ input CategoriesOnPostsUpdateWithWhereUniqueWithoutPostInput {
 }
 
 input CategoriesOnPostsUpdateWithoutCategoryInput {
-  createdBy: UserUpdateOneWithoutCategoriesOnPostsNestedInput
-  post: PostUpdateOneWithoutCategoriesOnPostsNestedInput
+  createdBy: UserUpdateOneRequiredWithoutCategoriesOnPostsNestedInput
+  post: PostUpdateOneRequiredWithoutCategoriesOnPostsNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input CategoriesOnPostsUpdateWithoutCreatedByInput {
-  category: CategoryUpdateOneWithoutCategoriesOnPostsNestedInput
+  category: CategoryUpdateOneRequiredWithoutCategoriesOnPostsNestedInput
   createdAt: DateTimeFieldUpdateOperationsInput
-  post: PostUpdateOneWithoutCategoriesOnPostsNestedInput
+  post: PostUpdateOneRequiredWithoutCategoriesOnPostsNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input CategoriesOnPostsUpdateWithoutPostInput {
-  category: CategoryUpdateOneWithoutCategoriesOnPostsNestedInput
-  createdBy: UserUpdateOneWithoutCategoriesOnPostsNestedInput
+  category: CategoryUpdateOneRequiredWithoutCategoriesOnPostsNestedInput
+  createdBy: UserUpdateOneRequiredWithoutCategoriesOnPostsNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -484,13 +468,12 @@ input CategoriesOnPostsWhereInput {
   AND: [CategoriesOnPostsWhereInput!]
   NOT: [CategoriesOnPostsWhereInput!]
   OR: [CategoriesOnPostsWhereInput!]
-  category: CategoryNullableRelationFilter
-  categoryId: IntNullableFilter
-  createdBy: UserNullableRelationFilter
-  createdById: IntNullableFilter
-  id: IntFilter
-  post: PostNullableRelationFilter
-  postId: IntNullableFilter
+  category: CategoryRelationFilter
+  categoryId: IntFilter
+  createdBy: UserRelationFilter
+  createdById: IntFilter
+  post: PostRelationFilter
+  postId: IntFilter
   updatedAt: DateTimeFilter
 }
 
@@ -498,13 +481,13 @@ input CategoriesOnPostsWhereUniqueInput {
   AND: [CategoriesOnPostsWhereInput!]
   NOT: [CategoriesOnPostsWhereInput!]
   OR: [CategoriesOnPostsWhereInput!]
-  category: CategoryNullableRelationFilter
-  categoryId: IntNullableFilter
-  createdBy: UserNullableRelationFilter
-  createdById: IntNullableFilter
-  id: Int
-  post: PostNullableRelationFilter
-  postId: IntNullableFilter
+  category: CategoryRelationFilter
+  categoryId: IntFilter
+  createdBy: UserRelationFilter
+  createdById: IntFilter
+  post: PostRelationFilter
+  postId: IntFilter
+  postId_categoryId: CategoriesOnPostsPostIdCategoryIdCompoundUniqueInput
   updatedAt: DateTimeFilter
 }
 
@@ -609,11 +592,6 @@ input CategoryMinOrderByAggregateInput {
   updatedAt: SortOrder
 }
 
-input CategoryNullableRelationFilter {
-  is: CategoryWhereInput
-  isNot: CategoryWhereInput
-}
-
 input CategoryOrderByWithAggregationInput {
   _avg: CategoryAvgOrderByAggregateInput
   _count: CategoryCountOrderByAggregateInput
@@ -630,6 +608,11 @@ input CategoryOrderByWithRelationInput {
   id: SortOrder
   name: SortOrder
   updatedAt: SortOrder
+}
+
+input CategoryRelationFilter {
+  is: CategoryWhereInput
+  isNot: CategoryWhereInput
 }
 
 enum CategoryScalarFieldEnum {
@@ -667,12 +650,10 @@ input CategoryUpdateManyMutationInput {
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
-input CategoryUpdateOneWithoutCategoriesOnPostsNestedInput {
+input CategoryUpdateOneRequiredWithoutCategoriesOnPostsNestedInput {
   connect: CategoryWhereUniqueInput
   connectOrCreate: CategoryCreateOrConnectWithoutCategoriesOnPostsInput
   create: CategoryCreateWithoutCategoriesOnPostsInput
-  delete: CategoryWhereInput
-  disconnect: CategoryWhereInput
   update: CategoryUpdateToOneWithWhereWithoutCategoriesOnPostsInput
   upsert: CategoryUpsertWithoutCategoriesOnPostsInput
 }
@@ -988,33 +969,6 @@ input IntFilter {
   notIn: [Int!]
 }
 
-input IntNullableFilter {
-  equals: Int
-  gt: Int
-  gte: Int
-  in: [Int!]
-  lt: Int
-  lte: Int
-  not: NestedIntNullableFilter
-  notIn: [Int!]
-}
-
-input IntNullableWithAggregatesFilter {
-  _avg: NestedFloatNullableFilter
-  _count: NestedIntNullableFilter
-  _max: NestedIntNullableFilter
-  _min: NestedIntNullableFilter
-  _sum: NestedIntNullableFilter
-  equals: Int
-  gt: Int
-  gte: Int
-  in: [Int!]
-  lt: Int
-  lte: Int
-  not: NestedIntNullableWithAggregatesFilter
-  notIn: [Int!]
-}
-
 input IntWithAggregatesFilter {
   _avg: NestedFloatFilter
   _count: NestedIntFilter
@@ -1155,17 +1109,6 @@ input NestedFloatFilter {
   notIn: [Float!]
 }
 
-input NestedFloatNullableFilter {
-  equals: Float
-  gt: Float
-  gte: Float
-  in: [Float!]
-  lt: Float
-  lte: Float
-  not: NestedFloatNullableFilter
-  notIn: [Float!]
-}
-
 input NestedIntFilter {
   equals: Int
   gt: Int
@@ -1185,22 +1128,6 @@ input NestedIntNullableFilter {
   lt: Int
   lte: Int
   not: NestedIntNullableFilter
-  notIn: [Int!]
-}
-
-input NestedIntNullableWithAggregatesFilter {
-  _avg: NestedFloatNullableFilter
-  _count: NestedIntNullableFilter
-  _max: NestedIntNullableFilter
-  _min: NestedIntNullableFilter
-  _sum: NestedIntNullableFilter
-  equals: Int
-  gt: Int
-  gte: Int
-  in: [Int!]
-  lt: Int
-  lte: Int
-  not: NestedIntNullableWithAggregatesFilter
   notIn: [Int!]
 }
 
@@ -1538,11 +1465,6 @@ input PostMinOrderByAggregateInput {
   updatedAt: SortOrder
 }
 
-input PostNullableRelationFilter {
-  is: PostWhereInput
-  isNot: PostWhereInput
-}
-
 input PostOrderByRelationAggregateInput {
   _count: SortOrder
 }
@@ -1577,6 +1499,11 @@ input PostOrderByWithRelationInput {
   published: SortOrder
   title: SortOrder
   updatedAt: SortOrder
+}
+
+input PostRelationFilter {
+  is: PostWhereInput
+  isNot: PostWhereInput
 }
 
 enum PostScalarFieldEnum {
@@ -1678,22 +1605,18 @@ input PostUpdateManyWithoutAuthorNestedInput {
   upsert: [PostUpsertWithWhereUniqueWithoutAuthorInput!]
 }
 
-input PostUpdateOneWithoutCategoriesOnPostsNestedInput {
+input PostUpdateOneRequiredWithoutCategoriesOnPostsNestedInput {
   connect: PostWhereUniqueInput
   connectOrCreate: PostCreateOrConnectWithoutCategoriesOnPostsInput
   create: PostCreateWithoutCategoriesOnPostsInput
-  delete: PostWhereInput
-  disconnect: PostWhereInput
   update: PostUpdateToOneWithWhereWithoutCategoriesOnPostsInput
   upsert: PostUpsertWithoutCategoriesOnPostsInput
 }
 
-input PostUpdateOneWithoutTagsOnPostsNestedInput {
+input PostUpdateOneRequiredWithoutTagsOnPostsNestedInput {
   connect: PostWhereUniqueInput
   connectOrCreate: PostCreateOrConnectWithoutTagsOnPostsInput
   create: PostCreateWithoutTagsOnPostsInput
-  delete: PostWhereInput
-  disconnect: PostWhereInput
   update: PostUpdateToOneWithWhereWithoutTagsOnPostsInput
   upsert: PostUpsertWithoutTagsOnPostsInput
 }
@@ -2048,11 +1971,6 @@ input TagMinOrderByAggregateInput {
   updatedAt: SortOrder
 }
 
-input TagNullableRelationFilter {
-  is: TagWhereInput
-  isNot: TagWhereInput
-}
-
 input TagOrderByWithAggregationInput {
   _avg: TagAvgOrderByAggregateInput
   _count: TagCountOrderByAggregateInput
@@ -2069,6 +1987,11 @@ input TagOrderByWithRelationInput {
   id: SortOrder
   name: SortOrder
   updatedAt: SortOrder
+}
+
+input TagRelationFilter {
+  is: TagWhereInput
+  isNot: TagWhereInput
 }
 
 enum TagScalarFieldEnum {
@@ -2106,12 +2029,10 @@ input TagUpdateManyMutationInput {
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
-input TagUpdateOneWithoutTagsOnPostsNestedInput {
+input TagUpdateOneRequiredWithoutTagsOnPostsNestedInput {
   connect: TagWhereUniqueInput
   connectOrCreate: TagCreateOrConnectWithoutTagsOnPostsInput
   create: TagCreateWithoutTagsOnPostsInput
-  delete: TagWhereInput
-  disconnect: TagWhereInput
   update: TagUpdateToOneWithWhereWithoutTagsOnPostsInput
   upsert: TagUpsertWithoutTagsOnPostsInput
 }
@@ -2154,26 +2075,23 @@ input TagWhereUniqueInput {
 
 type TagsOnPosts {
   createdAt: DateTimeISO!
-  createdBy(where: UserWhereInput): User
-  createdById: Int
-  id: Int!
-  post(where: PostWhereInput): Post
-  postId: Int
-  tag(where: TagWhereInput): Tag
-  tagId: Int
+  createdBy: User!
+  createdById: Int!
+  post: Post!
+  postId: Int!
+  tag: Tag!
+  tagId: Int!
   updatedAt: DateTimeISO!
 }
 
 type TagsOnPostsAvgAggregate {
   createdById: Float
-  id: Float
   postId: Float
   tagId: Float
 }
 
 input TagsOnPostsAvgOrderByAggregateInput {
   createdById: SortOrder
-  id: SortOrder
   postId: SortOrder
   tagId: SortOrder
 }
@@ -2182,7 +2100,6 @@ type TagsOnPostsCountAggregate {
   _all: Int!
   createdAt: Int!
   createdById: Int!
-  id: Int!
   postId: Int!
   tagId: Int!
   updatedAt: Int!
@@ -2190,23 +2107,21 @@ type TagsOnPostsCountAggregate {
 
 input TagsOnPostsCountOrderByAggregateInput {
   createdById: SortOrder
-  id: SortOrder
   postId: SortOrder
   tagId: SortOrder
   updatedAt: SortOrder
 }
 
 input TagsOnPostsCreateInput {
-  createdBy: UserCreateNestedOneWithoutTagsOnPostsInput
-  post: PostCreateNestedOneWithoutTagsOnPostsInput
-  tag: TagCreateNestedOneWithoutTagsOnPostsInput
+  createdBy: UserCreateNestedOneWithoutTagsOnPostsInput!
+  post: PostCreateNestedOneWithoutTagsOnPostsInput!
+  tag: TagCreateNestedOneWithoutTagsOnPostsInput!
   updatedAt: DateTimeISO
 }
 
 input TagsOnPostsCreateManyCreatedByInput {
-  id: Int
-  postId: Int
-  tagId: Int
+  postId: Int!
+  tagId: Int!
   updatedAt: DateTimeISO
 }
 
@@ -2216,17 +2131,15 @@ input TagsOnPostsCreateManyCreatedByInputEnvelope {
 }
 
 input TagsOnPostsCreateManyInput {
-  createdById: Int
-  id: Int
-  postId: Int
-  tagId: Int
+  createdById: Int!
+  postId: Int!
+  tagId: Int!
   updatedAt: DateTimeISO
 }
 
 input TagsOnPostsCreateManyPostInput {
-  createdById: Int
-  id: Int
-  tagId: Int
+  createdById: Int!
+  tagId: Int!
   updatedAt: DateTimeISO
 }
 
@@ -2236,9 +2149,8 @@ input TagsOnPostsCreateManyPostInputEnvelope {
 }
 
 input TagsOnPostsCreateManyTagInput {
-  createdById: Int
-  id: Int
-  postId: Int
+  createdById: Int!
+  postId: Int!
   updatedAt: DateTimeISO
 }
 
@@ -2284,20 +2196,20 @@ input TagsOnPostsCreateOrConnectWithoutTagInput {
 }
 
 input TagsOnPostsCreateWithoutCreatedByInput {
-  post: PostCreateNestedOneWithoutTagsOnPostsInput
-  tag: TagCreateNestedOneWithoutTagsOnPostsInput
+  post: PostCreateNestedOneWithoutTagsOnPostsInput!
+  tag: TagCreateNestedOneWithoutTagsOnPostsInput!
   updatedAt: DateTimeISO
 }
 
 input TagsOnPostsCreateWithoutPostInput {
-  createdBy: UserCreateNestedOneWithoutTagsOnPostsInput
-  tag: TagCreateNestedOneWithoutTagsOnPostsInput
+  createdBy: UserCreateNestedOneWithoutTagsOnPostsInput!
+  tag: TagCreateNestedOneWithoutTagsOnPostsInput!
   updatedAt: DateTimeISO
 }
 
 input TagsOnPostsCreateWithoutTagInput {
-  createdBy: UserCreateNestedOneWithoutTagsOnPostsInput
-  post: PostCreateNestedOneWithoutTagsOnPostsInput
+  createdBy: UserCreateNestedOneWithoutTagsOnPostsInput!
+  post: PostCreateNestedOneWithoutTagsOnPostsInput!
   updatedAt: DateTimeISO
 }
 
@@ -2308,10 +2220,9 @@ type TagsOnPostsGroupBy {
   _min: TagsOnPostsMinAggregate
   _sum: TagsOnPostsSumAggregate
   createdAt: DateTimeISO!
-  createdById: Int
-  id: Int!
-  postId: Int
-  tagId: Int
+  createdById: Int!
+  postId: Int!
+  tagId: Int!
   updatedAt: DateTimeISO!
 }
 
@@ -2324,7 +2235,6 @@ input TagsOnPostsListRelationFilter {
 type TagsOnPostsMaxAggregate {
   createdAt: DateTimeISO
   createdById: Int
-  id: Int
   postId: Int
   tagId: Int
   updatedAt: DateTimeISO
@@ -2332,7 +2242,6 @@ type TagsOnPostsMaxAggregate {
 
 input TagsOnPostsMaxOrderByAggregateInput {
   createdById: SortOrder
-  id: SortOrder
   postId: SortOrder
   tagId: SortOrder
   updatedAt: SortOrder
@@ -2341,7 +2250,6 @@ input TagsOnPostsMaxOrderByAggregateInput {
 type TagsOnPostsMinAggregate {
   createdAt: DateTimeISO
   createdById: Int
-  id: Int
   postId: Int
   tagId: Int
   updatedAt: DateTimeISO
@@ -2349,7 +2257,6 @@ type TagsOnPostsMinAggregate {
 
 input TagsOnPostsMinOrderByAggregateInput {
   createdById: SortOrder
-  id: SortOrder
   postId: SortOrder
   tagId: SortOrder
   updatedAt: SortOrder
@@ -2365,28 +2272,30 @@ input TagsOnPostsOrderByWithAggregationInput {
   _max: TagsOnPostsMaxOrderByAggregateInput
   _min: TagsOnPostsMinOrderByAggregateInput
   _sum: TagsOnPostsSumOrderByAggregateInput
-  createdById: SortOrderInput
-  id: SortOrder
-  postId: SortOrderInput
-  tagId: SortOrderInput
+  createdById: SortOrder
+  postId: SortOrder
+  tagId: SortOrder
   updatedAt: SortOrder
 }
 
 input TagsOnPostsOrderByWithRelationInput {
   createdBy: UserOrderByWithRelationInput
-  createdById: SortOrderInput
-  id: SortOrder
+  createdById: SortOrder
   post: PostOrderByWithRelationInput
-  postId: SortOrderInput
+  postId: SortOrder
   tag: TagOrderByWithRelationInput
-  tagId: SortOrderInput
+  tagId: SortOrder
   updatedAt: SortOrder
+}
+
+input TagsOnPostsPostIdTagIdCompoundUniqueInput {
+  postId: Int!
+  tagId: Int!
 }
 
 enum TagsOnPostsScalarFieldEnum {
   createdAt
   createdById
-  id
   postId
   tagId
   updatedAt
@@ -2396,10 +2305,9 @@ input TagsOnPostsScalarWhereInput {
   AND: [TagsOnPostsScalarWhereInput!]
   NOT: [TagsOnPostsScalarWhereInput!]
   OR: [TagsOnPostsScalarWhereInput!]
-  createdById: IntNullableFilter
-  id: IntFilter
-  postId: IntNullableFilter
-  tagId: IntNullableFilter
+  createdById: IntFilter
+  postId: IntFilter
+  tagId: IntFilter
   updatedAt: DateTimeFilter
 }
 
@@ -2407,31 +2315,28 @@ input TagsOnPostsScalarWhereWithAggregatesInput {
   AND: [TagsOnPostsScalarWhereWithAggregatesInput!]
   NOT: [TagsOnPostsScalarWhereWithAggregatesInput!]
   OR: [TagsOnPostsScalarWhereWithAggregatesInput!]
-  createdById: IntNullableWithAggregatesFilter
-  id: IntWithAggregatesFilter
-  postId: IntNullableWithAggregatesFilter
-  tagId: IntNullableWithAggregatesFilter
+  createdById: IntWithAggregatesFilter
+  postId: IntWithAggregatesFilter
+  tagId: IntWithAggregatesFilter
   updatedAt: DateTimeWithAggregatesFilter
 }
 
 type TagsOnPostsSumAggregate {
   createdById: Int
-  id: Int
   postId: Int
   tagId: Int
 }
 
 input TagsOnPostsSumOrderByAggregateInput {
   createdById: SortOrder
-  id: SortOrder
   postId: SortOrder
   tagId: SortOrder
 }
 
 input TagsOnPostsUpdateInput {
-  createdBy: UserUpdateOneWithoutTagsOnPostsNestedInput
-  post: PostUpdateOneWithoutTagsOnPostsNestedInput
-  tag: TagUpdateOneWithoutTagsOnPostsNestedInput
+  createdBy: UserUpdateOneRequiredWithoutTagsOnPostsNestedInput
+  post: PostUpdateOneRequiredWithoutTagsOnPostsNestedInput
+  tag: TagUpdateOneRequiredWithoutTagsOnPostsNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -2513,20 +2418,20 @@ input TagsOnPostsUpdateWithWhereUniqueWithoutTagInput {
 
 input TagsOnPostsUpdateWithoutCreatedByInput {
   createdAt: DateTimeFieldUpdateOperationsInput
-  post: PostUpdateOneWithoutTagsOnPostsNestedInput
-  tag: TagUpdateOneWithoutTagsOnPostsNestedInput
+  post: PostUpdateOneRequiredWithoutTagsOnPostsNestedInput
+  tag: TagUpdateOneRequiredWithoutTagsOnPostsNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input TagsOnPostsUpdateWithoutPostInput {
-  createdBy: UserUpdateOneWithoutTagsOnPostsNestedInput
-  tag: TagUpdateOneWithoutTagsOnPostsNestedInput
+  createdBy: UserUpdateOneRequiredWithoutTagsOnPostsNestedInput
+  tag: TagUpdateOneRequiredWithoutTagsOnPostsNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input TagsOnPostsUpdateWithoutTagInput {
-  createdBy: UserUpdateOneWithoutTagsOnPostsNestedInput
-  post: PostUpdateOneWithoutTagsOnPostsNestedInput
+  createdBy: UserUpdateOneRequiredWithoutTagsOnPostsNestedInput
+  post: PostUpdateOneRequiredWithoutTagsOnPostsNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -2552,13 +2457,12 @@ input TagsOnPostsWhereInput {
   AND: [TagsOnPostsWhereInput!]
   NOT: [TagsOnPostsWhereInput!]
   OR: [TagsOnPostsWhereInput!]
-  createdBy: UserNullableRelationFilter
-  createdById: IntNullableFilter
-  id: IntFilter
-  post: PostNullableRelationFilter
-  postId: IntNullableFilter
-  tag: TagNullableRelationFilter
-  tagId: IntNullableFilter
+  createdBy: UserRelationFilter
+  createdById: IntFilter
+  post: PostRelationFilter
+  postId: IntFilter
+  tag: TagRelationFilter
+  tagId: IntFilter
   updatedAt: DateTimeFilter
 }
 
@@ -2566,13 +2470,13 @@ input TagsOnPostsWhereUniqueInput {
   AND: [TagsOnPostsWhereInput!]
   NOT: [TagsOnPostsWhereInput!]
   OR: [TagsOnPostsWhereInput!]
-  createdBy: UserNullableRelationFilter
-  createdById: IntNullableFilter
-  id: Int
-  post: PostNullableRelationFilter
-  postId: IntNullableFilter
-  tag: TagNullableRelationFilter
-  tagId: IntNullableFilter
+  createdBy: UserRelationFilter
+  createdById: IntFilter
+  post: PostRelationFilter
+  postId: IntFilter
+  postId_tagId: TagsOnPostsPostIdTagIdCompoundUniqueInput
+  tag: TagRelationFilter
+  tagId: IntFilter
   updatedAt: DateTimeFilter
 }
 
@@ -2772,11 +2676,6 @@ input UserMinOrderByAggregateInput {
   updatedAt: SortOrder
 }
 
-input UserNullableRelationFilter {
-  is: UserWhereInput
-  isNot: UserWhereInput
-}
-
 input UserOrderByWithAggregationInput {
   _avg: UserAvgOrderByAggregateInput
   _count: UserCountOrderByAggregateInput
@@ -2863,6 +2762,14 @@ input UserUpdateManyMutationInput {
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
+input UserUpdateOneRequiredWithoutCategoriesOnPostsNestedInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutCategoriesOnPostsInput
+  create: UserCreateWithoutCategoriesOnPostsInput
+  update: UserUpdateToOneWithWhereWithoutCategoriesOnPostsInput
+  upsert: UserUpsertWithoutCategoriesOnPostsInput
+}
+
 input UserUpdateOneRequiredWithoutPostsNestedInput {
   connect: UserWhereUniqueInput
   connectOrCreate: UserCreateOrConnectWithoutPostsInput
@@ -2871,22 +2778,10 @@ input UserUpdateOneRequiredWithoutPostsNestedInput {
   upsert: UserUpsertWithoutPostsInput
 }
 
-input UserUpdateOneWithoutCategoriesOnPostsNestedInput {
-  connect: UserWhereUniqueInput
-  connectOrCreate: UserCreateOrConnectWithoutCategoriesOnPostsInput
-  create: UserCreateWithoutCategoriesOnPostsInput
-  delete: UserWhereInput
-  disconnect: UserWhereInput
-  update: UserUpdateToOneWithWhereWithoutCategoriesOnPostsInput
-  upsert: UserUpsertWithoutCategoriesOnPostsInput
-}
-
-input UserUpdateOneWithoutTagsOnPostsNestedInput {
+input UserUpdateOneRequiredWithoutTagsOnPostsNestedInput {
   connect: UserWhereUniqueInput
   connectOrCreate: UserCreateOrConnectWithoutTagsOnPostsInput
   create: UserCreateWithoutTagsOnPostsInput
-  delete: UserWhereInput
-  disconnect: UserWhereInput
   update: UserUpdateToOneWithWhereWithoutTagsOnPostsInput
   upsert: UserUpsertWithoutTagsOnPostsInput
 }
