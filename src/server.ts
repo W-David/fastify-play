@@ -3,6 +3,7 @@ import chalk from 'chalk'
 import { apollo, auth, decorate, env, multipart, staticServer } from './plugins'
 import { EnvType } from './plugins/env'
 import { PrismaClient } from '@prisma/client'
+import cors from '@fastify/cors'
 import createApp from './app'
 import { genertateToken } from './plugins/auth'
 
@@ -15,6 +16,7 @@ async function main() {
 
   await app.register(env)
   await app.register(decorate)
+  await app.register(cors, { origin: '*' })
   await app.register(auth)
   await app.register(multipart, { prisma })
   await app.register(apollo, { prisma })
