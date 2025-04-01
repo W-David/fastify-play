@@ -103,6 +103,8 @@ async function main() {
         description: 'Get the latest news about GraphQL, GraphQL Weekly, and community events.',
         content: 'https://graphqlweekly.com/',
         authorId: root.id,
+        createdAt: new Date('2024-01-01 08:00:00'),
+        updatedAt: new Date('2024-01-01 08:00:00'),
         published: true,
       },
       {
@@ -110,6 +112,8 @@ async function main() {
         description: 'Learn how to build a GraphQL server with Prisma',
         content: 'https://twitter.com/prisma',
         authorId: root.id,
+        createdAt: new Date('2024-01-05 10:00:00'),
+        updatedAt: new Date('2024-01-05 08:00:00'),
         published: false,
       },
       {
@@ -117,6 +121,8 @@ async function main() {
         description: 'Learn about Prisma and GraphQL in a hands-on session.',
         content: 'https://www.prisma.io/day/',
         authorId: admin.id,
+        createdAt: new Date('2024-01-10 12:00:00'),
+        updatedAt: new Date('2024-01-10 12:00:00'),
         published: true,
       },
       {
@@ -124,6 +130,8 @@ async function main() {
         description: 'Learn about Prisma and GraphQL in a hands-on session.',
         content: 'https://www.prisma.io/day/',
         authorId: admin.id,
+        createdAt: new Date('2024-02-01 14:00:00'),
+        updatedAt: new Date('2024-02-01 14:00:00'),
         published: false,
       },
       {
@@ -131,6 +139,8 @@ async function main() {
         description: 'GraphQL is a query language for APIs and a runtime for fulfilling those queries with data.',
         content: 'https://graphql.org/',
         published: true,
+        createdAt: new Date('2023-01-01 16:00:00'),
+        updatedAt: new Date('2023-01-01 16:00:00'),
         authorId: user.id,
       },
       {
@@ -138,6 +148,8 @@ async function main() {
         description: 'Prisma is a database toolkit that makes it easy to build type-safe, data-driven applications.',
         content: 'https://www.prisma.io/',
         published: false,
+        createdAt: new Date('2023-02-01 18:00:00'),
+        updatedAt: new Date('2023-02-01 18:00:00'),
         authorId: user.id,
       },
     ],

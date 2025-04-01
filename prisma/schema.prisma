@@ -12,7 +12,6 @@ generator typegraphql {
   provider                  = "typegraphql-prisma"
   output                    = "../prisma/type-graphql"
   formatGeneratedCode       = false
-  omitInputFieldsByDefault  = ["createdAt"]
   omitOutputFieldsByDefault = ["password"]
 }
 
